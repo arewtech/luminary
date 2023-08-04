@@ -19,11 +19,12 @@
                 <h5 class="card-title">Create Form Category</h5>
 
                 <!-- General Form Elements -->
-                <form>
+                <form action="{{ route('categories.store') }}" method="post">
+                    @csrf
                     <div class="row mb-3">
                         <label for="inputText" class="col-sm-2 col-form-label">Name</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="your name category">
+                            <input type="text" name="name" class="form-control" placeholder="your name category">
                         </div>
                     </div>
                     <div class="row mb-3">

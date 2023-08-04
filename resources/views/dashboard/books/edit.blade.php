@@ -61,7 +61,7 @@
                         <label class="col-sm-2 col-form-label"></label>
                         <div class="col-sm-10">
                             <a href="{{ route('books.index') }}" class="btn btn-danger">Cancel</a>
-                            <button type="submit" class="btn btn-primary">Edit Book</button>
+                            <button type="submit" class="btn btn-warning">Edit Book</button>
                         </div>
                     </div>
 

@@ -30,7 +30,12 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string|max:255|unique:categories,name',
+        ]);
+        $data['slug'] = str($request->name . ' ' . str()->random(5))->slug();
+        Category::create($data);
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -46,7 +51,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('dashboard.categories.edit', [
+            'category' => $category,
+        ]);
     }
 
     /**
@@ -54,7 +61,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string|max:255|unique:categories,name,' . $category->id,
+        ]);
+        if ($request->name != $category->name) {
+            $data['slug'] = str($request->name . ' ' . str()->random(5))->slug();
+        }
+        $category->update($data);
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -62,6 +76,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('categories.index');
     }
 }
