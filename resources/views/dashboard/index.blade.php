@@ -2,6 +2,7 @@
 @section('content')
     <main id="main" class="main">
 
+        <!-- ======= Page Title ======= -->
         <div class="pagetitle">
             <h1>Dashboard</h1>
             <nav>
@@ -10,7 +11,8 @@
                     <li class="breadcrumb-item active">Dashboard</li>
                 </ol>
             </nav>
-        </div><!-- End Page Title -->
+        </div>
+        <!-- End Page Title -->
 
         <section class="section dashboard">
             <div class="row">

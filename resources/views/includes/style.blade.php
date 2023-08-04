@@ -20,6 +20,14 @@
  <!-- Template Main CSS File -->
  <link href="{{ asset('assets') }}/css/style.css" rel="stylesheet">
  <style>
+     .line-clamp {
+         height: 3.6rem;
+         display: -webkit-box;
+         -webkit-line-clamp: 2;
+         -webkit-box-orient: vertical;
+         overflow: hidden;
+     }
+
      ::-webkit-scrollbar {
          width: 7px;
          height: 7px;
