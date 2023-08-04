@@ -70,7 +70,7 @@
 
         <!-- Users Page Nav -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-error-404.html">
+            <a class="nav-link {{ request()->is('users*') ? '' : 'collapsed' }}" href="{{ route('users.index') }}">
                 <i class="bi bi-dash-circle"></i>
                 <span>Users</span>
             </a>
