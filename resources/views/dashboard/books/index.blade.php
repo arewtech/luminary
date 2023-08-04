@@ -19,7 +19,7 @@
 
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">List Table Books : 1</h5>
+                <h5 class="card-title">List Table Books : {{ count($books) }}</h5>
                 <p>
                     Book is a medium for recording information in the form of writing or images, usually composed of many
                     pages.
@@ -40,48 +40,61 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th class="text-center" scope="row">1</th>
-                                <td>#QWERTY666</td>
-                                <td>The Lord Of The Ring</td>
-                                <td>Joko Aragon</td>
-                                <td><span class="badge bg-success">available</span></td>
-                                <td class="line-clamp">
-                                    he Lord of the Rings is a series of three epic fantasy adventure films directed by Peter
-                                    Jackson, based on the novel The Lord of the Rings by J. R. R. Tolkien. The films are
-                                    subtitled The Fellowship of the Ring </td>
-                                <td>-</td>
-                                <td>
-                                    <a href="#" class="btn btn-warning btn-sm">
-                                        <i class="bi bi-pencil-square text-white"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                        data-bs-target="#bookDelete">
-                                        <i class="bi bi-trash"></i>
-                                    </a>
-                                    <!-- Button trigger modal -->
-                                    <div class="modal fade" id="bookDelete" tabindex="-1">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">Delete Book</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>Are you sure you want to delete this book?</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-danger">Delete</button>
+                            @forelse ($books as $item)
+                                <tr>
+                                    <th class="text-center" scope="row">{{ $loop->iteration }}</th>
+                                    <td class="fw-bold">{{ $item->book_code }}</td>
+                                    <td><a href="#" class="text-capitalize">{{ $item->title }}</a></td>
+                                    <td>{{ $item->author }}</td>
+                                    <td><span class="badge bg-success">{{ $item->status }}</span></td>
+                                    <td class="line-clamp">
+                                        {{ $item->description }}
+                                    </td>
+                                    <td>-</td>
+                                    <td>
+                                        <div class="d-inline-flex gap-1">
+                                            <a href="{{ route('books.edit', $item) }}" class="btn btn-warning btn-sm">
+                                                <i class="bi bi-pencil-square text-white"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#bookDelete{{ $item->slug }}">
+                                                <i class="bi bi-trash"></i>
+                                            </a>
+                                        </div>
+                                        <!-- Button trigger modal -->
+                                        <div class="modal fade" id="bookDelete{{ $item->slug }}" tabindex="-1">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title text-capitalize">
+                                                            Delete Book {{ $item->title }}
+                                                        </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Are you sure you want to delete this book?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                        <form action="{{ route('books.destroy', $item) }}" method="post">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- End Button trigger modal -->
-                                </td>
-                            </tr>
+                                        <!-- End Button trigger modal -->
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="8" class="text-center">Data not found</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

@@ -30,7 +30,17 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'title' => 'required|string|max:255|unique:books,title',
+            'author' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+            'publication_date' => 'required|date',
+        ]);
+        $data['slug'] = str($request->title . ' ' . str()->random(5))->slug();
+        $data['book_code'] = str("#LMR-" . str()->random(5))->upper();
+        // return $data;
+        Book::create($data);
+        return redirect()->route('books.index');
     }
 
     /**
@@ -46,7 +56,9 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        return view('dashboard.books.edit', [
+            'book' => $book,
+        ]);
     }
 
     /**
@@ -54,7 +66,22 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+        $data = $request->validate([
+            'title' => 'required|string|max:255|unique:books,title,' . $book->id,
+            'author' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+            'publication_date' => 'required|date',
+        ]);
+        if ($request->title != $book->title) {
+            $data['slug'] = str($request->title . ' ' . str()->random(5))->slug();
+            $data['book_code'] = str("#LMR-" . str()->random(5))->upper();
+        } else {
+            $data['slug'] = $book->slug;
+            $data['book_code'] = $book->book_code;
+        }
+        // return $data;
+        $book->update($data);
+        return redirect()->route('books.index');
     }
 
     /**
@@ -62,6 +89,7 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        $book->delete();
+        return redirect()->route('books.index');
     }
 }
