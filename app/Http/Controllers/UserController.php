@@ -12,8 +12,11 @@ class UserController extends Controller
      */
     public function index()
     {
+        // $users = User::with('rentLogs')->latest()->get();
+        // return $users;
+
         return view('dashboard.users.index', [
-            'users' => User::latest()->paginate(10),
+            'users' => User::with('rentLogs')->latest()->paginate(10),
         ]);
     }
 

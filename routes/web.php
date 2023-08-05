@@ -29,6 +29,8 @@ Route::get('/dashboard', function () {
     return view('dashboard.index');
 })->name('dashboard');
 
+// rent log
+Route::get('/rent-logs', [RentLogController::class, 'index'])->name('rent-logs.index');
 
 // book rent
 Route::get('/book-rent', [BookRentLogController::class, 'create'])->name('book-rent.create');

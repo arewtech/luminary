@@ -12,9 +12,11 @@ class RentLogController extends Controller
      */
     public function index()
     {
-        // return view('dashboard.rent-logs.index', [
-        //     'rentLogs' => RentLog::latest()->paginate(10),
-        // ]);
+        // $rentLogs = RentLog::with(['book', 'user'])->latest()->get();
+        // return $rentLogs;
+        return view('dashboard.rent-logs.index', [
+            'rentLogs' => RentLog::with(['book', 'user'])->latest()->get(),
+        ]);
     }
 
     /**

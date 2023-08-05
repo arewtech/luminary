@@ -12,7 +12,7 @@ class BookRentLogController extends Controller
 {
     public function create()
     {
-        return view('dashboard.rent-logs.create', [
+        return view('dashboard.book-rent.create', [
             'users' => User::where('role', 'user')->latest()->get(),
             'books' => Book::whereStatus('available')->latest()->get(),
         ]);
