@@ -45,6 +45,7 @@ Route::middleware('guest')->group(function() {
 
     // register
     Route::get('/register', [AuthController::class, 'formRegister'])->name('register');
+    Route::post('/register', [AuthController::class, 'register']);
 });
 // logout
 Route::post('/logout', function() {
