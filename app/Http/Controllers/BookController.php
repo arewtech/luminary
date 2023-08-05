@@ -40,14 +40,14 @@ class BookController extends Controller
             'author' => 'required|string|max:255',
             'description' => 'required|string|max:255',
             'publication_date' => 'required|date',
-            // 'categories' => 'required|array|exists:categories,id',
+            // 'categories' => 'required|array',
         ]);
         $data['slug'] = str($request->title . ' ' . str()->random(5))->slug();
         $data['book_code'] = str("#LMR-" . str()->random(5))->upper();
-        // return $data;
         // dd($data);
         $book = Book::create($data);
         $book->categories()->attach($request->categories);
+        // dd($data);
         return redirect()->route('books.index');
     }
 
@@ -64,6 +64,8 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
+        // $book = $book->load('categories');
+        // return $book;
         return view('dashboard.books.edit', [
             'book' => $book,
             'categories' => Category::all(),

@@ -19,7 +19,7 @@
 
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">List Table Users : 1</h5>
+                <h5 class="card-title">List Table Users : {{ count($users) }}</h5>
                 <p>
                     Users are people who can access the system.
                 </p>
@@ -30,6 +30,7 @@
                             <tr>
                                 <th class="text-center" scope="col">No</th>
                                 <th scope="col">Name</th>
+                                <th scope="col">Username</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Phone</th>
                                 <th scope="col">Status</th>
@@ -39,47 +40,60 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th class="text-center" scope="row">1</th>
-                                <td>Joko Skuyy</td>
-                                <td>joko@gmail.com</td>
-                                <td>082830120</td>
-                                <td><span class="badge bg-primary">user</span></td>
-                                <td><span class="badge bg-danger">inactive</span></td>
-                                <td class="line-clamp">
-                                    8888 Cummings Vista Apt. 101, Susanbury, NY 95473
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-warning btn-sm">
-                                        <i class="bi bi-pencil-square text-white"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                        data-bs-target="#bookDelete">
-                                        <i class="bi bi-trash"></i>
-                                    </a>
-                                    <!-- Button trigger modal -->
-                                    <div class="modal fade" id="bookDelete" tabindex="-1">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">Delete User</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>Are you sure you want to delete this user?</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-danger">Delete</button>
+                            @forelse ($users as $item)
+                                <tr>
+                                    <th class="text-center" scope="row">{{ $loop->iteration }}</th>
+                                    <td>{{ $item->name }}</td>
+                                    <td>{{ $item->username }}</td>
+                                    <td>{{ $item->email }}</td>
+                                    <td>{{ $item->phone ?? 'nothing' }}</td>
+                                    <td><span
+                                            class="badge {{ $item->role == 'operator' ? 'bg-info' : 'bg-primary' }}">{{ $item->role }}</span>
+                                    </td>
+                                    <td><span
+                                            class="badge {{ $item->status == 'active' ? 'bg-success' : 'bg-danger' }}">{{ $item->status }}</span>
+                                    </td>
+                                    <td class="line-clamp">
+                                        {{ $item->address ?? 'nothing' }}
+                                    </td>
+                                    <td>
+                                        <div class="d-inline-flex gap-1">
+                                            <a href="#" class="btn btn-warning btn-sm">
+                                                <i class="bi bi-pencil-square text-white"></i>
+                                            </a>
+                                            <a href="#" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#bookDelete">
+                                                <i class="bi bi-trash"></i>
+                                            </a>
+                                        </div>
+                                        <!-- Button trigger modal -->
+                                        <div class="modal fade" id="bookDelete" tabindex="-1">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Delete User</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Are you sure you want to delete this user?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-danger">Delete</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- End Button trigger modal -->
-                                </td>
-                            </tr>
+                                        <!-- End Button trigger modal -->
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="8" class="text-center">No data available in table</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

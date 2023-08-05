@@ -14,84 +14,100 @@ class CategorySeeder extends Seeder
     {
         $categories = [
             [
-                'name' => 'Fiksi',
-                'slug' => 'fiksi',
+                'name' => 'Programming',
+                'slug' => 'programming'
             ],
             [
-                'name' => 'Non Fiksi',
-                'slug' => 'non-fiksi',
+                'name' => 'Design',
+                'slug' => 'design'
             ],
             [
-                'name' => 'Komik',
-                'slug' => 'komik',
+                'name' => 'Networking',
+                'slug' => 'networking'
             ],
             [
-                'name' => 'Novel',
-                'slug' => 'novel',
+                'name' => 'Database',
+                'slug' => 'database'
             ],
             [
-                'name' => 'Biografi',
-                'slug' => 'biografi',
+                'name' => 'Operating System',
+                'slug' => 'operating-system'
             ],
             [
-                'name' => 'Ensiklopedia',
-                'slug' => 'ensiklopedia',
+                'name' => 'Web Development',
+                'slug' => 'web-development'
             ],
             [
-                'name' => 'Kamus',
-                'slug' => 'kamus',
+                'name' => 'Mobile Development',
+                'slug' => 'mobile-development'
             ],
             [
-                'name' => 'Panduan',
-                'slug' => 'panduan',
+                'name' => 'Desktop Development',
+                'slug' => 'desktop-development'
             ],
             [
-                'name' => 'Puisi',
-                'slug' => 'puisi',
+                'name' => 'Game Development',
+                'slug' => 'game-development'
             ],
             [
-                'name' => 'Cerpen',
-                'slug' => 'cerpen',
+                'name' => 'Software Development',
+                'slug' => 'software-development'
             ],
             [
-                'name' => 'Cerita Anak',
-                'slug' => 'cerita-anak',
+                'name' => 'Hardware',
+                'slug' => 'hardware'
             ],
             [
-                'name' => 'Cerita Rakyat',
-                'slug' => 'cerita-rakyat',
+                'name' => 'Artificial Intelligence',
+                'slug' => 'artificial-intelligence'
             ],
             [
-                'name' => 'Cerita Pendek',
-                'slug' => 'cerita-pendek',
+                'name' => 'Machine Learning',
+                'slug' => 'machine-learning'
             ],
             [
-                'name' => 'Cerita Seru',
-                'slug' => 'cerita-seru',
+                'name' => 'Deep Learning',
+                'slug' => 'deep-learning'
             ],
             [
-                'name' => 'Cerita Horor',
-                'slug' => 'cerita-horor',
+                'name' => 'Data Science',
+                'slug' => 'data-science'
             ],
             [
-                'name' => 'Cerita Misteri',
-                'slug' => 'cerita-misteri',
+                'name' => 'Internet of Things',
+                'slug' => 'internet-of-things'
             ],
             [
-                'name' => 'Cerita Fantasi',
-                'slug' => 'cerita-fantasi',
+                'name' => 'Cloud Computing',
+                'slug' => 'cloud-computing'
             ],
             [
-                'name' => 'Cerita Humor',
-                'slug' => 'cerita-humor',
+                'name' => 'Big Data',
+                'slug' => 'big-data'
             ],
             [
-                'name' => 'Cerita Inspiratif',
-                'slug' => 'cerita-inspiratif',
+                'name' => 'Cyber Security',
+                'slug' => 'cyber-security'
             ],
             [
-                'name' => 'Cerita Motivasi',
-                'slug' => 'cerita-motivasi',
+                'name' => 'Blockchain',
+                'slug' => 'blockchain'
+            ],
+            [
+                'name' => 'Quantum Computing',
+                'slug' => 'quantum-computing'
+            ],
+            [
+                'name' => 'Augmented Reality',
+                'slug' => 'augmented-reality'
+            ],
+            [
+                'name' => 'Virtual Reality',
+                'slug' => 'virtual-reality'
+            ],
+            [
+                'name' => 'Mixed Reality',
+                'slug' => 'mixed-reality'
             ],
         ];
         foreach ($categories as $category) {

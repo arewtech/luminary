@@ -8,12 +8,15 @@
                 <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
                 <p class="text-center small">Enter your username & password to login</p>
             </div>
-
-            <form class="row g-3 needs-validation" novalidate>
-
+            @foreach ($errors->all() as $item)
+                {{ $item }}
+            @endforeach
+            <form action="{{ route('login') }}" method="post" class="row g-3 needs-validation">
+                @csrf
                 <div class="col-12">
-                    <label for="yourName" class="form-label">Your Email</label>
-                    <input type="text" name="name" class="form-control" id="yourName" placeholder="joko@luminary.com">
+                    <label for="yourEmail" class="form-label">Your Email</label>
+                    <input type="text" name="email" class="form-control" id="yourEmail"
+                        placeholder="joko@luminary.com">
                     <div class="invalid-feedback">Please, enter your name!</div>
                 </div>
 

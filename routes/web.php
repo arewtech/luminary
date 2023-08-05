@@ -21,6 +21,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::middleware('auth')->group(function() {
+// dashboard
 Route::get('/dashboard', function () {
     return view('dashboard.index');
 })->name('dashboard');
@@ -32,7 +34,21 @@ Route::resource('categories', CategoryController::class);
 // users
 Route::resource('users', UserController::class);
 
-// authentification
-Route::get('/login', [AuthController::class, 'formLogin'])->name('login');
+});
 
-Route::get('/register', [AuthController::class, 'formRegister'])->name('register');
+
+// authentification
+Route::middleware('guest')->group(function() {
+    // login
+    Route::get('/login', [AuthController::class, 'formLogin'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
+
+    // register
+    Route::get('/register', [AuthController::class, 'formRegister'])->name('register');
+});
+// logout
+Route::post('/logout', function() {
+    auth()->logout();
+    session()->flush();
+    return redirect()->route('login');
+})->name('logout');

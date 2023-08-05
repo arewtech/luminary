@@ -14,10 +14,22 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        \App\Models\User::factory()->create([
+            'name' => 'joko hulahula',
+            'username' => 'joko',
+            'email' => 'joko@gmail.com',
+            'role' => 'operator',
+            'status' => 'active',
+        ]);
+
+        \App\Models\User::factory()->create([
+            'name' => 'kim so hyun',
+            'username' => 'kim',
+            'email' => 'kim@gmail.com',
+            'role' => 'user',
+            'status' => 'inactive',
+        ]);
+
         $this->call([
             CategorySeeder::class,
             // BookSeeder::class,
