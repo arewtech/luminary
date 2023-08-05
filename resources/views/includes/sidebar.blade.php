@@ -27,15 +27,16 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="users-profile.html">
                 <i class="bi bi-person"></i>
-                <span>Book Rent</span>
+                <span>Rent Log</span>
             </a>
         </li>
         <!-- End Books Page Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-faq.html">
+            <a class="nav-link {{ request()->url('/book-rent') == url('/book-rent') ? '' : 'collapsed' }}"
+                href="{{ route('book-rent.create') }}">
                 <i class="bi bi-question-circle"></i>
-                <span>Rent Log</span>
+                <span>Book Rent</span>
             </a>
         </li><!-- End F.A.Q Page Nav -->
 

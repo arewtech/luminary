@@ -48,4 +48,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
+
+    public function rentLogs()
+    {
+        return $this->hasMany(RentLog::class);
+    }
 }

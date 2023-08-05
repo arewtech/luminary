@@ -19,4 +19,9 @@ class Book extends Model
     {
         return $this->belongsToMany(Category::class, 'book_categories', 'book_id', 'category_id');
     }
+
+    public function rentLogs()
+    {
+        return $this->hasMany(RentLog::class);
+    }
 }

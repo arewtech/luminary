@@ -20,45 +20,50 @@
                 <h5 class="card-title">Create Form User</h5>
 
                 <!-- Multi Columns Form -->
-                <form class="row g-3">
+                <form action="{{ route('users.store') }}" method="post" class="row g-3">
+                    @csrf
                     <div class="col-md-6">
                         <label for="inputName5" class="form-label">Your Name</label>
-                        <input type="text" class="form-control" placeholder="your name" id="inputName5">
+                        <input type="text" name="name" class="form-control" placeholder="your name" id="inputName5">
                     </div>
                     <div class="col-md-6">
                         <label for="inputName5" class="form-label">Your Username</label>
-                        <input type="text" class="form-control" placeholder="your username" id="inputName5">
+                        <input type="text" name="username" class="form-control" placeholder="your username"
+                            id="inputName5">
                     </div>
                     <div class="col-md-6">
                         <label for="inputEmail5" class="form-label">Email</label>
-                        <input type="email" class="form-control" placeholder="your email" id="inputEmail5">
+                        <input type="email" name="email" class="form-control" placeholder="your email" id="inputEmail5">
                     </div>
                     <div class="col-md-6">
                         <label for="inputPassword5" class="form-label">Password</label>
-                        <input type="password" class="form-control" placeholder="your email" id="inputPassword5">
+                        <input type="password" name="password" class="form-control" placeholder="your email"
+                            id="inputPassword5">
                     </div>
                     <div class="col-12">
                         <label for="inputAddress5" class="form-label">Address</label>
-                        <input type="text" class="form-control" id="inputAddres5s"
+                        <input type="text" name="address" class="form-control" id="inputAddres5s"
                             placeholder="apartment, studio, or floor">
                     </div>
                     <div class="col-md-6">
                         <label for="inputPhone" class="form-label">Phone</label>
-                        <input type="text" class="form-control" placeholder="your phone number" id="inputPhone">
+                        <input type="text" name="phone" class="form-control" placeholder="your phone number"
+                            id="inputPhone">
                     </div>
                     <div class="col-md-6">
                         <label for="inputState" class="form-label">Role</label>
-                        <select id="inputState" class="form-select">
+                        <select id="inputState" name="role" class="form-select">
                             <option selected="" disabled>Choose roles</option>
-                            <option>operator</option>
-                            <option>user</option>
+                            <option value="operator">operator</option>
+                            <option value="user">user</option>
                         </select>
                     </div>
                     <div class="text-end mt-4 mb-2">
                         <button type="reset" class="btn btn-secondary">Reset</button>
                         <button type="submit" class="btn btn-primary">Create User</button>
                     </div>
-                </form><!-- End Multi Columns Form -->
+                </form>
+                <!-- End Multi Columns Form -->
 
             </div>
         </div>
