@@ -45,6 +45,8 @@
                                     <td>
                                         @if ($item->actual_return_date == null)
                                             <span class="badge bg-warning">{{ $item->status }}</span>
+                                        @else
+                                            {{ $item->actual_return_date }}
                                         @endif
                                     </td>
                                     <td>{{ $item->fine == 0 ? '-' : $item->fine }}</td>

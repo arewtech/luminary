@@ -32,6 +32,10 @@ Route::get('/dashboard', function () {
 // rent log
 Route::get('/rent-logs', [RentLogController::class, 'index'])->name('rent-logs.index');
 
+// actual return date
+Route::get('/actual-return-date', [RentLogController::class, 'create'])->name('actual-return-date.create');
+Route::post('/actual-return-date', [RentLogController::class, 'store'])->name('actual-return-date.store');
+
 // book rent
 Route::get('/book-rent', [BookRentLogController::class, 'create'])->name('book-rent.create');
 Route::post('/book-rent', [BookRentLogController::class, 'store'])->name('book-rent.store');
