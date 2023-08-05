@@ -51,8 +51,10 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
+        // $category = $category->load('books');
+        // return $category;
         return view('dashboard.categories.edit', [
-            'category' => $category,
+            'category' => $category->load('books'),
         ]);
     }
 

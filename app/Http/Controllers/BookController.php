@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -12,8 +13,10 @@ class BookController extends Controller
      */
     public function index()
     {
+        $books = Book::with('categories')->latest()->get();
+        // return $books;
         return view('dashboard.books.index', [
-            'books' => Book::latest()->paginate(10),
+            'books' => Book::with('categories')->latest()->paginate(10),
         ]);
     }
 
@@ -22,7 +25,9 @@ class BookController extends Controller
      */
     public function create()
     {
-        return view('dashboard.books.create');
+        return view('dashboard.books.create', [
+            'categories' => Category::all(),
+        ]);
     }
 
     /**
@@ -35,11 +40,14 @@ class BookController extends Controller
             'author' => 'required|string|max:255',
             'description' => 'required|string|max:255',
             'publication_date' => 'required|date',
+            // 'categories' => 'required|array|exists:categories,id',
         ]);
         $data['slug'] = str($request->title . ' ' . str()->random(5))->slug();
         $data['book_code'] = str("#LMR-" . str()->random(5))->upper();
         // return $data;
-        Book::create($data);
+        // dd($data);
+        $book = Book::create($data);
+        $book->categories()->attach($request->categories);
         return redirect()->route('books.index');
     }
 
@@ -58,6 +66,7 @@ class BookController extends Controller
     {
         return view('dashboard.books.edit', [
             'book' => $book,
+            'categories' => Category::all(),
         ]);
     }
 
@@ -71,6 +80,7 @@ class BookController extends Controller
             'author' => 'required|string|max:255',
             'description' => 'required|string|max:255',
             'publication_date' => 'required|date',
+            // 'categories' => 'required|exists:categories,id',
         ]);
         if ($request->title != $book->title) {
             $data['slug'] = str($request->title . ' ' . str()->random(5))->slug();
@@ -81,6 +91,7 @@ class BookController extends Controller
         }
         // return $data;
         $book->update($data);
+        $book->categories()->sync($request->categories, true);
         return redirect()->route('books.index');
     }
 
@@ -89,6 +100,7 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
+        $book->categories()->detach();
         $book->delete();
         return redirect()->route('books.index');
     }

@@ -7,6 +7,7 @@
             <h1>Create Book</h1>
             <nav>
                 <ol class="breadcrumb">
+                    <li class="breadcrumb-item">Form</li>
                     <li class="breadcrumb-item"><a href="{{ route('books.index') }}">Books</a></li>
                     <li class="breadcrumb-item active">Create Book</li>
                 </ol>
@@ -17,7 +18,11 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Create Form Book</h5>
-
+                @foreach ($errors->all() as $item)
+                    <div class="alert alert-danger" role="alert">
+                        {{ $item }}
+                    </div>
+                @endforeach
                 <!-- General Form Elements -->
                 <form action="{{ route('books.store') }}" method="post">
                     @csrf
@@ -38,6 +43,16 @@
                         <label for="inputDate" class="col-sm-2 col-form-label">Publication Date</label>
                         <div class="col-sm-10">
                             <input type="date" name="publication_date" class="form-control" value="{{ date('Y-m-d') }}">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="inputState" class="col-sm-2 col-form-label">Categories</label>
+                        <div class="col-sm-10">
+                            <select id="inputState" class="form-select" multiple name="categories[]">
+                                @foreach ($categories as $item)
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="row mb-3">

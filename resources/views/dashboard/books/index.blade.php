@@ -33,8 +33,9 @@
                                 <th scope="col">Code Book</th>
                                 <th scope="col">Title</th>
                                 <th scope="col">Author</th>
+                                <th scope="col" style="width: 200px">Categories</th>
                                 <th scope="col">Status</th>
-                                <th scope="col" style="width: 200px">Desc</th>
+                                {{-- <th scope="col" style="width: 200px">Desc</th> --}}
                                 <th scope="col">Cover</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -46,10 +47,17 @@
                                     <td class="fw-bold">{{ $item->book_code }}</td>
                                     <td><a href="#" class="text-capitalize">{{ $item->title }}</a></td>
                                     <td>{{ $item->author }}</td>
-                                    <td><span class="badge bg-success">{{ $item->status }}</span></td>
-                                    <td class="line-clamp">
-                                        {{ $item->description }}
+                                    <td>
+                                        @forelse ($item->categories as $category)
+                                            <span class="badge bg-primary text-lowercase">{{ $category->name }}</span>
+                                        @empty
+                                            <span class="badge bg-danger">No Categories</span>
+                                        @endforelse
                                     </td>
+                                    <td><span class="badge bg-success">{{ $item->status }}</span></td>
+                                    {{-- <td class="line-clamp">
+                                        {{ $item->description }}
+                                    </td> --}}
                                     <td>-</td>
                                     <td>
                                         <div class="d-inline-flex gap-1">

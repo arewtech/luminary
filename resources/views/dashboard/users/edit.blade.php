@@ -4,11 +4,12 @@
 
         <!-- ======= Page Title ======= -->
         <div class="pagetitle">
-            <h1>Create Book</h1>
+            <h1>Create Users</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('books.index') }}">Books</a></li>
-                    <li class="breadcrumb-item active">Create Book</li>
+                    <li class="breadcrumb-item">Form</li>
+                    <li class="breadcrumb-item"><a href="{{ route('users.index') }}">Users</a></li>
+                    <li class="breadcrumb-item active">Create User</li>
                 </ol>
             </nav>
         </div>
@@ -16,55 +17,48 @@
 
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Create Form Book</h5>
+                <h5 class="card-title">Create Form User</h5>
 
-                <!-- General Form Elements -->
-                <form>
-                    <div class="row mb-3">
-                        <label for="inputText" class="col-sm-2 col-form-label">Book Code</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="#QWERTY666">
-                        </div>
+                <!-- Multi Columns Form -->
+                <form class="row g-3">
+                    <div class="col-md-6">
+                        <label for="inputName5" class="form-label">Your Name</label>
+                        <input type="text" class="form-control" placeholder="your name" id="inputName5">
                     </div>
-                    <div class="row mb-3">
-                        <label for="inputEmail" class="col-sm-2 col-form-label">Title</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="your title book">
-                        </div>
+                    <div class="col-md-6">
+                        <label for="inputName5" class="form-label">Your Username</label>
+                        <input type="text" class="form-control" placeholder="your username" id="inputName5">
                     </div>
-                    <div class="row mb-3">
-                        <label for="inputNumber" class="col-sm-2 col-form-label">Author</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="name of the author who wrote the book">
-                        </div>
+                    <div class="col-md-6">
+                        <label for="inputEmail5" class="form-label">Email</label>
+                        <input type="email" class="form-control" placeholder="your email" id="inputEmail5">
                     </div>
-                    <div class="row mb-3">
-                        <label for="inputDate" class="col-sm-2 col-form-label">Publication Date</label>
-                        <div class="col-sm-10">
-                            <input type="date" class="form-control" value="{{ date('Y-m-d') }}">
-                        </div>
+                    <div class="col-md-6">
+                        <label for="inputPassword5" class="form-label">Password</label>
+                        <input type="password" class="form-control" placeholder="your email" id="inputPassword5">
                     </div>
-                    <div class="row mb-3">
-                        <label for="inputNumber" class="col-sm-2 col-form-label">Cover</label>
-                        <div class="col-sm-10">
-                            <input class="form-control" type="file" id="formFile">
-                        </div>
+                    <div class="col-12">
+                        <label for="inputAddress5" class="form-label">Address</label>
+                        <input type="text" class="form-control" id="inputAddres5s"
+                            placeholder="apartment, studio, or floor">
                     </div>
-                    <div class="row mb-3">
-                        <label for="inputPassword" class="col-sm-2 col-form-label">Description</label>
-                        <div class="col-sm-10">
-                            <textarea class="form-control" style="height: 100px" placeholder="description of the book"></textarea>
-                        </div>
+                    <div class="col-md-6">
+                        <label for="inputPhone" class="form-label">Phone</label>
+                        <input type="text" class="form-control" placeholder="your phone number" id="inputPhone">
                     </div>
-                    <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label"></label>
-                        <div class="col-sm-10">
-                            <a href="{{ route('books.index') }}" class="btn btn-danger">Cancel</a>
-                            <button type="submit" class="btn btn-primary">Create Book</button>
-                        </div>
+                    <div class="col-md-6">
+                        <label for="inputState" class="form-label">Role</label>
+                        <select id="inputState" class="form-select">
+                            <option selected="" disabled>Choose roles</option>
+                            <option>operator</option>
+                            <option>user</option>
+                        </select>
                     </div>
-
-                </form><!-- End General Form Elements -->
+                    <div class="text-center mt-4 mb-2">
+                        <button type="reset" class="btn btn-secondary">Reset</button>
+                        <button type="submit" class="btn btn-primary">Create User</button>
+                    </div>
+                </form><!-- End Multi Columns Form -->
 
             </div>
         </div>

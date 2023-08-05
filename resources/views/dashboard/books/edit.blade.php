@@ -7,6 +7,7 @@
             <h1 class="text-capitalize">Edit Book | {{ $book->title }}</h1>
             <nav>
                 <ol class="breadcrumb">
+                    <li class="breadcrumb-item">Form</li>
                     <li class="breadcrumb-item"><a href="{{ route('books.index') }}">Books</a></li>
                     <li class="breadcrumb-item active">Edit Book</li>
                 </ol>
@@ -41,6 +42,18 @@
                         <div class="col-sm-10">
                             <input type="date" name="publication_date" class="form-control"
                                 value="{{ $book->publication_date }}">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="inputState" class="col-sm-2 col-form-label">Categories</label>
+                        <div class="col-sm-10">
+                            <select id="inputState" class="form-select" multiple name="categories[]">
+                                @foreach ($categories as $item)
+                                    <option value="{{ $item->id }}"
+                                        {{ in_array($item->id, $book->categories->pluck('id')->toArray()) ? 'selected' : '' }}>
+                                        {{ $item->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="row mb-3">

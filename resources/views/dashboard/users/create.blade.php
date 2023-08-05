@@ -7,6 +7,7 @@
             <h1>Create Users</h1>
             <nav>
                 <ol class="breadcrumb">
+                    <li class="breadcrumb-item">Form</li>
                     <li class="breadcrumb-item"><a href="{{ route('users.index') }}">Users</a></li>
                     <li class="breadcrumb-item active">Create User</li>
                 </ol>
@@ -53,7 +54,7 @@
                             <option>user</option>
                         </select>
                     </div>
-                    <div class="text-center mt-4 mb-2">
+                    <div class="text-end mt-4 mb-2">
                         <button type="reset" class="btn btn-secondary">Reset</button>
                         <button type="submit" class="btn btn-primary">Create User</button>
                     </div>
