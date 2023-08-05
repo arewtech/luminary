@@ -30,7 +30,7 @@
                         <thead class="table-dark">
                             <tr>
                                 <th class="text-center" scope="col">No</th>
-                                <th scope="col">Code Book</th>
+                                <th scope="col">Code</th>
                                 <th scope="col">Title</th>
                                 <th scope="col">Author</th>
                                 <th scope="col" style="width: 200px">Categories</th>
@@ -49,12 +49,15 @@
                                     <td>{{ $item->author }}</td>
                                     <td>
                                         @forelse ($item->categories as $category)
-                                            <span class="badge bg-primary text-lowercase">{{ $category->name }}</span>
+                                            <span class="badge text-lowercase bg-primary">{{ $category->name }}</span>
                                         @empty
                                             <span class="badge bg-danger">No Categories</span>
                                         @endforelse
                                     </td>
-                                    <td><span class="badge bg-success">{{ $item->status }}</span></td>
+                                    <td>
+                                        <span
+                                            class="badge {{ $item->status != 'available' ? 'bg-danger' : 'bg-success' }}">{{ $item->status }}</span>
+                                    </td>
                                     {{-- <td class="line-clamp">
                                         {{ $item->description }}
                                     </td> --}}

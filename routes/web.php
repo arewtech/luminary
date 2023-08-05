@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
@@ -30,3 +31,8 @@ Route::resource('books', BookController::class);
 Route::resource('categories', CategoryController::class);
 // users
 Route::resource('users', UserController::class);
+
+// authentification
+Route::get('/login', [AuthController::class, 'formLogin'])->name('login');
+
+Route::get('/register', [AuthController::class, 'formRegister'])->name('register');
