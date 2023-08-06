@@ -28,4 +28,19 @@ class RentLog extends Model
         return $this->belongsTo(User::class);
     }
 
+    // set status
+    public function setStatusRentLog()
+    {
+        if ($this->actual_return_date == null) {
+            return 'not returned';
+        } else {
+            if ($this->actual_return_date > $this->return_date) {
+                return 'late';
+            } else {
+                return 'returned';
+            }
+        }
+    }
+    // cara panggilnya di view bagaimana?
+    // $rentLog->setStatusRentLog()
 }

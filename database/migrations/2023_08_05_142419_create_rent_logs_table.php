@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('book_id')->constrained('books')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->dateTime('rent_date');
-            $table->dateTime('return_date');
-            $table->dateTime('actual_return_date')->nullable();
-            $table->enum('status', ['returned', 'pending'])->default('pending');
+            $table->date('rent_date');
+            $table->date('return_date');
+            $table->date('actual_return_date')->nullable();
+            $table->enum('status', ['returned', 'not returned', 'late'])->default('not returned');
             $table->integer('fine')->default(0);
             $table->timestamps();
         });

@@ -14,101 +14,141 @@ class CategorySeeder extends Seeder
     {
         $categories = [
             [
-                'name' => 'Programming',
-                'slug' => 'programming'
+                'name' => 'Action',
+                'slug' => 'action'
             ],
             [
-                'name' => 'Design',
-                'slug' => 'design'
+                'name' => 'Adventure',
+                'slug' => 'adventure'
             ],
             [
-                'name' => 'Networking',
-                'slug' => 'networking'
+                'name' => 'Comedy',
+                'slug' => 'comedy'
             ],
             [
-                'name' => 'Database',
-                'slug' => 'database'
+                'name' => 'Drama',
+                'slug' => 'drama'
             ],
             [
-                'name' => 'Operating System',
-                'slug' => 'operating-system'
+                'name' => 'Fantasy',
+                'slug' => 'fantasy'
             ],
             [
-                'name' => 'Web Development',
-                'slug' => 'web-development'
+                'name' => 'Horror',
+                'slug' => 'horror'
             ],
             [
-                'name' => 'Mobile Development',
-                'slug' => 'mobile-development'
+                'name' => 'Mystery',
+                'slug' => 'mystery'
             ],
             [
-                'name' => 'Desktop Development',
-                'slug' => 'desktop-development'
+                'name' => 'Romance',
+                'slug' => 'romance'
             ],
             [
-                'name' => 'Game Development',
-                'slug' => 'game-development'
+                'name' => 'Thriller',
+                'slug' => 'thriller'
             ],
             [
-                'name' => 'Software Development',
-                'slug' => 'software-development'
+                'name' => 'Western',
+                'slug' => 'western'
             ],
             [
-                'name' => 'Hardware',
-                'slug' => 'hardware'
+                'name' => 'Sci-Fi',
+                'slug' => 'sci-fi'
             ],
             [
-                'name' => 'Artificial Intelligence',
-                'slug' => 'artificial-intelligence'
+                'name' => 'Animation',
+                'slug' => 'animation'
             ],
             [
-                'name' => 'Machine Learning',
-                'slug' => 'machine-learning'
+                'name' => 'Crime',
+                'slug' => 'crime'
             ],
             [
-                'name' => 'Deep Learning',
-                'slug' => 'deep-learning'
+                'name' => 'Documentary',
+                'slug' => 'documentary'
             ],
             [
-                'name' => 'Data Science',
-                'slug' => 'data-science'
+                'name' => 'Family',
+                'slug' => 'family'
             ],
             [
-                'name' => 'Internet of Things',
-                'slug' => 'internet-of-things'
+                'name' => 'History',
+                'slug' => 'history'
             ],
             [
-                'name' => 'Cloud Computing',
-                'slug' => 'cloud-computing'
+                'name' => 'Music',
+                'slug' => 'music'
             ],
             [
-                'name' => 'Big Data',
-                'slug' => 'big-data'
+                'name' => 'Sport',
+                'slug' => 'sport'
             ],
             [
-                'name' => 'Cyber Security',
-                'slug' => 'cyber-security'
+                'name' => 'War',
+                'slug' => 'war'
             ],
             [
-                'name' => 'Blockchain',
-                'slug' => 'blockchain'
+                'name' => 'Biography',
+                'slug' => 'biography'
             ],
             [
-                'name' => 'Quantum Computing',
-                'slug' => 'quantum-computing'
+                'name' => 'Musical',
+                'slug' => 'musical'
             ],
             [
-                'name' => 'Augmented Reality',
-                'slug' => 'augmented-reality'
+                'name' => 'Costume',
+                'slug' => 'costume'
             ],
             [
-                'name' => 'Virtual Reality',
-                'slug' => 'virtual-reality'
+                'name' => 'Psychological',
+                'slug' => 'psychological'
             ],
             [
-                'name' => 'Mixed Reality',
-                'slug' => 'mixed-reality'
+                'name' => 'Sitcom',
+                'slug' => 'sitcom'
             ],
+            [
+                'name' => 'Supernatural',
+                'slug' => 'supernatural'
+            ],
+            [
+                'name' => 'Medical',
+                'slug' => 'medical'
+            ],
+            [
+                'name' => 'Political',
+                'slug' => 'political'
+            ],
+            [
+                'name' => 'Romantic',
+                'slug' => 'romantic'
+            ],
+            [
+                'name' => 'Situation',
+                'slug' => 'situation'
+            ],
+            [
+                'name' => 'Teen',
+                'slug' => 'teen'
+            ],
+            [
+                'name' => 'Travel',
+                'slug' => 'travel'
+            ],
+            [
+                'name' => 'Variety',
+                'slug' => 'variety'
+            ],
+            [
+                'name' => 'Action-Comedy',
+                'slug' => 'action-comedy'
+            ],
+            [
+                'name' => 'Action-Drama',
+                'slug' => 'action-drama'
+            ]
         ];
         foreach ($categories as $category) {
             \App\Models\Category::create($category);

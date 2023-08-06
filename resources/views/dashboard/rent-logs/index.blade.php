@@ -43,11 +43,18 @@
                                     <td>{{ $item->rent_date }}</td>
                                     <td>{{ $item->return_date }}</td>
                                     <td>
-                                        @if ($item->actual_return_date == null)
+                                        {{ $item->actual_return_date }}
+                                        <span
+                                            class="badge {{ getStatusColor($item->setStatusRentLog()) }}">{{ $item->setStatusRentLog() }}</span>
+                                        {{-- @if ($item->actual_return_date == null)
                                             <span class="badge bg-warning">{{ $item->status }}</span>
+                                        @elseif($item->actual_return_date != null && $item->fine != 0)
+                                            {{ $item->actual_return_date }}<span
+                                                class="badge bg-success">{{ $item->status }}</span>
                                         @else
-                                            {{ $item->actual_return_date }}
-                                        @endif
+                                            {{ $item->actual_return_date }}<span
+                                                class="badge bg-primary">{{ $item->status }}</span>
+                                        @endif --}}
                                     </td>
                                     <td>{{ $item->fine == 0 ? '-' : $item->fine }}</td>
                                     {{-- <td>
