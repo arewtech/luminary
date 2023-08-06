@@ -36,7 +36,7 @@
                         </thead>
                         <tbody>
                             @forelse ($rentLogs as $item)
-                                <tr>
+                                <tr class="{{ $item->setColorTable() }}">
                                     <th class="text-center" scope="row">{{ $loop->iteration }}</th>
                                     <td><a href="#">{{ $item->user->name }}</a></td>
                                     <td>{{ $item->book->title }}</td>
@@ -46,15 +46,6 @@
                                         {{ $item->actual_return_date }}
                                         <span
                                             class="badge {{ getStatusColor($item->setStatusRentLog()) }}">{{ $item->setStatusRentLog() }}</span>
-                                        {{-- @if ($item->actual_return_date == null)
-                                            <span class="badge bg-warning">{{ $item->status }}</span>
-                                        @elseif($item->actual_return_date != null && $item->fine != 0)
-                                            {{ $item->actual_return_date }}<span
-                                                class="badge bg-success">{{ $item->status }}</span>
-                                        @else
-                                            {{ $item->actual_return_date }}<span
-                                                class="badge bg-primary">{{ $item->status }}</span>
-                                        @endif --}}
                                     </td>
                                     <td>{{ $item->fine == 0 ? '-' : $item->fine }}</td>
                                     {{-- <td>

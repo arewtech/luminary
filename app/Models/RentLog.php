@@ -41,6 +41,19 @@ class RentLog extends Model
             }
         }
     }
+
+    public function setColorTable()
+    {
+        if ($this->actual_return_date == null) {
+            return '';
+        } else {
+            if ($this->actual_return_date > $this->return_date) {
+                return 'table-danger';
+            } else {
+                return 'table-success';
+            }
+        }
+    }
     // cara panggilnya di view bagaimana?
     // $rentLog->setStatusRentLog()
 }
