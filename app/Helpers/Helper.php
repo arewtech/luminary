@@ -9,6 +9,8 @@ function getStatusColor($status)
         default:
             return "bg-danger";
     }
+    // cara panggilnya di view bagaimana?
+    // getStatusColor($yourVariable->status)
 }
 
 function formatRupiah($nominal, $prefix = null)
@@ -20,4 +22,6 @@ function formatRupiah($nominal, $prefix = null)
     // kenapa harus di return ?
     // karena kita akan memanggil function ini di view, dan kita akan menampilkan hasilnya di view.
     // composer dump-autoload => untuk mengupdate file helper.php
+    // cara panggilnya di view bagaimana?
+    // formatRupiah($yourVariable->fine)
 }

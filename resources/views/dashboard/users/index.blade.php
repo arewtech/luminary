@@ -30,12 +30,12 @@
                             <tr>
                                 <th class="text-center" scope="col">No</th>
                                 <th scope="col">Name</th>
-                                <th scope="col">Username</th>
+                                {{-- <th scope="col">Username</th> --}}
                                 <th scope="col">Email</th>
                                 <th scope="col">Phone</th>
-                                <th scope="col">Status</th>
                                 <th scope="col">Role</th>
-                                <th scope="col" style="width: 200px">Address</th>
+                                <th scope="col">Status</th>
+                                {{-- <th scope="col" style="width: 200px">Address</th> --}}
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -44,34 +44,38 @@
                                 <tr>
                                     <th class="text-center" scope="row">{{ $loop->iteration }}</th>
                                     <td>{{ $item->name }}</td>
-                                    <td>{{ $item->username }}</td>
+                                    {{-- <td>{{ $item->username }}</td> --}}
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->phone ?? 'nothing' }}</td>
-                                    <td><span
+                                    <td>
+                                        <span
                                             class="badge {{ $item->role == 'operator' ? 'bg-info' : 'bg-primary' }}">{{ $item->role }}</span>
                                     </td>
-                                    <td><span
+                                    <td>
+                                        <span
                                             class="badge {{ $item->status == 'active' ? 'bg-success' : 'bg-danger' }}">{{ $item->status }}</span>
                                     </td>
-                                    <td class="line-clamp">
+                                    {{-- <td class="line-clamp">
                                         {{ $item->address ?? 'nothing' }}
-                                    </td>
+                                    </td> --}}
                                     <td>
                                         <div class="d-inline-flex gap-1">
-                                            <a href="#" class="btn btn-warning btn-sm">
+                                            <a href="{{ route('users.edit', $item) }}" class="btn btn-warning btn-sm">
                                                 <i class="bi bi-pencil-square text-white"></i>
                                             </a>
                                             <a href="#" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                                data-bs-target="#bookDelete">
+                                                data-bs-target="#userDelete{{ $item->username }}">
                                                 <i class="bi bi-trash"></i>
                                             </a>
                                         </div>
                                         <!-- Button trigger modal -->
-                                        <div class="modal fade" id="bookDelete" tabindex="-1">
+                                        <div class="modal fade" id="userDelete{{ $item->username }}" tabindex="-1">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Delete User</h5>
+                                                        <h5 class="modal-title text-capitalize">
+                                                            Delete User {{ $item->name }}
+                                                        </h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>
@@ -81,7 +85,11 @@
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-danger">Delete</button>
+                                                        <form action="{{ route('users.destroy', $item) }}" method="post">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>

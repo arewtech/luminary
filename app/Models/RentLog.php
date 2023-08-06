@@ -28,7 +28,7 @@ class RentLog extends Model
         return $this->belongsTo(User::class);
     }
 
-    // set status
+    // set status rent log
     public function setStatusRentLog()
     {
         if ($this->actual_return_date == null) {
@@ -42,6 +42,7 @@ class RentLog extends Model
         }
     }
 
+    // set color table
     public function setColorTable()
     {
         if ($this->actual_return_date == null) {
@@ -55,6 +56,7 @@ class RentLog extends Model
         }
     }
 
+    // set returned
     public function setReturned()
     {
         if ($this->actual_return_date == null) {
@@ -68,5 +70,5 @@ class RentLog extends Model
         }
     }
     // cara panggilnya di view bagaimana?
-    // $rentLog->setStatusRentLog()
+    // $yourVariable->setStatusRentLog()
 }

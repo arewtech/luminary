@@ -17,8 +17,10 @@
         <div class="card">
             <div class="card-body">
                 {{--  --}}
-                <h5 class="card-title">List Table Rent Logs : {{ count($rentLogs) }} | total :
-                    {{ formatRupiah($totalFines) }}</h5>
+                <h5 class="card-title">List Table Rent Logs : {{ count($rentLogs) }}</h5>
+                <p class="mb-1">
+                    Total fines : <b>{{ formatRupiah($totalFines) }}</b> in {{ count($rentLogs) }} rent logs.
+                </p>
                 <p>
                     Rent Logs is a table that contains data about the borrowing of books by users.
                 </p>

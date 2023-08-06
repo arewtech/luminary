@@ -37,7 +37,7 @@
                     </div>
                     <div class="col-md-6">
                         <label for="inputPassword5" class="form-label">Password</label>
-                        <input type="password" name="password" class="form-control" placeholder="your email"
+                        <input type="password" name="password" class="form-control" placeholder="Min 8 character"
                             id="inputPassword5">
                     </div>
                     <div class="col-12">

@@ -60,7 +60,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('dashboard.users.edit', [
+            'user' => $user,
+        ]);
     }
 
     /**
@@ -68,7 +70,19 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users,username,' . $user->id,
+            'email' => 'required|email|max:255|unique:users,email,' . $user->id,
+            'password' => 'nullable|string|min:8',
+            'role' => 'required|string|in:operator,user',
+            'address' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:255',
+            'status' => 'required|string|in:active,inactive',
+        ]);
+        $data['password'] = $request->password ? bcrypt($request->password) : $user->password;
+        $user->update($data);
+        return redirect()->route('users.index');
     }
 
     /**
@@ -76,6 +90,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return redirect()->route('users.index');
     }
 }
