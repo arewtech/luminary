@@ -48,7 +48,7 @@
                                             <i class="bi bi-book"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>145</h6>
+                                            <h6>{{ $books }}</h6>
                                             <span class="text-success small pt-1 fw-bold">12%</span> <span
                                                 class="text-muted small pt-2 ps-1">increase</span>
 
@@ -86,10 +86,9 @@
                                             <i class="bi bi-credit-card-2-front"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h5 class="fw-bold">RR. 1.264.000</h5>
+                                            <h5 class="fw-bold">{{ formatRupiah($totalFines) }}</h5>
                                             <span class="text-success small pt-1 fw-bold">8%</span> <span
                                                 class="text-muted small pt-2 ps-1">increase</span>
-
                                         </div>
                                     </div>
                                 </div>
@@ -284,34 +283,30 @@
                             <h5 class="card-title">Recent Activity <span>| Today</span></h5>
 
                             <div class="activity">
-
-                                <div class="activity-item d-flex">
-                                    <div class="activite-label">32 min</div>
-                                    <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
-                                    <div class="activity-content">
-                                        Joko rent <a href="#" class="fw-bold text-dark">Lord Of The Rings </a> book
+                                @forelse ($recentActivities as $item)
+                                    <div class="activity-item d-flex">
+                                        <div class="activite-label">
+                                            {{ $item->created_at->shortRelativeDiffForHumans() }}
+                                        </div>
+                                        <i
+                                            class='bi bi-circle-fill activity-badge align-self-start {{ $item->setColorActivity() }}'></i>
+                                        <div class="activity-content text-capitalize">
+                                            <a href="#" class="fw-bold text-dark">{{ $item->user->name }}</a>
+                                            rent <span class="fw-bold text-dark">
+                                                {{ $item->book->title }}
+                                            </span>
+                                            book
+                                        </div>
                                     </div>
-                                </div>
-                                <!-- End activity item-->
-
-                                <div class="activity-item d-flex">
-                                    <div class="activite-label">56 min</div>
-                                    <i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>
-                                    <div class="activity-content">
-                                        Clara rent <a href="#" class="fw-bold text-dark">The Book With No Name </a>
-                                        book
-                                    </div>
-                                </div>
-                                <!-- End activity item-->
-
-                                <div class="activity-item d-flex">
-                                    <div class="activite-label">2 hrs</div>
-                                    <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
-                                    <div class="activity-content">
-                                        Riko rent <a href="#" class="fw-bold text-dark">Pocong 3</a>
-                                        book
-                                    </div>
-                                </div>
+                                    <!-- End activity item-->
+                                @empty
+                                    <div class="activity-item d-flex">
+                                        <div class="activite-label">0 sec</div>
+                                        <i class='bi bi-circle-fill activity-badge text-secondary align-self-start'></i>
+                                        <div class="activity-content">
+                                            no activity
+                                        </div>
+                                @endforelse
                                 <!-- End activity item-->
 
                             </div>

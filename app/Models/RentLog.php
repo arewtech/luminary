@@ -56,6 +56,20 @@ class RentLog extends Model
         }
     }
 
+    // set color activity
+    public function setColorActivity()
+    {
+        if ($this->actual_return_date == null) {
+            return 'text-warning';
+        } else {
+            if ($this->actual_return_date > $this->return_date) {
+                return 'text-danger';
+            } else {
+                return 'text-success';
+            }
+        }
+    }
+
     // set returned
     public function setReturned()
     {

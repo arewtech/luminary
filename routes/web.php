@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookRentLogController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RentLogController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -14,9 +15,7 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function() {
 // dashboard
-Route::get('/dashboard', function () {
-    return view('dashboard.index');
-})->name('dashboard');
+Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
 // rent log
 Route::get('/rent-logs', [RentLogController::class, 'index'])->name('rent-logs.index');
