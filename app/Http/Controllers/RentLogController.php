@@ -18,7 +18,9 @@ class RentLogController extends Controller
         // $rentLogs = RentLog::with(['book', 'user'])->latest()->get();
         // return $rentLogs;
         return view('dashboard.rent-logs.index', [
-            'rentLogs' => RentLog::with(['book', 'user'])->latest()->get(),
+            'rentLogs' => RentLog::with(['book', 'user'])
+            ->latest()->get(),
+            'totalFines' => RentLog::where('status', 'late')->sum('fine'),
         ]);
     }
 
@@ -27,7 +29,7 @@ class RentLogController extends Controller
      */
     public function create()
     {
-         return view('dashboard.actual-return-date.create', [
+        return view('dashboard.actual-return-date.create', [
             'users' => User::where('role', 'user')->latest()->get(),
             'books' => Book::latest()->get(),
         ]);
@@ -51,7 +53,7 @@ class RentLogController extends Controller
             ->first();
 
         // if the book is rented by the user
-        if ($returned != null) {
+        if ($returned) {
             $startDate = Carbon::parse($returned->return_date);
             $endDate = Carbon::parse($data['actual_return_date']);
 
@@ -67,7 +69,7 @@ class RentLogController extends Controller
             // update the rent log
             $returned->update([
                 'actual_return_date' => $data['actual_return_date'] . " " . now()->format('H:i:s'),
-                'status' => 'returned',
+                'status' => $endDate > $startDate ? 'late' : 'returned',
                 'fine' => $fine,
             ]);
 

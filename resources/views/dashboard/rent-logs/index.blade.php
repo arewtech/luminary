@@ -16,7 +16,9 @@
 
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">List Table Rent Logs : {{ count($rentLogs) }}</h5>
+                {{--  --}}
+                <h5 class="card-title">List Table Rent Logs : {{ count($rentLogs) }} | total :
+                    {{ formatRupiah($totalFines) }}</h5>
                 <p>
                     Rent Logs is a table that contains data about the borrowing of books by users.
                 </p>
@@ -31,7 +33,7 @@
                                 <th scope="col">Rent Date</th>
                                 <th scope="col">Return Date</th>
                                 <th scope="col">Actual Return Date</th>
-                                <th scope="col">Fine</th>
+                                <th class="text-center" scope="col">Fine</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -47,7 +49,7 @@
                                         <span
                                             class="badge {{ getStatusColor($item->setStatusRentLog()) }}">{{ $item->setStatusRentLog() }}</span>
                                     </td>
-                                    <td>{{ $item->fine == 0 ? '-' : $item->fine }}</td>
+                                    <td class="text-center">{{ $item->setReturned() }}</td>
                                     {{-- <td>
                                         <span
                                             class="badge {{ $item->role == 'operator' ? 'bg-info' : 'bg-primary' }}">{{ $item->role }}</span>

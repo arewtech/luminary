@@ -54,6 +54,19 @@ class RentLog extends Model
             }
         }
     }
+
+    public function setReturned()
+    {
+        if ($this->actual_return_date == null) {
+            return '🧾';
+        } else {
+            if ($this->actual_return_date > $this->return_date) {
+                return formatRupiah($this->fine);
+            } else {
+                return '✅';
+            }
+        }
+    }
     // cara panggilnya di view bagaimana?
     // $rentLog->setStatusRentLog()
 }
