@@ -26,22 +26,39 @@
                     <div class="row mb-3">
                         <label for="inputEmail" class="col-sm-2 col-form-label">Title</label>
                         <div class="col-sm-10">
-                            <input type="text" name="title" value="{{ $book->title }}" class="form-control"
-                                placeholder="your title book">
+                            <input type="text" name="title" value="{{ old('title', $book->title) }}"
+                                class="form-control @error('title') is-invalid @enderror" placeholder="your title book">
+                            @error('title')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="inputNumber" class="col-sm-2 col-form-label">Author</label>
                         <div class="col-sm-10">
-                            <input type="text" name="author" value="{{ $book->author }}" class="form-control"
+                            <input type="text" name="author" value="{{ old('author', $book->author) }}"
+                                class="form-control @error('author') is-invalid @enderror"
                                 placeholder="name of the author who wrote the book">
+                            @error('author')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="inputDate" class="col-sm-2 col-form-label">Publication Date</label>
                         <div class="col-sm-10">
-                            <input type="date" name="publication_date" class="form-control"
-                                value="{{ $book->publication_date }}">
+                            <input type="date" name="publication_date"
+                                class="form-control @error('publication_date') is-invalid @enderror"
+                                value="{{ old('publication_date', $book->publication_date) }}">
+                            @error('publication_date')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -66,7 +83,7 @@
                         <label for="inputPassword" class="col-sm-2 col-form-label">Description</label>
                         <div class="col-sm-10">
                             <textarea class="form-control" name="description" style="height: 100px" placeholder="description of the book">
-                                {{ $book->description }}
+                                {{ old('description', $book->description) }}
                             </textarea>
                         </div>
                     </div>

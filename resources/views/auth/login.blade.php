@@ -8,23 +8,29 @@
                 <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
                 <p class="text-center small">Enter your username & password to login</p>
             </div>
-            @foreach ($errors->all() as $item)
-                {{ $item }}
-            @endforeach
             <form action="{{ route('login') }}" method="post" class="row g-3 needs-validation">
                 @csrf
                 <div class="col-12">
                     <label for="yourEmail" class="form-label">Your Email</label>
-                    <input type="text" name="email" class="form-control" id="yourEmail"
+                    <input type="text" name="email" value="{{ old('email') }}"
+                        class="form-control @error('email') is-invalid @enderror" id="yourEmail"
                         placeholder="joko@luminary.com">
-                    <div class="invalid-feedback">Please, enter your name!</div>
+                    @error('email')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
                 <div class="col-12">
                     <label for="yourPassword" class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control" id="yourPassword"
-                        placeholder="Min. 8 characters" required>
-                    <div class="invalid-feedback">Please enter your password!</div>
+                    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
+                        id="yourPassword" placeholder="Min. 8 characters">
+                    @error('password')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
                 <div class="col-12">

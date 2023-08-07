@@ -13,38 +13,56 @@
                 @csrf
                 <div class="col-12">
                     <label for="yourName" class="form-label">Your Name</label>
-                    <input type="text" name="name" class="form-control" id="yourName" placeholder="joko ganteng">
-                    <div class="invalid-feedback">Please, enter your name!</div>
+                    <input type="text" name="name" value="{{ old('name') }}"
+                        class="form-control @error('name') is-invalid @enderror" id="yourName" placeholder="joko ganteng">
+                    @error('name')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
                 <div class="col-12">
                     <label for="yourEmail" class="form-label">Your Email</label>
-                    <input type="email" name="email" class="form-control" id="yourEmail" placeholder="joko@luminary.com"
-                        required>
-                    <div class="invalid-feedback">Please enter a valid Email adddress!</div>
+                    <input type="email" name="email" value="{{ old('email') }}"
+                        class="form-control @error('email') is-invalid @enderror" id="yourEmail"
+                        placeholder="joko@luminary.com">
+                    @error('email')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
                 <div class="col-12">
                     <label for="yourUsername" class="form-label">Username</label>
                     <div class="input-group has-validation">
                         <span class="input-group-text" id="inputGroupPrepend">@</span>
-                        <input type="text" name="username" class="form-control" id="yourUsername" placeholder="joko"
-                            required>
-                        <div class="invalid-feedback">Please choose a username.</div>
+                        <input type="text" name="username" value="{{ old('username') }}"
+                            class="form-control @error('username') is-invalid @enderror" id="yourUsername"
+                            placeholder="joko">
+                        @error('username')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                 </div>
 
                 <div class="col-12">
                     <label for="yourPassword" class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control" id="yourPassword"
-                        placeholder="Min. 8 characters" required>
-                    <div class="invalid-feedback">Please enter your password!</div>
+                    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
+                        id="yourPassword" placeholder="Min. 8 characters">
+                    @error('password')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
                 <div class="col-12">
                     <div class="form-check">
-                        <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms"
-                            required>
+                        <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms">
                         <label class="form-check-label" for="acceptTerms">I agree and accept the <a href="#">terms and
                                 conditions</a></label>
                         <div class="invalid-feedback">You must agree before submitting.</div>

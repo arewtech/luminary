@@ -15,6 +15,17 @@ class Book extends Model
         return 'slug';
     }
 
+    public function setStatusBooks()
+    {
+        if ($this->status == 'available') {
+            return 'bg-success';
+        } elseif ($this->status == 'unavailable') {
+            return 'bg-warning';
+        } else {
+            return 'bg-danger';
+        }
+    }
+
     public function categories()
     {
         return $this->belongsToMany(Category::class, 'book_categories', 'book_id', 'category_id');

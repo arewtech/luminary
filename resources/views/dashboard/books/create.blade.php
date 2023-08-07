@@ -18,31 +18,45 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Create Form Book</h5>
-                @foreach ($errors->all() as $item)
-                    <div class="alert alert-danger" role="alert">
-                        {{ $item }}
-                    </div>
-                @endforeach
                 <!-- General Form Elements -->
                 <form action="{{ route('books.store') }}" method="post">
                     @csrf
                     <div class="row mb-3">
                         <label for="inputEmail" class="col-sm-2 col-form-label">Title</label>
                         <div class="col-sm-10">
-                            <input type="text" name="title" class="form-control" placeholder="your title book">
+                            <input type="text" name="title" class="form-control @error('title') is-invalid @enderror"
+                                value="{{ old('title') }}" placeholder="your title book">
+                            @error('title')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="inputNumber" class="col-sm-2 col-form-label">Author</label>
                         <div class="col-sm-10">
-                            <input type="text" name="author" class="form-control"
+                            <input type="text" name="author" value="{{ old('author') }}"
+                                class="form-control @error('author') is-invalid @enderror"
                                 placeholder="name of the author who wrote the book">
+                            @error('author')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="inputDate" class="col-sm-2 col-form-label">Publication Date</label>
                         <div class="col-sm-10">
-                            <input type="date" name="publication_date" class="form-control" value="{{ date('Y-m-d') }}">
+                            <input type="date" name="publication_date"
+                                class="form-control @error('publication_date') is-invalid @enderror"
+                                value="{{ date('Y-m-d') }}">
+                            @error('publication_date')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -64,7 +78,15 @@
                     <div class="row mb-3">
                         <label for="inputPassword" class="col-sm-2 col-form-label">Description</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" name="description" style="height: 100px" placeholder="description of the book"></textarea>
+                            <textarea class="form-control @error('description') is-invalid @enderror" name="description" style="height: 100px"
+                                placeholder="description of the book">
+                                {{ old('description') }}
+                            </textarea>
+                            @error('description')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="row mb-3">

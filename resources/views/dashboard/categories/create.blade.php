@@ -25,7 +25,13 @@
                     <div class="row mb-3">
                         <label for="inputText" class="col-sm-2 col-form-label">Name</label>
                         <div class="col-sm-10">
-                            <input type="text" name="name" class="form-control" placeholder="your name category">
+                            <input type="text" name="name" value="{{ old('name') }}"
+                                class="form-control @error('name') is-invalid @enderror" placeholder="your name category">
+                            @error('name')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="row mb-3">

@@ -20,7 +20,7 @@ class RentLogsChart
             ->setSubtitle(\Carbon\Carbon::now()->translatedFormat("F Y"))
             ->addData($data)
             ->setLabels(['Returned', 'Not Returned', 'Late'])
-            ->setColors(['#4e73df', '#f6c23e', '#e74a3b'])
+            ->setColors(['#2ecc71', '#f1c40f', '#e74c3c'])
             ->setDataLabels(true)
             ->setWidth(450)
             ->setHeight(450);

@@ -18,57 +18,98 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Edit Form User</h5>
-
                 <!-- Multi Columns Form -->
-                @foreach ($errors->all() as $item)
-                    {{ $item }}
-                @endforeach
                 <form action="{{ route('users.update', $user) }}" method="post" class="row g-3">
                     @csrf
                     @method('PUT')
                     <div class="col-md-6">
                         <label for="inputName5" class="form-label">Your Name</label>
-                        <input type="text" name="name" value="{{ $user->name }}" class="form-control"
-                            placeholder="your name" id="inputName5">
+                        <input type="text" name="name" value="{{ old('name', $user->name) }}"
+                            class="form-control @error('name') is-invalid @enderror" placeholder="your name"
+                            id="inputName5">
+                        @error('name')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <div class="col-md-6">
                         <label for="inputName5" class="form-label">Your Username</label>
-                        <input type="text" name="username" value="{{ $user->username }}" class="form-control"
-                            placeholder="your username" id="inputName5">
+                        <input type="text" name="username" value="{{ old('username', $user->username) }}"
+                            class="form-control @error('username') is-invalid @enderror" placeholder="your username"
+                            id="inputName5">
+                        @error('username')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <div class="col-md-6">
                         <label for="inputEmail5" class="form-label">Email</label>
-                        <input type="email" name="email" value="{{ $user->email }}" class="form-control"
-                            placeholder="your email" id="inputEmail5">
+                        <input type="email" name="email" value="{{ old('email', $user->email) }}"
+                            class="form-control @error('email') is-invalid @enderror" placeholder="your email"
+                            id="inputEmail5">
+                        @error('email')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <div class="col-md-6">
                         <label for="inputPassword5" class="form-label">Password</label>
-                        <input type="password" name="password" class="form-control" placeholder="Min 8 character"
-                            id="inputPassword5">
+                        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
+                            placeholder="Min 8 character" id="inputPassword5">
+                        @error('password')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <div class="col-12">
                         <label for="inputAddress5" class="form-label">Address</label>
-                        <input type="text" name="address" value="{{ $user->address }}" class="form-control"
-                            id="inputAddres5s" placeholder="apartment, studio, or floor">
+                        <input type="text" name="address" value="{{ old('address', $user->address) }}"
+                            class="form-control @error('address') is-invalid @enderror" id="inputAddres5s"
+                            placeholder="apartment, studio, or floor">
+                        @error('address')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <div class="col-md-4">
                         <label for="inputPhone" class="form-label">Phone</label>
-                        <input type="text" name="phone" value="{{ $user->phone }}" class="form-control"
-                            placeholder="your phone number" id="inputPhone">
+                        <input type="text" name="phone" value="{{ old('phone', $user->phone) }}"
+                            class="form-control @error('phone') is-invalid @enderror" placeholder="your phone number"
+                            id="inputPhone">
+                        @error('phone')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <div class="col-md-4">
                         <label for="inputState" class="form-label">Role</label>
-                        <select id="inputState" name="role" class="form-select">
+                        <select id="inputState" name="role" class="form-select @error('role') is-invalid @enderror">
                             <option value="operator" {{ $user->role == 'operator' ? 'selected' : '' }}>operator</option>
                             <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>user</option>
                         </select>
+                        @error('role')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <div class="col-md-4">
                         <label for="inputState" class="form-label">Status</label>
-                        <select id="inputState" name="status" class="form-select">
+                        <select id="inputState" name="status" class="form-select @error('status') is-invalid @enderror">
                             <option value="active" {{ $user->status == 'active' ? 'selected' : '' }}>active</option>
                             <option value="inactive" {{ $user->status == 'inactive' ? 'selected' : '' }}>inactive</option>
                         </select>
+                        @error('status')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <div class="text-end mt-4 mb-2">
                         <a href="{{ route('users.index') }}" class="btn btn-danger">Cencel</a>

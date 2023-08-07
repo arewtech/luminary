@@ -24,6 +24,7 @@ class DashboardController extends Controller
         $data['statusBooksChart'] = $statusBooksChart->build([
             Book::where('status', 'available')->count(),
             Book::where('status', 'unavailable')->count(),
+            Book::where('status', 'lost')->count(),
         ]);
 
         // rent logs chart

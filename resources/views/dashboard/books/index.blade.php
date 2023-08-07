@@ -55,8 +55,7 @@
                                         @endforelse
                                     </td>
                                     <td>
-                                        <span
-                                            class="badge {{ $item->status != 'available' ? 'bg-danger' : 'bg-success' }}">{{ $item->status }}</span>
+                                        <span class="badge {{ $item->setStatusBooks() }}">{{ $item->status }}</span>
                                     </td>
                                     {{-- <td class="line-clamp">
                                         {{ $item->description }}

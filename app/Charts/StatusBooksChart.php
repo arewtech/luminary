@@ -20,7 +20,8 @@ class StatusBooksChart
             ->setSubtitle(\Carbon\Carbon::now()->translatedFormat("F Y"))
             ->addData($data)
             ->setLabels(['Available', 'Unavailable', 'Lost'])
-            ->setColors(['#4e73df', '#e74a3b', '#000000'])
+            // hijau, kuning, merah
+            ->setColors(['#2ecc71', '#f1c40f', '#e74c3c'])
             ->setDataLabels(true)
             ->setWidth(450)
             ->setHeight(450);
