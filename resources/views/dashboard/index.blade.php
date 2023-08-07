@@ -18,7 +18,7 @@
             <div class="row">
 
                 <!-- Left side columns -->
-                <div class="col-lg-8">
+                <div class="col-lg-7">
                     <div class="row">
 
                         <!-- Sales Card -->
@@ -97,177 +97,72 @@
                         </div><!-- End Revenue Card -->
 
                     </div>
-                    <div class="row">
-                        <div class="col-xxl-4 col-md-6">
-                            <!-- Budget Report -->
-                            <div class="card">
-                                <div class="filter">
-                                    <a class="icon" href="#" data-bs-toggle="dropdown"><i
-                                            class="bi bi-three-dots"></i></a>
-                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                        <li class="dropdown-header text-start">
-                                            <h6>Filter</h6>
-                                        </li>
+                    <div class="col">
+                        <!-- Website Traffic -->
+                        <div class="card">
+                            <div class="filter">
+                                <a class="icon" href="#" data-bs-toggle="dropdown"><i
+                                        class="bi bi-three-dots"></i></a>
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                    <li class="dropdown-header text-start">
+                                        <h6>Filter</h6>
+                                    </li>
 
-                                        <li><a class="dropdown-item" href="#">Today</a></li>
-                                        <li><a class="dropdown-item" href="#">This Month</a></li>
-                                        <li><a class="dropdown-item" href="#">This Year</a></li>
-                                    </ul>
-                                </div>
-
-                                <div class="card-body pb-0">
-                                    <h5 class="card-title">Status Books <span>| This Month</span></h5>
-
-                                    <div id="budgetChart" style="min-height: 400px;" class="echart"></div>
-
-                                    <script>
-                                        document.addEventListener("DOMContentLoaded", () => {
-                                            var budgetChart = echarts.init(document.querySelector("#budgetChart")).setOption({
-                                                legend: {
-                                                    data: ['Book is Available', 'Book is Unavailable']
-                                                },
-                                                radar: {
-                                                    // shape: 'circle',
-                                                    indicator: [{
-                                                            name: 'Sales',
-                                                            max: 6500
-                                                        },
-                                                        {
-                                                            name: 'Administration',
-                                                            max: 16000
-                                                        },
-                                                        {
-                                                            name: 'Information Technology',
-                                                            max: 30000
-                                                        },
-                                                        {
-                                                            name: 'Customer Support',
-                                                            max: 38000
-                                                        },
-                                                        {
-                                                            name: 'Development',
-                                                            max: 52000
-                                                        },
-                                                        {
-                                                            name: 'Marketing',
-                                                            max: 25000
-                                                        }
-                                                    ]
-                                                },
-                                                series: [{
-                                                    name: 'Budget vs spending',
-                                                    type: 'radar',
-                                                    data: [{
-                                                            value: [4200, 3000, 20000, 35000, 50000, 18000],
-                                                            name: 'Book is Available'
-                                                        },
-                                                        {
-                                                            value: [5000, 14000, 28000, 26000, 42000, 21000],
-                                                            name: 'Book is Unavailable'
-                                                        }
-                                                    ]
-                                                }]
-                                            });
-                                        });
-                                    </script>
-
-                                </div>
-                            </div><!-- End Budget Report -->
-                        </div>
-                        <div class="col-xxl-4 col-md-6">
-                            <!-- Website Traffic -->
-                            <div class="card">
-                                <div class="filter">
-                                    <a class="icon" href="#" data-bs-toggle="dropdown"><i
-                                            class="bi bi-three-dots"></i></a>
-                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                        <li class="dropdown-header text-start">
-                                            <h6>Filter</h6>
-                                        </li>
-
-                                        <li><a class="dropdown-item" href="#">Today</a></li>
-                                        <li><a class="dropdown-item" href="#">This Month</a></li>
-                                        <li><a class="dropdown-item" href="#">This Year</a></li>
-                                    </ul>
-                                </div>
-
-                                <div class="card-body pb-0">
-                                    <h5 class="card-title">Main Traffic <span>| Today</span></h5>
-
-                                    <div id="trafficChart" style="min-height: 400px;" class="echart"></div>
-
-                                    <script>
-                                        document.addEventListener("DOMContentLoaded", () => {
-                                            echarts.init(document.querySelector("#trafficChart")).setOption({
-                                                tooltip: {
-                                                    trigger: 'item'
-                                                },
-                                                legend: {
-                                                    top: '5%',
-                                                    left: 'center'
-                                                },
-                                                series: [{
-                                                    name: 'Access From',
-                                                    type: 'pie',
-                                                    radius: ['40%', '70%'],
-                                                    avoidLabelOverlap: false,
-                                                    label: {
-                                                        show: false,
-                                                        position: 'center'
-                                                    },
-                                                    emphasis: {
-                                                        label: {
-                                                            show: true,
-                                                            fontSize: '18',
-                                                            fontWeight: 'bold'
-                                                        }
-                                                    },
-                                                    labelLine: {
-                                                        show: false
-                                                    },
-                                                    data: [{
-                                                            value: 1048,
-                                                            name: 'Search Engine'
-                                                        },
-                                                        {
-                                                            value: 735,
-                                                            name: 'Direct'
-                                                        },
-                                                        {
-                                                            value: 580,
-                                                            name: 'Email'
-                                                        },
-                                                        {
-                                                            value: 484,
-                                                            name: 'Union Ads'
-                                                        },
-                                                        {
-                                                            value: 300,
-                                                            name: 'Video Ads'
-                                                        }
-                                                    ]
-                                                }]
-                                            });
-                                        });
-                                    </script>
-
-                                </div>
+                                    <li><a class="dropdown-item" href="#">Today</a></li>
+                                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                </ul>
                             </div>
-                            <!-- End Website Traffic -->
+
+                            <div class="card-body pb-0">
+                                <h5 class="card-title">Main Traffic <span>| Today</span></h5>
+
+                                <div style="min-height: 300px;">
+                                    {{ $rentLogsChart->container() }}
+                                </div>
+
+                            </div>
                         </div>
+                        <!-- End Website Traffic -->
+                    </div>
+                    <div class="col">
+                        <!-- Budget Report -->
+                        <div class="card">
+                            <div class="filter">
+                                <a class="icon" href="#" data-bs-toggle="dropdown"><i
+                                        class="bi bi-three-dots"></i></a>
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                    <li class="dropdown-header text-start">
+                                        <h6>Filter</h6>
+                                    </li>
+
+                                    <li><a class="dropdown-item" href="#">Today</a></li>
+                                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="card-body pb-0">
+                                <h5 class="card-title">Status Books <span>| This Month</span></h5>
+
+                                <div style="min-height: 300px;">
+                                    {{ $statusBooksChart->container() }}
+                                </div>
+
+                            </div>
+                        </div><!-- End Budget Report -->
                     </div>
 
                 </div>
                 <!-- End Left side columns -->
 
                 <!-- Right side columns -->
-                <div class="col-lg-4">
+                <div class="col-lg-5">
 
                     <!-- Recent Activity -->
                     <div class="card">
                         <div class="filter">
-                            <a class="icon" href="#" data-bs-toggle="dropdown"><i
-                                    class="bi bi-three-dots"></i></a>
+                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                                 <li class="dropdown-header text-start">
                                     <h6>Filter</h6>
@@ -322,4 +217,8 @@
         </section>
 
     </main>
+    <script src="{{ $statusBooksChart->cdn() }}"></script>
+
+    {{ $statusBooksChart->script() }}
+    {{ $rentLogsChart->script() }}
 @endsection

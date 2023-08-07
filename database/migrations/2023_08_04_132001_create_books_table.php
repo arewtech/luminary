@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('author');
             $table->string('slug')->unique();
             $table->date('publication_date');
-            $table->enum('status', ['available', 'unavailable'])->default('available');
+            $table->enum('status', ['available', 'unavailable', 'lost'])->default('available');
             $table->text('description');
             $table->text('cover')->nullable();
             $table->timestamps();
