@@ -21,11 +21,17 @@ class AuthController extends Controller
             if (auth()->user()->status == 'inactive') {
                 auth()->logout();
                 session()->flush();
-                return back()->with('status', 'Your account is inactive');
+                flash()
+                ->option('position', 'top-center')
+                ->addError('Your account is inactive, please contact admin to activate your account');
+                return back();
             }
-            return redirect()->route('dashboard');
+            return redirect()->route('dashboard')->with('success', 'Welcome back, '.auth()->user()->name);
         }
-        return back()->with('status', 'Invalid login details');
+        flash()
+        ->option('position', 'top-center')
+        ->addError('Invalid login credentials or your account is inactive');
+        return back();
     }
 
     public function formRegister() {
@@ -42,6 +48,10 @@ class AuthController extends Controller
         $data['password'] = bcrypt($request->password);
         $user = User::create($data);
         // auth()->login($user);
-        return redirect()->route('login')->with('status', 'Your account has been created. Please contact admin to activate your account.');
+        flash()
+        ->option('position', 'top-center')
+        ->option('timer', 4000)
+        ->addSuccess('Your account has been created. Please contact admin to activate your account.');
+        return redirect()->route('login');
     }
 }

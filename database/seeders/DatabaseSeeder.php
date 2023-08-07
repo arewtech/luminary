@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
             'username' => 'kim',
             'email' => 'kim@gmail.com',
             'role' => 'user',
-            'status' => 'inactive',
+            'status' => 'active',
         ]);
 
         $this->call([

@@ -13,7 +13,9 @@ class BookRentLogController extends Controller
     public function create()
     {
         return view('dashboard.book-rent.create', [
-            'users' => User::where('role', 'user')->latest()->get(),
+            'users' => User::whereRole('user')
+                ->where('status', 'active')
+                ->latest()->get(),
             'books' => Book::whereStatus('available')->latest()->get(),
         ]);
     }
@@ -26,15 +28,15 @@ class BookRentLogController extends Controller
         ]);
         $data['rent_date'] = now();
         $data['return_date'] = now()->addDays(3);
-
         try {
             DB::beginTransaction();
             $rentBook = RentLog::where('user_id', $request->user_id)
             ->whereNull('actual_return_date')->get();
-
         // check user rent book count
+        $user = User::find($request->user_id);
         if ($rentBook->count() >= 3) {
-            return back()->with('error', 'You have already rented 3 books, please return the books to rent more.');
+            sweetalert()->addWarning($user->name . ' already rented 3 books, please return first.');
+            return back();
         }
 
         // check book status
@@ -48,10 +50,12 @@ class BookRentLogController extends Controller
         // return $data;
         RentLog::create($data);
         DB::commit();
-        return back()->with('success', 'Book rented successfully.');
-        } catch (\Throwable $th) {
-            DB::rollBack();
-            return back()->with('error', 'Something went wrong, please try again.');
+        sweetalert()->addSuccess('Book rented successfully.');
+        return back();
+    } catch (\Throwable $th) {
+        DB::rollBack();
+            sweetalert()->addError('Something went wrong, please try again.');
+            return back();
         }
     }
 }

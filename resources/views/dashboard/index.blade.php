@@ -186,7 +186,7 @@
                                         <i
                                             class='bi bi-circle-fill activity-badge align-self-start {{ $item->setColorActivity() }}'></i>
                                         <div class="activity-content text-capitalize">
-                                            <a href="#" class="fw-bold text-dark">{{ $item->user->name }}</a>
+                                            <a href="#" class="fw-bold">{{ $item->user->name }}</a>
                                             rent <span class="fw-bold text-dark">
                                                 {{ $item->book->title }}
                                             </span>

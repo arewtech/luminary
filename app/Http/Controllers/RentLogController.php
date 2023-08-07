@@ -30,7 +30,9 @@ class RentLogController extends Controller
     public function create()
     {
         return view('dashboard.actual-return-date.create', [
-            'users' => User::where('role', 'user')->latest()->get(),
+            'users' => User::whereRole('user')
+                ->where('status', 'active')
+                ->latest()->get(),
             'books' => Book::latest()->get(),
         ]);
     }
@@ -78,9 +80,12 @@ class RentLogController extends Controller
             $book->update([
                 'status' => 'available',
             ]);
-            return back()->with('success', 'Book returned successfully.');
+            sweetalert()->addSuccess('Book returned successfully.');
+            return back();
         } else {
-            return back()->with('error', 'This book is not rented by this user.');
+            $user = User::find($request->user_id);
+            sweetalert()->addError($user->name . ' did not rent this book.');
+            return back();
         }
     }
 

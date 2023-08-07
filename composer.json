@@ -13,7 +13,8 @@
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.2",
-        "laravel/tinker": "^2.8"
+        "laravel/tinker": "^2.8",
+        "php-flasher/flasher-sweetalert-laravel": "^1.15"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

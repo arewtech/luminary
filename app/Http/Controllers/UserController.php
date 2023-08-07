@@ -44,7 +44,7 @@ class UserController extends Controller
         ]);
         $data['password'] = bcrypt($request->password);
         User::create($data);
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'User added successfully!');
     }
 
     /**
@@ -82,7 +82,7 @@ class UserController extends Controller
         ]);
         $data['password'] = $request->password ? bcrypt($request->password) : $user->password;
         $user->update($data);
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'User updated successfully!');
     }
 
     /**
@@ -91,6 +91,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'User deleted successfully!');
     }
 }

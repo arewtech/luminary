@@ -48,7 +48,7 @@ class BookController extends Controller
         $book = Book::create($data);
         $book->categories()->attach($request->categories);
         // dd($data);
-        return redirect()->route('books.index');
+        return redirect()->route('books.index')->with('success', 'Book added successfully!');
     }
 
     /**
@@ -94,7 +94,7 @@ class BookController extends Controller
         // return $data;
         $book->update($data);
         $book->categories()->sync($request->categories, true);
-        return redirect()->route('books.index');
+        return redirect()->route('books.index')->with('success', 'Book updated successfully!');
     }
 
     /**
@@ -104,6 +104,6 @@ class BookController extends Controller
     {
         $book->categories()->detach();
         $book->delete();
-        return redirect()->route('books.index');
+        return redirect()->route('books.index')->with('success', 'Book deleted successfully!');
     }
 }

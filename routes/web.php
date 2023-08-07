@@ -52,5 +52,5 @@ Route::middleware('guest')->group(function() {
 Route::post('/logout', function() {
     auth()->logout();
     session()->flush();
-    return redirect()->route('login');
+    return redirect()->route('login')->with('success', 'Logout success');
 })->middleware('auth')->name('logout');

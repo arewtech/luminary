@@ -27,34 +27,50 @@
                                     Please fill in the form below to return the book.
                                 </p>
                             </div>
-                            @foreach ($errors->all() as $item)
-                                {{ $item }}
-                            @endforeach
                             <form action="{{ route('actual-return-date.store') }}" method="post"
                                 class="row g-3 needs-validation">
                                 @csrf
                                 <div class="col-12">
                                     <label for="selectUsers" class="form-label">Name / Username</label>
-                                    <select id="selectUsers" name="user_id" class="form-select">
+                                    <select id="selectUsers" name="user_id"
+                                        class="form-select @error('user_id') is-invalid @enderror"
+                                        aria-label="Default select example">
                                         <option selected="" disabled>select users</option>
                                         @foreach ($users as $user)
                                             <option value="{{ $user->id }}">{{ $user->name }}</option>
                                         @endforeach
                                     </select>
+                                    @error('user_id')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="col-12">
                                     <label for="selectBooks" class="form-label">Book Rent</label>
-                                    <select id="selectBooks" name="book_id" class="form-select">
+                                    <select id="selectBooks" name="book_id"
+                                        class="form-select @error('book_id') is-invalid @enderror">
                                         <option selected="" disabled>select books</option>
                                         @foreach ($books as $book)
                                             <option value="{{ $book->id }}">{{ $book->title }}</option>
                                         @endforeach
                                     </select>
+                                    @error('book_id')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="col-12">
                                     <label for="inputDate" class="form-label">Actual Return Date</label>
-                                    <input type="date" name="actual_return_date" class="form-control"
+                                    <input type="date" name="actual_return_date"
+                                        class="form-control @error('actual_return_date') is-invalid @enderror"
                                         value="{{ date('Y-m-d') }}">
+                                    @error('actual_return_date')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="col-12">
                                     <button class="btn btn-primary w-100" type="submit">Returned</button>

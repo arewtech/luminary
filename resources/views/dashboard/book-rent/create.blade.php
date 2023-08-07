@@ -25,28 +25,38 @@
                                     Please fill in the form below to create a book rent.
                                 </p>
                             </div>
-                            @foreach ($errors->all() as $item)
-                                {{ $item }}
-                            @endforeach
                             <form action="{{ route('book-rent.store') }}" method="post" class="row g-3 needs-validation">
                                 @csrf
                                 <div class="col-12">
                                     <label for="selectUsers" class="form-label">Name / Username</label>
-                                    <select id="selectUsers" name="user_id" class="form-select">
+                                    <select id="selectUsers" name="user_id"
+                                        class="form-select @error('user_id') is-invalid @enderror"
+                                        aria-label="Default select example">
                                         <option selected="" disabled>select users</option>
                                         @foreach ($users as $user)
                                             <option value="{{ $user->id }}">{{ $user->name }}</option>
                                         @endforeach
                                     </select>
+                                    @error('user_id')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="col-12">
                                     <label for="selectBooks" class="form-label">Book Rent</label>
-                                    <select id="selectBooks" name="book_id" class="form-select">
+                                    <select id="selectBooks" name="book_id"
+                                        class="form-select @error('book_id') is-invalid @enderror">
                                         <option selected="" disabled>select books</option>
                                         @foreach ($books as $book)
                                             <option value="{{ $book->id }}">{{ $book->title }}</option>
                                         @endforeach
                                     </select>
+                                    @error('book_id')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="col-12">
                                     <button class="btn btn-primary w-100" type="submit">Rent Book</button>
