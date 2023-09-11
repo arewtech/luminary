@@ -5,6 +5,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookRentLogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\RentLogController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,8 @@ Route::post('/book-rent', [BookRentLogController::class, 'store'])->name('book-r
 Route::resource('books', BookController::class);
 // categories
 Route::resource('categories', CategoryController::class);
+// operator
+Route::resource('operator', OperatorController::class);
 // users
 Route::resource('users', UserController::class);
 

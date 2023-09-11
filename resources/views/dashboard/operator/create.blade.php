@@ -4,12 +4,12 @@
 
         <!-- ======= Page Title ======= -->
         <div class="pagetitle">
-            <h1>Create User</h1>
+            <h1>Create Operator</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">Form</li>
-                    <li class="breadcrumb-item"><a href="{{ route('users.index') }}">Users</a></li>
-                    <li class="breadcrumb-item active">Create User</li>
+                    <li class="breadcrumb-item"><a href="{{ route('operator.index') }}">Operator</a></li>
+                    <li class="breadcrumb-item active">Create Operator</li>
                 </ol>
             </nav>
         </div>
@@ -17,10 +17,10 @@
 
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Create Form User</h5>
+                <h5 class="card-title">Create Form Operator</h5>
 
                 <!-- Multi Columns Form -->
-                <form action="{{ route('users.store') }}" method="post" class="row g-3">
+                <form action="{{ route('operator.store') }}" method="post" class="row g-3">
                     @csrf
                     <div class="col-md-6">
                         <label for="inputName5" class="form-label">Your Name</label>

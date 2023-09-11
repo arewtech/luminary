@@ -73,6 +73,16 @@
 
         <!-- Users Page Nav -->
         <li class="nav-item">
+            <a class="nav-link {{ request()->is('operator*') ? '' : 'collapsed' }}"
+                href="{{ route('operator.index') }}">
+                <i class="bi bi-dash-circle"></i>
+                <span>Operator</span>
+            </a>
+        </li>
+        <!-- End Users Page Nav -->
+
+        <!-- Users Page Nav -->
+        <li class="nav-item">
             <a class="nav-link {{ request()->is('users*') ? '' : 'collapsed' }}" href="{{ route('users.index') }}">
                 <i class="bi bi-dash-circle"></i>
                 <span>Users</span>

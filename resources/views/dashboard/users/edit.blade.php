@@ -65,7 +65,7 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="col-12">
+                    <div class="col-6">
                         <label for="inputAddress5" class="form-label">Address</label>
                         <input type="text" name="address" value="{{ old('address', $user->address) }}"
                             class="form-control @error('address') is-invalid @enderror" id="inputAddres5s"
@@ -76,7 +76,7 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <label for="inputPhone" class="form-label">Phone</label>
                         <input type="text" name="phone" value="{{ old('phone', $user->phone) }}"
                             class="form-control @error('phone') is-invalid @enderror" placeholder="your phone number"
@@ -87,24 +87,23 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="col-md-4">
-                        <label for="inputState" class="form-label">Role</label>
-                        <select id="inputState" name="role" class="form-select @error('role') is-invalid @enderror">
-                            <option value="operator" {{ $user->role == 'operator' ? 'selected' : '' }}>operator</option>
-                            <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>user</option>
-                        </select>
-                        @error('role')
-                            <div class="invalid-feedback">
-                                {{ $message }}
+                    <div class="col-md-12 mt-4">
+                        <div class="d-flex align-items-center justify-content-center gap-3">
+                            <div class="form-check">
+                                <input class="form-check-input" name="status" type="radio" id="active" value="active"
+                                    {{ $user->status == 'active' ? 'checked' : '' }}>
+                                <label class="form-check-label" for="active">
+                                    Active
+                                </label>
                             </div>
-                        @enderror
-                    </div>
-                    <div class="col-md-4">
-                        <label for="inputState" class="form-label">Status</label>
-                        <select id="inputState" name="status" class="form-select @error('status') is-invalid @enderror">
-                            <option value="active" {{ $user->status == 'active' ? 'selected' : '' }}>active</option>
-                            <option value="inactive" {{ $user->status == 'inactive' ? 'selected' : '' }}>inactive</option>
-                        </select>
+                            <div class="form-check">
+                                <input class="form-check-input" name="status" type="radio" id="inactive"
+                                    value="inactive" {{ $user->status == 'inactive' ? 'checked' : '' }}>
+                                <label class="form-check-label" for="inactive">
+                                    Inactive
+                                </label>
+                            </div>
+                        </div>
                         @error('status')
                             <div class="invalid-feedback">
                                 {{ $message }}

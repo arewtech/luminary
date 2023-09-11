@@ -5,18 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class OperatorController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        // $users = User::with('rentLogs')->latest()->get();
+         // $users = User::with('rentLogs')->latest()->get();
         // return $users;
 
-        return view('dashboard.users.index', [
-            'users' => User::whereRole('user')->latest()->get(),
+        return view('dashboard.operator.index', [
+            'operator' => User::where('id', '!=', auth()->id())
+            ->whereRole('operator')->latest()->get(),
         ]);
     }
 
@@ -25,7 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('dashboard.users.create');
+        return view('dashboard.operator.create');
     }
 
     /**
@@ -41,17 +42,17 @@ class UserController extends Controller
             'address' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:255',
         ]);
-        $data['role'] = 'user';
+        $data['role'] = 'operator';
         $data['status'] = 'active';
         $data['password'] = bcrypt($request->password);
         User::create($data);
-        return redirect()->route('users.index')->with('success', 'User added successfully!');
+        return redirect()->route('operator.index')->with('success', 'User added successfully!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show(User $operator)
     {
         //
     }
@@ -59,38 +60,38 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
+    public function edit(User $operator)
     {
-        return view('dashboard.users.edit', [
-            'user' => $user,
+        return view('dashboard.operator.edit', [
+            'operator' => $operator,
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, User $operator)
     {
         $data = $request->validate([
             'name' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:users,username,' . $user->id,
-            'email' => 'required|email|max:255|unique:users,email,' . $user->id,
+            'username' => 'required|string|max:255|unique:users,username,' . $operator->id,
+            'email' => 'required|email|max:255|unique:users,email,' . $operator->id,
             'password' => 'nullable|string|min:8',
             'address' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:255',
-            'status' => 'required|string|in:active,inactive',
+            'status' => 'required|in:active,inactive',
         ]);
-        $data['password'] = $request->password ? bcrypt($request->password) : $user->password;
-        $user->update($data);
-        return redirect()->route('users.index')->with('success', 'User updated successfully!');
+        $data['password'] = $request->password ? bcrypt($request->password) : $operator->password;
+        $operator->update($data);
+        return redirect()->route('operator.index')->with('success', 'User updated successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy(User $operator)
     {
-        $user->delete();
-        return redirect()->route('users.index')->with('success', 'User deleted successfully!');
+        $operator->delete();
+        return back()->with('success', 'User deleted successfully!');
     }
 }
