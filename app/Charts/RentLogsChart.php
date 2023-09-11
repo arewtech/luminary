@@ -13,14 +13,14 @@ class RentLogsChart
         $this->chart = $chart;
     }
 
-    public function build($data): \ArielMejiaDev\LarapexCharts\PieChart
+    public function build($data): \ArielMejiaDev\LarapexCharts\PolarAreaChart
     {
-        return $this->chart->pieChart()
+        return $this->chart->polarAreaChart()
              ->setTitle('LB | Rent Logs')
             ->setSubtitle(\Carbon\Carbon::now()->translatedFormat("F Y"))
             ->addData($data)
             ->setLabels(['Returned', 'Not Returned', 'Late'])
-            ->setColors(['#2ecc71', '#f1c40f', '#e74c3c'])
+            ->setColors(['rgb(0, 227, 150)', 'rgb(254, 176, 25)', 'rgb(255, 69, 95)'])
             ->setDataLabels(true)
             ->setWidth(450)
             ->setHeight(450);

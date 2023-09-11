@@ -16,7 +16,7 @@ class BookFactory extends Factory
      */
     public function definition(): array
     {
-        $title = $title = str($this->faker->sentence(3))->title();
+        $title = $title = str($this->faker->word())->title();
         return [
             "book_code" => "B" . $this->faker->unique()->numberBetween(1000, 9999),
             "title" => $title,

@@ -142,11 +142,11 @@ class CategorySeeder extends Seeder
                 'slug' => 'variety'
             ],
             [
-                'name' => 'Action-Comedy',
+                'name' => 'Action Comedy',
                 'slug' => 'action-comedy'
             ],
             [
-                'name' => 'Action-Drama',
+                'name' => 'Action Drama',
                 'slug' => 'action-drama'
             ]
         ];
