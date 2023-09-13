@@ -92,8 +92,8 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label"></label>
                         <div class="col-sm-10">
-                            <a href="{{ route('books.index') }}" class="btn btn-danger">Cancel</a>
-                            <button type="submit" class="btn btn-primary">Create Book</button>
+                            <a href="{{ route('books.index') }}" class="btn btn-danger btn-sm">Cancel</a>
+                            <button type="submit" class="btn btn-primary btn-sm">Create Book</button>
                         </div>
                     </div>
 
