@@ -25,8 +25,8 @@
                 </p>
                 <!-- Bordered Table -->
                 <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead class="table-dark">
+                    <table class="table table-sm table-hover">
+                        <thead class="table-light">
                             <tr>
                                 <th class="text-center" scope="col">No</th>
                                 <th scope="col">Name</th>

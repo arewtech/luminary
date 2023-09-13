@@ -26,8 +26,8 @@
                 </p>
                 <!-- Bordered Table -->
                 <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead class="table-dark">
+                    <table class="table table-sm table-hover table-bordered">
+                        <thead class="table-light">
                             <tr>
                                 <th class="text-center" scope="col">No</th>
                                 <th scope="col">Name</th>
@@ -42,7 +42,7 @@
                             @forelse ($rentLogs as $item)
                                 <tr class="{{ $item->setColorTable() }}">
                                     <th class="text-center" scope="row">{{ $loop->iteration }}</th>
-                                    <td><a href="#">{{ $item->user->name }}</a></td>
+                                    <td class="text-capitalize"><a href="#">{{ $item->user->name }}</a></td>
                                     <td>{{ $item->book->title }}</td>
                                     <td>{{ $item->rent_date }}</td>
                                     <td>{{ $item->return_date }}</td>

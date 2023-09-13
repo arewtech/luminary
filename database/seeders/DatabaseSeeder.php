@@ -14,7 +14,35 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Book::factory(30)->create();
+        Book::factory()->create([
+            'title' => 'The Hobbit',
+            'slug' => 'the-hobbit',
+        ]);
+
+        Book::factory()->create([
+            'title' => 'The Lord of the Rings',
+            'slug' => 'the-lord-of-the-rings',
+        ]);
+
+        Book::factory()->create([
+            'title' => 'The Silmarillion',
+            'slug' => 'the-silmarillion',
+        ]);
+
+        Book::factory()->create([
+            'title' => 'The Children of Húrin',
+            'slug' => 'the-children-of-hurin',
+        ]);
+
+        Book::factory()->create([
+            'title' => 'The Fall of Gondolin',
+            'slug' => 'the-fall-of-gondolin',
+        ]);
+
+        Book::factory()->create([
+            'title' => 'Unfinished Tales',
+            'slug' => 'unfinished-tales',
+        ]);
 
         \App\Models\User::factory()->create([
             'name' => 'joko hulahula',
