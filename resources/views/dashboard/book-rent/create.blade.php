@@ -1,4 +1,9 @@
 @extends('layouts.app')
+@pushOnce('select2:css')
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endPushOnce
 @section('content')
     <main id="main" class="main">
 
@@ -30,7 +35,7 @@
                                 <div class="col-12">
                                     <label for="selectUsers" class="form-label">Name / Username</label>
                                     <select id="selectUsers" name="user_id"
-                                        class="form-select @error('user_id') is-invalid @enderror"
+                                        class="form-select select2 @error('user_id') is-invalid @enderror"
                                         aria-label="Default select example">
                                         <option selected="" disabled>select users</option>
                                         @foreach ($users as $user)
@@ -46,7 +51,7 @@
                                 <div class="col-12">
                                     <label for="selectBooks" class="form-label">Book Rent</label>
                                     <select id="selectBooks" name="book_id"
-                                        class="form-select @error('book_id') is-invalid @enderror">
+                                        class="form-select select2 @error('book_id') is-invalid @enderror">
                                         <option selected="" disabled>select books</option>
                                         @foreach ($books as $book)
                                             <option value="{{ $book->id }}">{{ $book->title }}</option>
@@ -102,3 +107,15 @@
         </section>
     </main>
 @endsection
+@pushOnce('select2:js')
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+        integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2({
+                theme: 'bootstrap-5',
+            });
+        });
+    </script>
+@endPushOnce
