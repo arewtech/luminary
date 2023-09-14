@@ -40,7 +40,7 @@ class BookFactory extends Factory
             // "slug" => str($title)->slug(),
             "publication_date" => $this->faker->date(),
             "status" => $this->faker->randomElement(['available', 'unavailable', 'lost']),
-            "description" => $this->faker->paragraph(6),
+            "description" => $this->faker->paragraph(3),
             "cover" => $this->faker->imageUrl(640, 480, 'books', true),
         ];
     }

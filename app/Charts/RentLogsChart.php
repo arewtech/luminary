@@ -13,9 +13,9 @@ class RentLogsChart
         $this->chart = $chart;
     }
 
-    public function build($data): \ArielMejiaDev\LarapexCharts\PolarAreaChart
+    public function build($data): \ArielMejiaDev\LarapexCharts\PieChart
     {
-        return $this->chart->polarAreaChart()
+        return $this->chart->pieChart()
              ->setTitle('LB | Rent Logs')
             ->setSubtitle(\Carbon\Carbon::now()->translatedFormat("F Y"))
             ->addData($data)

@@ -1,4 +1,10 @@
 @extends('layouts.app')
+@pushOnce('select2:css')
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+        integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+@endPushOnce
 @section('content')
     <main id="main" class="main">
 
@@ -62,7 +68,8 @@
                     <div class="row mb-3">
                         <label for="inputState" class="col-sm-2 col-form-label">Categories</label>
                         <div class="col-sm-10">
-                            <select id="inputState" class="form-select" multiple name="categories[]">
+                            <select id="inputState" class="form-select js-multiple" multiple name="categories[]">
+                                <option disabled>Choose...</option>
                                 @foreach ($categories as $item)
                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
                                 @endforeach
@@ -104,3 +111,10 @@
         </div>
     </main>
 @endsection
+@pushOnce('select2:js')
+    <script>
+        $(document).ready(function() {
+            $('.js-multiple').select2();
+        });
+    </script>
+@endPushOnce

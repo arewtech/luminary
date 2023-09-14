@@ -43,7 +43,7 @@ class BookController extends Controller
             // 'categories' => 'required|array',
         ]);
         $data['slug'] = str($request->title . ' ' . str()->random(5))->slug();
-        $data['book_code'] = str("#LMR-" . str()->random(5))->upper();
+        $data['book_code'] = "B" . rand(1000, 9999);
         // dd($data);
         $book = Book::create($data);
         $book->categories()->attach($request->categories);
@@ -86,7 +86,7 @@ class BookController extends Controller
         ]);
         if ($request->title != $book->title) {
             $data['slug'] = str($request->title . ' ' . str()->random(5))->slug();
-            $data['book_code'] = str("#LMR-" . str()->random(5))->upper();
+            $data['book_code'] = "B" . rand(1000, 9999);
         } else {
             $data['slug'] = $book->slug;
             $data['book_code'] = $book->book_code;
