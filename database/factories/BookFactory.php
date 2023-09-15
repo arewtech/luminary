@@ -42,7 +42,8 @@ class BookFactory extends Factory
             "status" => 'available',
             // "status" => $this->faker->randomElement(['available', 'unavailable', 'lost']),
             "description" => $this->faker->paragraph(3),
-            "cover" => $this->faker->imageUrl(640, 480, 'books', true),
+            "cover" => 'https://source.unsplash.com/random/1200×800/?book'
+            // "cover" => $this->faker->imageUrl(640, 480, 'books', true),
         ];
     }
 }

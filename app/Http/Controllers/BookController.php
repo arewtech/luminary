@@ -103,6 +103,9 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
+        if ($book->status == 'unavailable') {
+            return back()->with('error', 'Book is currently rented!, please return the book first.');
+        }
         $book->categories()->detach();
         $book->delete();
         return redirect()->route('books.index')->with('success', 'Book deleted successfully!');

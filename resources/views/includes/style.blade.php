@@ -29,6 +29,14 @@
          overflow: hidden;
      }
 
+     .line-clamp {
+         /* height: 3.6rem; */
+         display: -webkit-box;
+         -webkit-line-clamp: 3;
+         -webkit-box-orient: vertical;
+         overflow: hidden;
+     }
+
      ::-webkit-scrollbar {
          width: 7px;
          height: 7px;

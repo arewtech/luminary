@@ -36,7 +36,6 @@
                                 <th scope="col" style="width: 200px">Categories</th>
                                 <th scope="col">Status</th>
                                 {{-- <th scope="col" style="width: 200px">Desc</th> --}}
-                                <th scope="col">Cover</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -45,11 +44,13 @@
                                 <tr>
                                     <th class="text-center" scope="row">{{ $loop->iteration }}</th>
                                     <td class="fw-bold">{{ $item->book_code }}</td>
-                                    <td><a href="#" class="text-capitalize">{{ $item->title }}</a></td>
+                                    <td><a href="javascript:void(0)" data-bs-toggle="modal"
+                                            data-bs-target="#bookDetail{{ $item->slug }}"
+                                            class="text-capitalize">{{ $item->title }}</a></td>
                                     <td>{{ $item->author }}</td>
                                     <td>
                                         @forelse ($item->categories as $category)
-                                            <span class="badge text-lowercase bg-primary">{{ $category->name }}</span>
+                                            <span class="badge text-lowercase bg-secondary">{{ $category->name }}</span>
                                         @empty
                                             <span class="badge bg-danger">No Categories</span>
                                         @endforelse
@@ -57,12 +58,15 @@
                                     <td>
                                         <span class="badge {{ $item->setStatusBooks() }}">{{ $item->status }}</span>
                                     </td>
-                                    {{-- <td class="line-clamp">
-                                        {{ $item->description }}
-                                    </td> --}}
-                                    <td>-</td>
                                     <td>
                                         <div class="d-inline-flex gap-1">
+                                            <a href="
+                                                javascript:void(0)"
+                                                class="btn btn-info btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#bookDetail{{ $item->slug }}">
+                                                <i class="bi bi-eye text-white"></i>
+                                            </a>
+                                            @include('includes.modal.detail-book', ['item' => $item])
                                             <a href="{{ route('books.edit', $item) }}" class="btn btn-warning btn-sm">
                                                 <i class="bi bi-pencil-square text-white"></i>
                                             </a>

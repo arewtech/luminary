@@ -141,14 +141,6 @@ class CategorySeeder extends Seeder
                 'name' => 'Variety',
                 'slug' => 'variety'
             ],
-            [
-                'name' => 'Action Comedy',
-                'slug' => 'action-comedy'
-            ],
-            [
-                'name' => 'Action Drama',
-                'slug' => 'action-drama'
-            ]
         ];
         foreach ($categories as $category) {
             \App\Models\Category::create($category);

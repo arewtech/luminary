@@ -45,15 +45,15 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\User::factory()->create([
-            'name' => 'joko hulahula',
-            'username' => 'joko',
-            'email' => 'joko@gmail.com',
+            'name' => 'John BBC',
+            'username' => 'john',
+            'email' => 'john@gmail.com',
             'role' => 'operator',
             'status' => 'active',
         ]);
 
         \App\Models\User::factory()->create([
-            'name' => 'kim so hyun',
+            'name' => 'Kim Jong Un',
             'username' => 'kim',
             'email' => 'kim@gmail.com',
             'role' => 'user',
