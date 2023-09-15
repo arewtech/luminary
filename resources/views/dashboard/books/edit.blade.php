@@ -93,6 +93,32 @@
                             </textarea>
                         </div>
                     </div>
+                    @if ($book->status != 'unavailable')
+                        <div class="row mb-4">
+                            <label for="inputPassword" class="col-sm-2 col-form-label">Status</label>
+                            <div class="col-sm-10 d-flex align-items-center gap-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" name="status" type="radio" id="available"
+                                        {{ $book->status == 'available' ? 'checked' : '' }} value="available">
+                                    <label class="form-check-label" for="available">
+                                        Available
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" name="status" type="radio" id="lost"
+                                        {{ $book->status == 'lost' ? 'checked' : '' }} value="lost">
+                                    <label class="form-check-label" for="lost">
+                                        Lost
+                                    </label>
+                                </div>
+                            </div>
+                            @error('status')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    @endif
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label"></label>
                         <div class="col-sm-10">

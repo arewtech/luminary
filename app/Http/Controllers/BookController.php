@@ -82,6 +82,7 @@ class BookController extends Controller
             'author' => 'required|string|max:255',
             'description' => 'required|string|max:255',
             'publication_date' => 'required|date',
+            'status' => 'nullable|in:available,unavailable,lost',
             // 'categories' => 'required|exists:categories,id',
         ]);
         if ($request->title != $book->title) {

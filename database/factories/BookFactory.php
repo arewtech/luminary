@@ -39,7 +39,8 @@ class BookFactory extends Factory
             "author" => $this->faker->name(),
             // "slug" => str($title)->slug(),
             "publication_date" => $this->faker->date(),
-            "status" => $this->faker->randomElement(['available', 'unavailable', 'lost']),
+            "status" => 'available',
+            // "status" => $this->faker->randomElement(['available', 'unavailable', 'lost']),
             "description" => $this->faker->paragraph(3),
             "cover" => $this->faker->imageUrl(640, 480, 'books', true),
         ];

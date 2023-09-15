@@ -20,6 +20,7 @@ Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
 // rent log
 Route::get('/rent-logs', [RentLogController::class, 'index'])->name('rent-logs.index');
+Route::delete('/rent-logs/{rentLog}', [RentLogController::class, 'destroy'])->name('rent-logs.destroy');
 
 // actual return date
 Route::get('/actual-return-date', [RentLogController::class, 'create'])->name('actual-return-date.create');

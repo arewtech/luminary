@@ -33,7 +33,7 @@ class RentLogController extends Controller
             'users' => User::whereRole('user')
                 ->where('status', 'active')
                 ->latest()->get(),
-            'books' => Book::latest()->get(),
+            'books' => Book::whereStatus('unavailable')->latest()->get(),
         ]);
     }
 
@@ -118,6 +118,10 @@ class RentLogController extends Controller
      */
     public function destroy(RentLog $rentLog)
     {
-        //
+        if ($rentLog->status == 'not returned') {
+            return back()->with('error', 'Book is not returned yet!, please return the book first.');
+        }
+        $rentLog->delete();
+        return back()->with('success', 'Rent log deleted successfully!');
     }
 }

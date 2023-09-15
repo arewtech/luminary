@@ -36,6 +36,7 @@
                                 <th scope="col">Return Date</th>
                                 <th scope="col">Actual Return Date</th>
                                 <th class="text-center" scope="col">Fine</th>
+                                <th class="text-center" scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -52,42 +53,41 @@
                                             class="badge {{ getStatusColor($item->setStatusRentLog()) }}">{{ $item->setStatusRentLog() }}</span>
                                     </td>
                                     <td class="text-center">{{ $item->setReturned() }}</td>
-                                    {{-- <td>
-                                        <span
-                                            class="badge {{ $item->role == 'operator' ? 'bg-info' : 'bg-primary' }}">{{ $item->role }}</span>
-                                    </td> --}}
-                                    {{-- <td>
-                                        <div class="d-inline-flex gap-1">
-                                            <a href="#" class="btn btn-warning btn-sm">
-                                                <i class="bi bi-pencil-square text-white"></i>
-                                            </a>
-                                            <a href="#" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                                data-bs-target="#bookDelete">
-                                                <i class="bi bi-trash"></i>
-                                            </a>
-                                        </div>
+                                    <td class="text-center">
+                                        <a href="#" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#bookDelete{{ $item->id }}">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
                                         <!-- Button trigger modal -->
-                                        <div class="modal fade" id="bookDelete" tabindex="-1">
+                                        <div class="modal fade" id="bookDelete{{ $item->id }}" tabindex="-1">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title">Delete User</h5>
+                                                        <h5 class="modal-title text-capitalize">
+                                                            Delete Rent Log {{ $item->user->name }}
+                                                        </h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <p>Are you sure you want to delete this user?</p>
+                                                        <p class="text-start">Are you sure you want to delete this rent log?
+                                                        </p>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-danger">Delete</button>
+                                                        <form action="{{ route('rent-logs.destroy', $item->id) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- End Button trigger modal -->
-                                    </td> --}}
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>
