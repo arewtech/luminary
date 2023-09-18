@@ -27,7 +27,7 @@
         <li class="nav-item">
             <a class="nav-link {{ request()->url('/rent-logs') == url('/rent-logs') ? '' : 'collapsed' }}"
                 href="{{ route('rent-logs.index') }}">
-                <i class="bi bi-person"></i>
+                <i class="bi bi-person-lines-fill"></i>
                 <span>Rent Logs</span>
             </a>
         </li>
@@ -36,7 +36,7 @@
         <li class="nav-item">
             <a class="nav-link {{ request()->url('/book-rent') == url('/book-rent') ? '' : 'collapsed' }}"
                 href="{{ route('book-rent.create') }}">
-                <i class="bi bi-question-circle"></i>
+                <i class="bi bi-calendar-day"></i>
                 <span>Book Rent</span>
             </a>
         </li><!-- End F.A.Q Page Nav -->
@@ -44,7 +44,7 @@
         <li class="nav-item">
             <a class="nav-link {{ request()->url('/actual-return-date') == url('/actual-return-date') ? '' : 'collapsed' }}"
                 href="{{ route('actual-return-date.create') }}">
-                <i class="bi bi-envelope"></i>
+                <i class="bi bi-calendar-check"></i>
                 <span>Actual Return</span>
             </a>
         </li><!-- End Contact Page Nav -->
@@ -55,7 +55,7 @@
         <!-- Books Page Nav -->
         <li class="nav-item active">
             <a class="nav-link {{ request()->is('books*') ? '' : 'collapsed' }}" href="{{ route('books.index') }}">
-                <i class="bi bi-card-list"></i>
+                <i class="bi bi-book"></i>
                 <span>Books</span>
             </a>
         </li>
@@ -65,7 +65,7 @@
         <li class="nav-item">
             <a class="nav-link {{ request()->is('categories*') ? '' : 'collapsed' }}"
                 href="{{ route('categories.index') }}">
-                <i class="bi bi-box-arrow-in-right"></i>
+                <i class="bi bi-layout-wtf"></i>
                 <span>Categories</span>
             </a>
         </li>
@@ -75,7 +75,7 @@
         <li class="nav-item">
             <a class="nav-link {{ request()->is('operator*') ? '' : 'collapsed' }}"
                 href="{{ route('operator.index') }}">
-                <i class="bi bi-dash-circle"></i>
+                <i class="bi bi-person-check"></i>
                 <span>Operator</span>
             </a>
         </li>
@@ -84,7 +84,7 @@
         <!-- Users Page Nav -->
         <li class="nav-item">
             <a class="nav-link {{ request()->is('users*') ? '' : 'collapsed' }}" href="{{ route('users.index') }}">
-                <i class="bi bi-dash-circle"></i>
+                <i class="bi bi-people-fill"></i>
                 <span>Users</span>
             </a>
         </li>
