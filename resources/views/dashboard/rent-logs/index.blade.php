@@ -32,9 +32,9 @@
                                 <th class="text-center" scope="col">No</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Book Title</th>
-                                <th scope="col">Rent Date</th>
-                                <th scope="col">Return Date</th>
-                                <th scope="col">Actual Return Date</th>
+                                <th class="text-center" scope="col">Rent Date</th>
+                                <th class="text-center" scope="col">Return Date</th>
+                                <th class="text-center" scope="col">Actual Return Date</th>
                                 <th class="text-center" scope="col">Fine</th>
                                 <th class="text-center" scope="col">Action</th>
                             </tr>
@@ -45,15 +45,20 @@
                                     <th class="text-center" scope="row">{{ $loop->iteration }}</th>
                                     <td class="text-capitalize"><a href="#">{{ $item->user->name }}</a></td>
                                     <td>{{ $item->book->title }}</td>
-                                    <td>{{ $item->rent_date }}</td>
-                                    <td>{{ $item->return_date }}</td>
-                                    <td>
-                                        {{ $item->actual_return_date }}
+                                    <td class="text-center">{{ Carbon\Carbon::parse($item->rent_date)->format('d/m/y') }}
+                                    </td>
+                                    <td class="text-center">{{ Carbon\Carbon::parse($item->return_date)->format('d/m/y') }}
+                                    </td>
+                                    <td class="text-center">
+                                        {{-- {{ $item->actual_return_date != null ? Carbon\Carbon::parse($item?->actual_return_date)->format('d/m/y') : '' }} --}}
                                         <span
                                             class="badge {{ getStatusColor($item->setStatusRentLog()) }}">{{ $item->setStatusRentLog() }}</span>
                                     </td>
                                     <td class="text-center">{{ $item->setReturned() }}</td>
                                     <td class="text-center">
+                                        <a href="#" class="btn btn-info btn-sm">
+                                            <i class="bi bi-eye text-white"></i>
+                                        </a>
                                         <a href="#" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                             data-bs-target="#bookDelete{{ $item->id }}">
                                             <i class="bi bi-trash"></i>
