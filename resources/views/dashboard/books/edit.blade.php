@@ -81,11 +81,16 @@
                     </div>
                     <div class="row mb-3">
                         <label for="inputNumber" class="col-sm-2 col-form-label">Cover</label>
-                        <div class="col-sm-10 d-flex gap-2 align-items-start">
-                            <img style="width: 150px; height: 150px object-fit: cover; object-position: center;"
-                                src="{{ $book->cover !== null ? asset('storage/' . $book->cover) : 'https://ui-avatars.com/api/?name=' . $book->title . '&color=7F9CF5&background=EBF4FF' }}"
-                                class="card-img-top"alt="{{ $book->title }}">
-                            <input class="form-control" name="cover" type="file" id="formFile">
+                        <div class="col-sm-10 d-flex gap-3 align-items-start">
+                            <div class="position-relative">
+                                <img id="uploadedCover"
+                                    style="width: 150px; height: 150px object-fit: cover; object-position: center;"
+                                    src="{{ $book->cover !== null ? asset('storage/' . $book->cover) : 'https://ui-avatars.com/api/?name=' . $book->title . '&color=7F9CF5&background=EBF4FF' }}"
+                                    class="card-img-top" alt="{{ $book->title }}">
+                                <span style=" top: -10px; right: -10px; line-height: 1.2; cursor: pointer;"
+                                    class="book-cover-reset position-absolute rounded-4 badge bg-danger badge-number">x</span>
+                            </div>
+                            <input class="book-cover-input form-control" name="cover" type="file" id="formFile">
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -144,3 +149,31 @@
         });
     </script>
 @endPushOnce
+@pushOnce('image-preview')
+    <script>
+        $('input#accountActivation').on('change', function() {
+            $('button.deactivate-account').attr('disabled', !$(this).is(':checked'));
+        });
+        document.addEventListener('DOMContentLoaded', function(e) {
+            (function() {
+                // Update/reset user image of account page
+                let coverBook = document.getElementById('uploadedCover');
+                const fileInput = document.querySelector('.book-cover-input'),
+                    resetFileInput = document.querySelector('.book-cover-reset');
+                if (coverBook) {
+                    const resetImage = coverBook.src;
+                    fileInput.onchange = () => {
+                        if (fileInput.files[0]) {
+                            coverBook.src = window.URL.createObjectURL(fileInput.files[0]);
+                        }
+                    };
+                    resetFileInput.onclick = () => {
+                        fileInput.value = '';
+                        coverBook.src = resetImage;
+                    };
+                }
+            })
+            ();
+        });
+    </script>
+@endpushOnce
