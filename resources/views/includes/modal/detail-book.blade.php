@@ -10,8 +10,9 @@
             </div>
             <div class="modal-body">
                 <div class="card mb-0">
-                    <img src="{{ $item->cover }}" class="card-img-top" with="100%" height="200px"
-                        alt="{{ $item->title }}">
+                    <img style="object-fit: cover; object-position: center;"
+                        src="{{ $item->cover !== null ? asset('storage/' . $item->cover) : 'https://ui-avatars.com/api/?name=' . $item->title . '&color=7F9CF5&background=EBF4FF' }}"
+                        class="card-img-top" with="100%" height="200px" alt="{{ $item->title }}">
                     <div class="card-body">
                         <h3 class="card-title pb-0 mb-0 pt-3">{{ $item->title }}</h3>
                         <div class="d-flex align-items-center gap-1 mt-2 flex-wrap">

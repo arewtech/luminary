@@ -25,7 +25,7 @@
             <div class="card-body">
                 <h5 class="card-title">Create Form Book</h5>
                 <!-- General Form Elements -->
-                <form action="{{ route('books.store') }}" method="post">
+                <form action="{{ route('books.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row mb-3">
                         <label for="inputEmail" class="col-sm-2 col-form-label">Title</label>
@@ -79,7 +79,7 @@
                     <div class="row mb-3">
                         <label for="inputNumber" class="col-sm-2 col-form-label">Cover</label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="image" type="file" id="formFile">
+                            <input class="form-control" name="cover" type="file" id="formFile">
                         </div>
                     </div>
                     <div class="row mb-3">

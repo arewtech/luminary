@@ -26,7 +26,7 @@
                 <h5 class="card-title">Edit Form Book</h5>
 
                 <!-- General Form Elements -->
-                <form action="{{ route('books.update', $book) }}" method="post">
+                <form action="{{ route('books.update', $book) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="row mb-3">
@@ -81,8 +81,11 @@
                     </div>
                     <div class="row mb-3">
                         <label for="inputNumber" class="col-sm-2 col-form-label">Cover</label>
-                        <div class="col-sm-10">
-                            <input class="form-control" name="image" type="file" id="formFile">
+                        <div class="col-sm-10 d-flex gap-2 align-items-start">
+                            <img style="width: 150px; height: 150px object-fit: cover; object-position: center;"
+                                src="{{ $book->cover !== null ? asset('storage/' . $book->cover) : 'https://ui-avatars.com/api/?name=' . $book->title . '&color=7F9CF5&background=EBF4FF' }}"
+                                class="card-img-top"alt="{{ $book->title }}">
+                            <input class="form-control" name="cover" type="file" id="formFile">
                         </div>
                     </div>
                     <div class="row mb-3">
