@@ -94,7 +94,10 @@ class RentLogController extends Controller
      */
     public function show(RentLog $rentLog)
     {
-        //
+        // return  $rentLog->load(['book.categories', 'user']);
+        return view('dashboard.rent-logs.show', [
+           'rentLog' => $rentLog->load(['book.categories', 'user']),
+        ]);
     }
 
     /**

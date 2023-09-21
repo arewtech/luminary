@@ -83,6 +83,5 @@ class RentLog extends Model
             }
         }
     }
-    // cara panggilnya di view bagaimana?
     // $yourVariable->setStatusRentLog()
 }

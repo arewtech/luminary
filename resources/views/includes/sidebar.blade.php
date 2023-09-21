@@ -25,7 +25,7 @@
 
         <!-- Books Page Nav -->
         <li class="nav-item">
-            <a class="nav-link {{ request()->url('/rent-logs') == url('/rent-logs') ? '' : 'collapsed' }}"
+            <a class="nav-link {{ request()->is('rent-logs*') ? '' : 'collapsed' }}"
                 href="{{ route('rent-logs.index') }}">
                 <i class="bi bi-person-lines-fill"></i>
                 <span>Rent Logs</span>

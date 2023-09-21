@@ -56,7 +56,7 @@
                                     </td>
                                     <td class="text-center">{{ $item->setReturned() }}</td>
                                     <td class="text-center">
-                                        <a href="#" class="btn btn-info btn-sm">
+                                        <a href="{{ route('rent-logs.show', $item->id) }}" class="btn btn-info btn-sm">
                                             <i class="bi bi-eye text-white"></i>
                                         </a>
                                         <a href="#" class="btn btn-danger btn-sm" data-bs-toggle="modal"
