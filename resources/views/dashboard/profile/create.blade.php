@@ -7,7 +7,7 @@
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                    <li class="breadcrumb-item">Users</li>
+                    {{-- <li class="breadcrumb-item">Users</li> --}}
                     <li class="breadcrumb-item active">Profile</li>
                 </ol>
             </nav>
@@ -20,14 +20,26 @@
                     <div class="card">
                         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-                            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                            <h2>Kevin Anderson</h2>
-                            <h3>Web Designer</h3>
+                            <img src="{{ auth()->user()->image !== null ? asset('storage/' . auth()->user()->image) : 'https://ui-avatars.com/api/?name=' . auth()->user()->name . '&color=7F9CF5&background=EBF4FF' }}"
+                                alt="Profile" class="rounded-circle">
+                            <h2 class="text-capitalize">{{ auth()->user()->name }}</h2>
+                            <h3 class="text-capitalize">{{ auth()->user()->occupation ?? '-' }}</h3>
                             <div class="social-links mt-2">
-                                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                                <a href="{{ auth()->user()->link_twitter }}"
+                                    {{ !empty(auth()->user()->link_twitter) ? 'target="_blank"' : '' }} class="twitter">
+                                    <i class="bi bi-twitter"></i>
+                                </a>
+                                <a href="{{ auth()->user()->link_facebook }}"
+                                    {{ !empty(auth()->user()->link_facebook) ? 'target="_blank"' : '' }} class="facebook">
+                                    <i class="bi bi-facebook"></i>
+                                </a>
+                                <a href="{{ auth()->user()->link_instagram }}"
+                                    {{ !empty(auth()->user()->link_instagram) ? 'target="_blank"' : '' }} class="instagram">
+                                    <i class="bi bi-instagram"></i>
+                                </a>
+                                <a href="{{ auth()->user()->link_linkedin }}"
+                                    {{ !empty(auth()->user()->link_linkedin) ? 'target="_blank"' : '' }} class="linkedin">
+                                    <i class="bi bi-linkedin"></i></a>
                             </div>
                         </div>
                     </div>
@@ -65,27 +77,27 @@
 
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label ">Full Name</div>
-                                        <div class="col-lg-9 col-md-8">Kevin Anderson</div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4 label">Occupation</div>
-                                        <div class="col-lg-9 col-md-8">Web Designer</div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4 label">Address</div>
-                                        <div class="col-lg-9 col-md-8">A108 Adam Street, New York, NY 535022</div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4 label">Phone</div>
-                                        <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                                        <div class="col-lg-9 col-md-8">{{ auth()->user()->name }}</div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">Email</div>
-                                        <div class="col-lg-9 col-md-8">k.anderson@example.com</div>
+                                        <div class="col-lg-9 col-md-8">{{ auth()->user()->email ?? '-' }}</div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label">Occupation</div>
+                                        <div class="col-lg-9 col-md-8">{{ auth()->user()->occupation ?? '-' }}</div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label">Address</div>
+                                        <div class="col-lg-9 col-md-8">{{ auth()->user()->address ?? '-' }}</div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label">Phone</div>
+                                        <div class="col-lg-9 col-md-8">{{ auth()->user()->phone ?? '-' }}</div>
                                     </div>
 
                                 </div>
@@ -93,12 +105,15 @@
                                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit" role="tabpanel">
 
                                     <!-- Profile Edit Form -->
-                                    <form>
+                                    <form action="{{ route('profile.update') }}" method="post">
+                                        @csrf
+                                        @method('put')
                                         <div class="row mb-3">
                                             <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile
                                                 Image</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <img src="assets/img/profile-img.jpg" alt="Profile">
+                                                <img src="{{ auth()->user()->image !== null ? asset('storage/' . auth()->user()->image) : 'https://ui-avatars.com/api/?name=' . auth()->user()->name . '&color=7F9CF5&background=EBF4FF' }}"
+                                                    alt="Profile">
                                                 <div class="pt-2">
                                                     <a href="#" class="btn btn-primary btn-sm"
                                                         title="Upload new profile image"><i class="bi bi-upload"></i></a>
@@ -112,8 +127,8 @@
                                             <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full
                                                 Name</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <input name="fullName" type="text" class="form-control" id="fullName"
-                                                    value="Kevin Anderson">
+                                                <input name="name" type="text" class="form-control" id="fullName"
+                                                    value="{{ auth()->user()->name }}">
                                             </div>
                                         </div>
 
@@ -122,7 +137,7 @@
                                             </label>
                                             <div class="col-md-8 col-lg-9">
                                                 <input name="username" type="text" class="form-control"
-                                                    id="username" value="Kevin">
+                                                    id="username" value="{{ auth()->user()->username }}">
                                             </div>
                                         </div>
 
@@ -130,8 +145,8 @@
                                             <label for="Job"
                                                 class="col-md-4 col-lg-3 col-form-label">Occupation</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <input name="job" type="text" class="form-control" id="Job"
-                                                    value="Web Designer">
+                                                <input name="occupation" type="text" class="form-control"
+                                                    id="Job" value="{{ auth()->user()->occupation }}">
                                             </div>
                                         </div>
 
@@ -139,7 +154,7 @@
                                             <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
                                             <div class="col-md-8 col-lg-9">
                                                 <input name="address" type="text" class="form-control" id="Address"
-                                                    value="A108 Adam Street, New York, NY 535022">
+                                                    value="{{ auth()->user()->address }}">
                                             </div>
                                         </div>
 
@@ -147,7 +162,7 @@
                                             <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
                                             <div class="col-md-8 col-lg-9">
                                                 <input name="phone" type="text" class="form-control" id="Phone"
-                                                    value="(436) 486-3538 x29071">
+                                                    value="{{ auth()->user()->phone }}">
                                             </div>
                                         </div>
 
@@ -155,7 +170,7 @@
                                             <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                                             <div class="col-md-8 col-lg-9">
                                                 <input name="email" type="email" class="form-control" id="Email"
-                                                    value="k.anderson@example.com">
+                                                    value="{{ auth()->user()->email }}">
                                             </div>
                                         </div>
 
@@ -163,8 +178,8 @@
                                             <label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Twitter
                                                 Profile</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <input name="twitter" type="text" class="form-control" id="Twitter"
-                                                    value="https://twitter.com/#">
+                                                <input name="link_twitter" type="text" class="form-control"
+                                                    id="Twitter" value="{{ auth()->user()->link_twitter }}">
                                             </div>
                                         </div>
 
@@ -172,8 +187,8 @@
                                             <label for="Facebook" class="col-md-4 col-lg-3 col-form-label">Facebook
                                                 Profile</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <input name="facebook" type="text" class="form-control"
-                                                    id="Facebook" value="https://facebook.com/#">
+                                                <input name="link_facebook" type="text" class="form-control"
+                                                    id="Facebook" value="{{ auth()->user()->link_facebook }}">
                                             </div>
                                         </div>
 
@@ -181,8 +196,8 @@
                                             <label for="Instagram" class="col-md-4 col-lg-3 col-form-label">Instagram
                                                 Profile</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <input name="instagram" type="text" class="form-control"
-                                                    id="Instagram" value="https://instagram.com/#">
+                                                <input name="link_instagram" type="text" class="form-control"
+                                                    id="Instagram" value="{{ auth()->user()->link_instagram }}">
                                             </div>
                                         </div>
 
@@ -190,15 +205,16 @@
                                             <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Linkedin
                                                 Profile</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <input name="linkedin" type="text" class="form-control"
-                                                    id="Linkedin" value="https://linkedin.com/#">
+                                                <input name="link_linkedin" type="text" class="form-control"
+                                                    id="Linkedin" value="{{ auth()->user()->link_linkedin }}">
                                             </div>
                                         </div>
 
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-primary">Save Changes</button>
                                         </div>
-                                    </form><!-- End Profile Edit Form -->
+                                    </form>
+                                    <!-- End Profile Edit Form -->
 
                                 </div>
 
