@@ -127,8 +127,14 @@
                                             <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full
                                                 Name</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <input name="name" type="text" class="form-control" id="fullName"
-                                                    value="{{ auth()->user()->name }}">
+                                                <input name="name" type="text"
+                                                    class="form-control @error('name') is-invalid @enderror"
+                                                    id="fullName" value="{{ auth()->user()->name }}">
+                                                @error('name')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
                                         </div>
 
@@ -136,8 +142,28 @@
                                             <label for="username" class="col-md-4 col-lg-3 col-form-label">Username
                                             </label>
                                             <div class="col-md-8 col-lg-9">
-                                                <input name="username" type="text" class="form-control"
+                                                <input name="username" type="text"
+                                                    class="form-control @error('username') is-invalid @enderror"
                                                     id="username" value="{{ auth()->user()->username }}">
+                                                @error('username')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input name="email" type="email"
+                                                    class="form-control @error('email') is-invalid @enderror"
+                                                    id="Email" value="{{ auth()->user()->email }}">
+                                                @error('email')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
                                         </div>
 
@@ -163,14 +189,6 @@
                                             <div class="col-md-8 col-lg-9">
                                                 <input name="phone" type="text" class="form-control" id="Phone"
                                                     value="{{ auth()->user()->phone }}">
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="email" type="email" class="form-control" id="Email"
-                                                    value="{{ auth()->user()->email }}">
                                             </div>
                                         </div>
 
@@ -220,14 +238,21 @@
 
                                 <div class="tab-pane fade pt-3" id="profile-change-password" role="tabpanel">
                                     <!-- Change Password Form -->
-                                    <form>
-
+                                    <form action="{{ route('profile.password.update') }}" method="post">
+                                        @csrf
+                                        @method('put')
                                         <div class="row mb-3">
                                             <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current
                                                 Password</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <input name="password" type="password" class="form-control"
+                                                <input name="current_password" type="password"
+                                                    class="form-control @error('current_password') is-invalid @enderror"
                                                     id="currentPassword">
+                                                @error('current_password')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
                                         </div>
 
@@ -235,8 +260,14 @@
                                             <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New
                                                 Password</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <input name="newpassword" type="password" class="form-control"
+                                                <input name="password" type="password"
+                                                    class="form-control @error('password') is-invalid @enderror"
                                                     id="newPassword">
+                                                @error('password')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
                                         </div>
 
@@ -244,8 +275,14 @@
                                             <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter
                                                 New Password</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <input name="renewpassword" type="password" class="form-control"
+                                                <input name="password_confirmation" type="password"
+                                                    class="form-control @error('password_confirmation') is-invalid @enderror"
                                                     id="renewPassword">
+                                                @error('password_confirmation')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
                                         </div>
 

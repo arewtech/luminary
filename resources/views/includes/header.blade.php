@@ -104,7 +104,8 @@
 
                  <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
                      data-bs-toggle="dropdown">
-                     <img src="{{ asset('assets') }}/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                     <img src="{{ auth()->user()->image !== null ? asset('storage/' . auth()->user()->image) : 'https://ui-avatars.com/api/?name=' . auth()->user()->name . '&color=7F9CF5&background=EBF4FF' }}"
+                         alt="Profile" class="rounded-circle">
                      <span class="d-none d-md-block dropdown-toggle ps-2">{{ auth()->user()->username }}</span>
                  </a><!-- End Profile Iamge Icon -->
 
@@ -137,12 +138,6 @@
                          <hr class="dropdown-divider">
                      </li>
 
-                     <li>
-                         <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                             <i class="bi bi-question-circle"></i>
-                             <span>Need Help?</span>
-                         </a>
-                     </li>
                      <li>
                          <hr class="dropdown-divider">
                      </li>

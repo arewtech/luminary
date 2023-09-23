@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileUserController extends Controller
 {
@@ -35,5 +36,22 @@ class ProfileUserController extends Controller
         auth()->user()->update($data);
 
         return back()->with('success', 'Profile updated successfully');
+    }
+
+    public function updatePassword(Request $request) {
+        $data = $request->validate([
+            'current_password' => 'required|string',
+            'password' => 'required|string|confirmed'
+        ]);
+
+        if (!Hash::check($data['current_password'], auth()->user()->password)) {
+            return back()->with('error', 'Current password is incorrect');
+        }
+
+        auth()->user()->update([
+            'password' => Hash::make($data['password'])
+        ]);
+
+        return back()->with('success', 'Password updated successfully');
     }
 }

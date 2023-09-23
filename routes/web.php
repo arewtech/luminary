@@ -44,6 +44,9 @@ Route::resource('users', UserController::class);
 Route::get('/profile', [ProfileUserController::class, 'create'])->name('profile');
 Route::put('/profile', [ProfileUserController::class, 'update'])->name('profile.update');
 
+// change password
+Route::put('/profile/password', [ProfileUserController::class, 'updatePassword'])->name('profile.password.update');
+
 });
 
 
