@@ -43,7 +43,7 @@
                             @forelse ($rentLogs as $item)
                                 <tr class="{{ $item->setColorTable() }}">
                                     <th class="text-center" scope="row">{{ $loop->iteration }}</th>
-                                    <td class="text-capitalize"><a href="#">{{ $item->user->name }}</a></td>
+                                    <td class="text-capitalize fw-bold">{{ $item->user->name }}</td>
                                     <td>{{ $item->book->title }}</td>
                                     <td class="text-center">{{ Carbon\Carbon::parse($item->rent_date)->format('d/m/y') }}
                                     </td>

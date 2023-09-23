@@ -111,7 +111,7 @@
                         @enderror
                     </div>
                     <div class="text-end mt-4 mb-2">
-                        <a href="{{ route('operator.index') }}" class="btn btn-danger btn-sm">Cencel</a>
+                        <a href="{{ route('operator.index') }}" class="btn btn-secondary btn-sm">Cencel</a>
                         <button type="submit" class="btn btn-warning btn-sm">Edit User</button>
                     </div>
                 </form>

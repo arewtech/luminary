@@ -88,7 +88,7 @@
                         @enderror
                     </div>
                     <div class="text-end mt-4 mb-2">
-                        <button type="reset" class="btn btn-secondary btn-sm">Reset</button>
+                        <a href="{{ route('operator.index') }}" class="btn btn-secondary btn-sm">Cancel</a>
                         <button type="submit" class="btn btn-primary btn-sm">Create User</button>
                     </div>
                 </form>

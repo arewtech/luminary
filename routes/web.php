@@ -6,6 +6,7 @@ use App\Http\Controllers\BookRentLogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OperatorController;
+use App\Http\Controllers\ProfileUserController;
 use App\Http\Controllers\RentLogController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,10 @@ Route::resource('categories', CategoryController::class);
 Route::resource('operator', OperatorController::class);
 // users
 Route::resource('users', UserController::class);
+
+// profile
+Route::get('/profile', [ProfileUserController::class, 'create'])->name('profile');
+Route::put('/profile', [ProfileUserController::class, 'update'])->name('profile.update');
 
 });
 

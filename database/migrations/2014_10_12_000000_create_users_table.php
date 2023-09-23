@@ -20,6 +20,11 @@ return new class extends Migration
             $table->string('password');
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
+            $table->string('occupation')->nullable();
+            $table->string('link-twitter')->nullable();
+            $table->string('link-facebook')->nullable();
+            $table->string('link-instagram')->nullable();
+            $table->string('link-linkedin')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('inactive');
             $table->enum('role', ['operator', 'user'])->default('user');
             $table->text('image')->nullable();
