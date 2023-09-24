@@ -112,19 +112,18 @@
                                             <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile
                                                 Image</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <div class="position-relative d-block">
-                                                    <img src="{{ auth()->user()->image !== null ? asset('storage/' . auth()->user()->image) : 'https://ui-avatars.com/api/?name=' . auth()->user()->name . '&color=7F9CF5&background=EBF4FF' }}"
+                                                <div class="position-relative d-inline-flex">
+                                                    <img width="100"
+                                                        src="{{ auth()->user()->image !== null ? asset('storage/' . auth()->user()->image) : 'https://ui-avatars.com/api/?name=' . auth()->user()->name . '&color=7F9CF5&background=EBF4FF' }}"
                                                         alt="Profile">
-                                                </div>
-                                                <div class="pt-2">
-                                                    <i class="bi bi-upload"></i>
-                                                    <a href="#" class="btn btn-danger btn-sm"
-                                                        title="Remove my profile image"><i class="bi bi-trash"></i></a>
+                                                    <a href="#" style="top: -10px; right: -10px; line-height: .2"
+                                                        class="btn btn-danger btn-sm position-absolute p-0 rounded-4"
+                                                        title="Remove my profile image"><i class="bi bi-x fs-5"></i></a>
                                                 </div>
                                                 <input class="form-control" type="file">
                                             </div>
                                         </div>
-
+                                        <hr>
                                         <div class="row mb-3">
                                             <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full
                                                 Name</label>
