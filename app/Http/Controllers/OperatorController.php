@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class OperatorController extends Controller
 {
@@ -41,7 +42,13 @@ class OperatorController extends Controller
             'password' => 'required|string|min:8',
             'address' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:255',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png',
         ]);
+
+         if ($request->file('image')) {
+            $data['image'] = $request->file('image')->store('images/users', 'public');
+        }
+
         $data['role'] = 'operator';
         $data['status'] = 'active';
         $data['password'] = bcrypt($request->password);
@@ -80,7 +87,16 @@ class OperatorController extends Controller
             'address' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:255',
             'status' => 'required|in:active,inactive',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png',
         ]);
+
+        if ($request->file('image')) {
+            Storage::delete('public/' . $operator->image);
+            $data['image'] = $request->file('image')->store('images/users', 'public');
+        } else {
+            $data['image'] = $operator->image;
+        }
+
         $data['password'] = $request->password ? bcrypt($request->password) : $operator->password;
         $operator->update($data);
         return redirect()->route('operator.index')->with('success', 'User updated successfully!');
@@ -91,6 +107,9 @@ class OperatorController extends Controller
      */
     public function destroy(User $operator)
     {
+        if ($operator->image) {
+            Storage::delete('public/' . $operator->image);
+        }
         $operator->delete();
         return back()->with('success', 'User deleted successfully!');
     }

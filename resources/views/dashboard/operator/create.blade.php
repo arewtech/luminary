@@ -20,7 +20,7 @@
                 <h5 class="card-title">Create Form Operator</h5>
 
                 <!-- Multi Columns Form -->
-                <form action="{{ route('operator.store') }}" method="post" class="row g-3">
+                <form action="{{ route('operator.store') }}" method="post" class="row g-3" enctype="multipart/form-data">
                     @csrf
                     <div class="col-md-6">
                         <label for="inputName5" class="form-label">Your Name</label>
@@ -82,6 +82,16 @@
                             class="form-control @error('phone') is-invalid @enderror" placeholder="your phone number"
                             id="inputPhone">
                         @error('phone')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputImage" class="form-label">Image</label>
+                        <input type="file" name="image" value="{{ old('image') }}"
+                            class="form-control @error('image') is-invalid @enderror" id="inputImage">
+                        @error('image')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
