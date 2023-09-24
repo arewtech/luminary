@@ -112,14 +112,16 @@
                                             <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile
                                                 Image</label>
                                             <div class="col-md-8 col-lg-9">
-                                                <img src="{{ auth()->user()->image !== null ? asset('storage/' . auth()->user()->image) : 'https://ui-avatars.com/api/?name=' . auth()->user()->name . '&color=7F9CF5&background=EBF4FF' }}"
-                                                    alt="Profile">
+                                                <div class="position-relative d-block">
+                                                    <img src="{{ auth()->user()->image !== null ? asset('storage/' . auth()->user()->image) : 'https://ui-avatars.com/api/?name=' . auth()->user()->name . '&color=7F9CF5&background=EBF4FF' }}"
+                                                        alt="Profile">
+                                                </div>
                                                 <div class="pt-2">
-                                                    <a href="#" class="btn btn-primary btn-sm"
-                                                        title="Upload new profile image"><i class="bi bi-upload"></i></a>
+                                                    <i class="bi bi-upload"></i>
                                                     <a href="#" class="btn btn-danger btn-sm"
                                                         title="Remove my profile image"><i class="bi bi-trash"></i></a>
                                                 </div>
+                                                <input class="form-control" type="file">
                                             </div>
                                         </div>
 
