@@ -79,8 +79,12 @@ class UserController extends Controller
             'address' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:255',
             'status' => 'required|string|in:active,inactive',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png',
         ]);
         $data['password'] = $request->password ? bcrypt($request->password) : $user->password;
+        if ($request->file('image')) {
+            $data['image'] = $request->file('image')->store('images/users');
+        }
         $user->update($data);
         return redirect()->route('users.index')->with('success', 'User updated successfully!');
     }

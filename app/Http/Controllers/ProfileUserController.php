@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileUserController extends Controller
 {
@@ -27,11 +28,15 @@ class ProfileUserController extends Controller
             'image' => 'nullable|image|mimes:jpg,jpeg,png'
         ]);
 
-        // if ($request->hasFile('image')) {
-        //     $image = $request->file('image');
-        //     $image->storeAs('public/users', $image->hashName());
-        //     $data['image'] = $image->hashName();
-        // }
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            Storage::delete('public/' . auth()->user()->image);
+            $data['image'] = $image->store('images/users', 'public');
+            // $image->storeAs('public/users', $image->hashName());
+            // $data['image'] = $image->hashName();
+        } else {
+            $data['image'] = auth()->user()->image;
+        }
 
         auth()->user()->update($data);
 
