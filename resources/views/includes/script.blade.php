@@ -12,4 +12,3 @@
  <script src="{{ asset('assets') }}/js/main.js"></script>
  @stack('select2:js')
  @stack('image-preview')
- @stack('image-profile')

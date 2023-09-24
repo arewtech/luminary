@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -40,7 +41,13 @@ class UserController extends Controller
             'password' => 'required|string|min:8',
             'address' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:255',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png',
         ]);
+
+        if ($request->file('image')) {
+            $data['image'] = $request->file('image')->store('images/users', 'public');
+        }
+
         $data['role'] = 'user';
         $data['status'] = 'active';
         $data['password'] = bcrypt($request->password);
@@ -83,7 +90,10 @@ class UserController extends Controller
         ]);
         $data['password'] = $request->password ? bcrypt($request->password) : $user->password;
         if ($request->file('image')) {
-            $data['image'] = $request->file('image')->store('images/users');
+            Storage::delete('public/' . $user->image);
+            $data['image'] = $request->file('image')->store('images/users', 'public');
+        } else {
+            $data['image'] = $user->image;
         }
         $user->update($data);
         return redirect()->route('users.index')->with('success', 'User updated successfully!');
@@ -94,6 +104,9 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        if ($user->image) {
+            Storage::delete('public/' . $user->image);
+        }
         $user->delete();
         return redirect()->route('users.index')->with('success', 'User deleted successfully!');
     }

@@ -19,9 +19,24 @@
             <div class="card-body">
                 <h5 class="card-title">Edit Form User</h5>
                 <!-- Multi Columns Form -->
-                <form action="{{ route('users.update', $user) }}" method="post" class="row g-3">
+                <form action="{{ route('users.update', $user) }}" method="post" class="row g-3"
+                    enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
+                    <div class="col-md-12 mb-4">
+                        <div class="col-md-4 d-flex align-items-center gap-3 m-auto">
+                            <div class="position-relative d-inline-flex">
+                                <img id="uploadedAvatar" width="100" class="rounded-circle"
+                                    src="{{ $user->image !== null ? asset('storage/' . $user->image) : 'https://ui-avatars.com/api/?name=' . $user->name . '&color=7F9CF5&background=EBF4FF' }}"
+                                    alt="Profile">
+                                <a href="#" style="top: 10px; right: -4px; line-height: .2"
+                                    class="account-image-reset btn btn-danger btn-sm position-absolute p-0 rounded-4"
+                                    title="Remove my profile image"><i class="bi bi-x fs-5"></i></a>
+                            </div>
+                            <input class="form-control account-file-input" type="file" name="image">
+                        </div>
+                    </div>
+                    <hr class="border-secondary">
                     <div class="col-md-6">
                         <label for="inputName5" class="form-label">Your Name</label>
                         <input type="text" name="name" value="{{ old('name', $user->name) }}"
@@ -120,4 +135,35 @@
             </div>
         </div>
     </main>
+    @pushOnce('image-preview')
+        <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+            integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+        <script>
+            // preview object URL
+            $('input#accountActivation').on('change', function() {
+                $('button.deactivate-account').attr('disabled', !$(this).is(':checked'));
+            });
+            document.addEventListener('DOMContentLoaded', function(e) {
+                (function() {
+                    // Update/reset user image of account page
+                    let accountUserImage = document.getElementById('uploadedAvatar');
+                    const fileInput = document.querySelector('.account-file-input'),
+                        resetFileInput = document.querySelector('.account-image-reset');
+                    if (accountUserImage) {
+                        const resetImage = accountUserImage.src;
+                        fileInput.onchange = () => {
+                            if (fileInput.files[0]) {
+                                accountUserImage.src = window.URL.createObjectURL(fileInput.files[0]);
+                            }
+                        };
+                        resetFileInput.onclick = () => {
+                            fileInput.value = '';
+                            accountUserImage.src = resetImage;
+                        };
+                    }
+                })
+                ();
+            });
+        </script>
+    @endpushOnce
 @endsection

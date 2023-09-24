@@ -125,7 +125,7 @@
                                                     name="image">
                                             </div>
                                         </div>
-                                        <hr>
+                                        <hr class="border-secondary my-4">
                                         <div class="row mb-3">
                                             <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full
                                                 Name</label>
@@ -307,7 +307,7 @@
         </section>
 
     </main>
-    @pushOnce('image-profile')
+    @pushOnce('image-preview')
         <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
             integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
         <script>
