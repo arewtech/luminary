@@ -1,5 +1,7 @@
  <!-- Favicons -->
- <link href="{{ asset('assets') }}/img/favicon.png" rel="icon">
+ <link
+     href="{{ setting('app_logo') !== null ? asset('storage/' . setting('app_logo')) : 'https://ui-avatars.com/api/?name=' . auth()->user()->name . '&color=7F9CF5&background=EBF4FF' }}"
+     rel="icon">
  <link href="{{ asset('assets') }}/img/apple-touch-icon.png" rel="apple-touch-icon">
 
  <!-- Google Fonts -->

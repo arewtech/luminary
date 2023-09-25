@@ -14,7 +14,7 @@
                 <div class="col-12">
                     <label for="yourName" class="form-label">Your Name</label>
                     <input type="text" name="name" value="{{ old('name') }}"
-                        class="form-control @error('name') is-invalid @enderror" id="yourName" placeholder="joko ganteng">
+                        class="form-control @error('name') is-invalid @enderror" id="yourName" placeholder="john">
                     @error('name')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -26,7 +26,7 @@
                     <label for="yourEmail" class="form-label">Your Email</label>
                     <input type="email" name="email" value="{{ old('email') }}"
                         class="form-control @error('email') is-invalid @enderror" id="yourEmail"
-                        placeholder="joko@luminary.com">
+                        placeholder="john@luminary.com">
                     @error('email')
                         <div class="invalid-feedback">
                             {{ $message }}

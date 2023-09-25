@@ -2,8 +2,10 @@
 
      <div class="d-flex align-items-center justify-content-between">
          <a href="{{ route('dashboard') }}" class="logo d-flex align-items-center">
-             <img src="{{ asset('assets') }}/img/logo.png" alt="">
-             <span class="d-none d-lg-block">Luminary</span>
+             <img class="rounded-circle"
+                 src="{{ setting('app_logo') !== null ? asset('storage/' . setting('app_logo')) : 'https://ui-avatars.com/api/?name=' . auth()->user()->name . '&color=7F9CF5&background=EBF4FF' }}"
+                 alt="">
+             <span class="d-none d-lg-block">{{ setting('app_title', 'format PT') }}</span>
          </a>
          <i class="bi bi-list toggle-sidebar-btn"></i>
      </div><!-- End Logo -->
@@ -137,11 +139,6 @@
                      <li>
                          <hr class="dropdown-divider">
                      </li>
-
-                     <li>
-                         <hr class="dropdown-divider">
-                     </li>
-
                      <li>
                          <form action="{{ route('logout') }}" method="post">
                              @csrf

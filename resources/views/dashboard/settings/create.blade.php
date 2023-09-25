@@ -17,9 +17,8 @@
         <div class="card">
             <div class="card-body">
                 <!-- Multi Columns Form -->
-                <form action="#" method="post" class="row g-3" enctype="multipart/form-data">
+                <form action="{{ route('settings.store') }}" method="post" class="row g-3" enctype="multipart/form-data">
                     @csrf
-                    @method('PUT')
                     <div style="margin-top: 3.5rem" class="col-md-12 mb-4">
                         <div class="col-md-4 d-flex align-items-center gap-3 m-auto">
                             <div class="position-relative d-inline-flex">

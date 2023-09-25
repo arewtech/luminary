@@ -45,8 +45,9 @@
 
                             <div class="d-flex justify-content-center py-4">
                                 <a href="index.html" class="logo d-flex align-items-center w-auto">
-                                    <img src="{{ asset('assets') }}/img/logo.png" alt="">
-                                    <span class="d-none d-lg-block">{{ config('app.name') }}</span>
+                                    <img src="{{ setting('app_logo') !== null ? asset('storage/' . setting('app_logo')) : 'https://ui-avatars.com/api/?name=' . auth()->user()->name . '&color=7F9CF5&background=EBF4FF' }}"
+                                        alt="">
+                                    <span class="d-none d-lg-block">{{ setting('app_title', 'format PT') }}</span>
                                 </a>
                             </div><!-- End Logo -->
 
