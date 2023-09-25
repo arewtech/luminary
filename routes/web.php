@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\ProfileUserController;
 use App\Http\Controllers\RentLogController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,6 +47,10 @@ Route::put('/profile', [ProfileUserController::class, 'update'])->name('profile.
 
 // change password
 Route::put('/profile/password', [ProfileUserController::class, 'updatePassword'])->name('profile.password.update');
+
+// app settings
+Route::get('/app-settings', [SettingController::class, 'create'])->name('settings');
+Route::post('/app-settings', [SettingController::class, 'store'])->name('settings.store');
 
 });
 
