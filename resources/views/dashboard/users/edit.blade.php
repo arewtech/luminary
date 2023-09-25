@@ -81,11 +81,11 @@
                         @enderror
                     </div>
                     <div class="col-md-6">
-                        <label for="inputAddress5" class="form-label">Address</label>
-                        <input type="text" name="address" value="{{ old('address', $user->address) }}"
-                            class="form-control @error('address') is-invalid @enderror" id="inputAddres5s"
-                            placeholder="apartment, studio, or floor">
-                        @error('address')
+                        <label for="inputName5" class="form-label">Occupation</label>
+                        <input type="text" name="occupation" value="{{ old('occupation', $user->occupation) }}"
+                            class="form-control @error('occupation') is-invalid @enderror" placeholder="your occupation"
+                            id="inputName5">
+                        @error('occupation')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
@@ -145,8 +145,20 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="col-md-12 mt-4">
-                        <div class="d-flex align-items-center justify-content-center gap-3">
+                    <div class="col-md-6">
+                        <label for="inputAddress5" class="form-label">Address</label>
+                        <input type="text" name="address" value="{{ old('address', $user->address) }}"
+                            class="form-control @error('address') is-invalid @enderror" id="inputAddres5s"
+                            placeholder="apartment, studio, or floor">
+                        @error('address')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputName5" class="form-label">Status</label>
+                        <div class="d-flex align-items-center justify-content-start gap-3">
                             <div class="form-check">
                                 <input class="form-check-input" name="status" type="radio" id="active"
                                     value="active" {{ $user->status == 'active' ? 'checked' : '' }}>

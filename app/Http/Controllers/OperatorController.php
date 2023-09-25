@@ -61,7 +61,9 @@ class OperatorController extends Controller
      */
     public function show(User $operator)
     {
-        //
+        return view('dashboard.operator.show', [
+            'operator' => $operator,
+        ]);
     }
 
     /**

@@ -60,6 +60,9 @@
                                     </td> --}}
                                     <td>
                                         <div class="d-inline-flex gap-1">
+                                            <a href="{{ route('operator.show', $item) }}" class="btn btn-info btn-sm">
+                                                <i class="bi bi-eye text-white"></i>
+                                            </a>
                                             <a href="{{ route('operator.edit', $item) }}" class="btn btn-warning btn-sm">
                                                 <i class="bi bi-pencil-square text-white"></i>
                                             </a>
