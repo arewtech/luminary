@@ -79,7 +79,7 @@ class OperatorController extends Controller
      */
     public function update(Request $request, User $operator)
     {
-        $data = $request->validate([
+        $request->validate([
             'name' => 'required|string|max:255',
             'username' => 'required|string|max:255|unique:users,username,' . $operator->id,
             'email' => 'required|email|max:255|unique:users,email,' . $operator->id,
@@ -89,6 +89,8 @@ class OperatorController extends Controller
             'status' => 'required|in:active,inactive',
             'image' => 'nullable|image|mimes:jpg,jpeg,png',
         ]);
+
+        $data = $request->except(['_token', '_method']);
 
         if ($request->file('image')) {
             Storage::delete('public/' . $operator->image);

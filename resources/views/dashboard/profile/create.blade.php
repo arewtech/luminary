@@ -200,7 +200,8 @@
                                                 Profile</label>
                                             <div class="col-md-8 col-lg-9">
                                                 <input name="link_twitter" type="text" class="form-control"
-                                                    id="Twitter" value="{{ auth()->user()->link_twitter }}">
+                                                    placeholder="https://twitter.com/username" id="Twitter"
+                                                    value="{{ auth()->user()->link_twitter }}">
                                             </div>
                                         </div>
 
@@ -209,7 +210,8 @@
                                                 Profile</label>
                                             <div class="col-md-8 col-lg-9">
                                                 <input name="link_facebook" type="text" class="form-control"
-                                                    id="Facebook" value="{{ auth()->user()->link_facebook }}">
+                                                    placeholder="https://facebook.com/username" id="Facebook"
+                                                    value="{{ auth()->user()->link_facebook }}">
                                             </div>
                                         </div>
 
@@ -218,7 +220,8 @@
                                                 Profile</label>
                                             <div class="col-md-8 col-lg-9">
                                                 <input name="link_instagram" type="text" class="form-control"
-                                                    id="Instagram" value="{{ auth()->user()->link_instagram }}">
+                                                    placeholder="https://instagram.com/username" id="Instagram"
+                                                    value="{{ auth()->user()->link_instagram }}">
                                             </div>
                                         </div>
 
@@ -227,7 +230,8 @@
                                                 Profile</label>
                                             <div class="col-md-8 col-lg-9">
                                                 <input name="link_linkedin" type="text" class="form-control"
-                                                    id="Linkedin" value="{{ auth()->user()->link_linkedin }}">
+                                                    placeholder="https://linkedin.com/username" id="Linkedin"
+                                                    value="{{ auth()->user()->link_linkedin }}">
                                             </div>
                                         </div>
 

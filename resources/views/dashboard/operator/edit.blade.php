@@ -101,11 +101,55 @@
                             </div>
                         @enderror
                     </div>
+                    <div class="col-md-6">
+                        <label for="inputEmail5" class="form-label">Twitter</label>
+                        <input name="link_twitter" type="text" class="form-control"
+                            placeholder="https://twitter.com/username" id="Twitter"
+                            value="{{ $operator->link_twitter }}">
+                        @error('link_twitter')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputPassword5" class="form-label">Facebook</label>
+                        <input name="link_facebook" type="text" class="form-control"
+                            placeholder="https://facebook.com/username" id="Facebook"
+                            value="{{ $operator->link_facebook }}">
+                        @error('link_facebook')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputAddress5" class="form-label">Instagram</label>
+                        <input name="link_instagram" type="text" class="form-control"
+                            placeholder="https://instagram.com/username" id="Instagram"
+                            value="{{ $operator->link_instagram }}">
+                        @error('link_instagram')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputPhone" class="form-label">Linkedin</label>
+                        <input name="link_linkedin" type="text" class="form-control"
+                            placeholder="https://linkedin.com/username" id="Linkedin"
+                            value="{{ $operator->link_linkedin }}">
+                        @error('link_linkedin')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
                     <div class="col-md-12 mt-4">
                         <div class="d-flex align-items-center justify-content-center gap-3">
                             <div class="form-check">
-                                <input class="form-check-input" name="status" type="radio" id="active" value="active"
-                                    {{ $operator->status == 'active' ? 'checked' : '' }}>
+                                <input class="form-check-input" name="status" type="radio" id="active"
+                                    value="active" {{ $operator->status == 'active' ? 'checked' : '' }}>
                                 <label class="form-check-label" for="active">
                                     Active
                                 </label>
