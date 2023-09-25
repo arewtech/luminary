@@ -34,7 +34,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'name' => 'required|string|max:255',
             'username' => 'required|string|max:255|unique:users,username',
             'email' => 'required|email|max:255|unique:users,email',
@@ -43,7 +43,6 @@ class UserController extends Controller
             'phone' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpg,jpeg,png',
         ]);
-
 
         if ($request->file('image')) {
             $data['image'] = $request->file('image')->store('images/users', 'public');
@@ -61,8 +60,10 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        $fines = $user->rentLogs->where('status', 'late')->sum('fine');
         return view('dashboard.users.show', [
             'user' => $user->load('rentLogs'),
+            'userFines' => $fines,
         ]);
     }
 

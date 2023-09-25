@@ -16,7 +16,6 @@
         <section class="section profile">
             <div class="row">
                 <div class="col-xl-4">
-
                     <div class="card">
                         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
@@ -47,10 +46,9 @@
                 </div>
 
                 <div class="col-xl-8">
-
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title fs-4">Profile Details</h5>
+                            <h5 class="card-title">Profile Details</h5>
 
                             <div class="row mb-3">
                                 <div class="col-lg-3 col-md-4 label ">Full Name</div>
@@ -81,6 +79,72 @@
                     </div>
                 </div>
             </div>
+            @if ($user->rentLogs->count() > 0)
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">List Table Rent Logs : {{ count($user->rentLogs) }}</h5>
+                        @if ($userFines > 0)
+                            <p class="mb-1">
+                                Total fines : <b>{{ formatRupiah($userFines) }}</b> in {{ count($user->rentLogs) }} rent
+                                logs.
+                            </p>
+                        @endif
+                        <p>
+                            Rent Logs is a table that contains data about the borrowing of books by
+                            <b>{{ $user->name }}</b>.
+                        </p>
+                        <!-- Bordered Table -->
+                        <div class="table-responsive">
+                            <table class="table table-sm table-hover table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th class="text-center" scope="col">No</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Book Title</th>
+                                        <th class="text-center" scope="col">Rent Date</th>
+                                        <th class="text-center" scope="col">Return Date</th>
+                                        <th class="text-center" scope="col">Actual Return Date</th>
+                                        <th class="text-center" scope="col">Fine</th>
+                                        <th class="text-center" scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse ($user->rentLogs as $item)
+                                        <tr class="{{ $item->setColorTable() }}">
+                                            <th class="text-center" scope="row">{{ $loop->iteration }}</th>
+                                            <td class="text-capitalize fw-bold">{{ $item->user->name }}</td>
+                                            <td>{{ $item->book->title }}</td>
+                                            <td class="text-center">
+                                                {{ Carbon\Carbon::parse($item->rent_date)->format('d/m/y') }}
+                                            </td>
+                                            <td class="text-center">
+                                                {{ Carbon\Carbon::parse($item->return_date)->format('d/m/y') }}
+                                            </td>
+                                            <td class="text-center">
+                                                {{-- {{ $item->actual_return_date != null ? Carbon\Carbon::parse($item?->actual_return_date)->format('d/m/y') : '' }} --}}
+                                                <span
+                                                    class="badge {{ getStatusColor($item->setStatusRentLog()) }}">{{ $item->setStatusRentLog() }}</span>
+                                            </td>
+                                            <td class="text-center">{{ $item->setReturned() }}</td>
+                                            <td class="text-center">
+                                                <a href="{{ route('rent-logs.show', $item->id) }}"
+                                                    class="btn btn-info btn-sm">
+                                                    <i class="bi bi-eye text-white"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="8" class="text-center">No Data</td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- End Bordered Table -->
+                    </div>
+                </div>
+            @endif
         </section>
 
     </main>

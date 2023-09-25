@@ -50,7 +50,7 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title fs-4">Profile Details</h5>
+                            <h5 class="card-title">Profile Details</h5>
 
                             <div class="row mb-3">
                                 <div class="col-lg-3 col-md-4 label ">Full Name</div>
