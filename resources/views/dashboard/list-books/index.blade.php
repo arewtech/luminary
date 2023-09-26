@@ -1,4 +1,9 @@
 @extends('layouts.app')
+@pushOnce('select2:css')
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endPushOnce
 @section('content')
     <main id="main" class="main">
 
@@ -12,6 +17,24 @@
                         <li class="breadcrumb-item active">List Books</li>
                     </ol>
                 </nav>
+            </div>
+            <div class="col-7 col-xxl-5">
+                <form action="" method="get">
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="inputGroupSelect01">Filter</label>
+                        <select class="form-select select2" name="category" id="inputGroupSelect01">
+                            <option selected="" disabled="">Choose...</option>
+                            @foreach ($categories as $item)
+                                <option value="{{ $item }}"
+                                    {{ request()->get('category') == $item ? 'selected' : '' }}>{{ $item }}</option>
+                            @endforeach
+                        </select>
+                        <input style="width: 130px" type="search" class="form-control" name="q"
+                            value="{{ request()->q }}" placeholder="Search..."
+                            aria-label="Text input with dropdown button">
+                        <button class="btn btn-outline-primary" type="submit" id="button-addon2">Search</button>
+                    </div>
+                </form>
             </div>
         </div>
         <!-- End Page Title -->
@@ -47,3 +70,15 @@
         </div>
     </main>
 @endsection
+@pushOnce('select2:js')
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+        integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2({
+                theme: 'bootstrap-5',
+            });
+        });
+    </script>
+@endPushOnce
