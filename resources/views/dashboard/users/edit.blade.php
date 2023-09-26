@@ -17,14 +17,13 @@
 
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Edit Form User</h5>
                 <!-- Multi Columns Form -->
                 <form action="{{ route('users.update', $user) }}" method="post" class="row g-3"
                     enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    <div class="col-md-12 mb-4">
-                        <div class="col-md-4 d-flex align-items-center gap-3 m-auto">
+                    <div style="margin-top: 3.5rem" class="col-md-12 mb-4">
+                        <div class="col-md-5 d-flex align-items-center gap-3 m-auto">
                             <div class="position-relative d-inline-flex">
                                 <img id="uploadedAvatar" width="100" class="rounded-circle"
                                     src="{{ $user->image !== null ? asset('storage/' . $user->image) : 'https://ui-avatars.com/api/?name=' . $user->name . '&color=7F9CF5&background=EBF4FF' }}"

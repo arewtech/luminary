@@ -17,14 +17,13 @@
 
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Edit Form Operator</h5>
                 <!-- Multi Columns Form -->
                 <form action="{{ route('operator.update', $operator) }}" method="post" class="row g-3"
                     enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    <div class="col-md-12 mb-4">
-                        <div class="col-md-4 d-flex align-items-center gap-3 m-auto">
+                    <div style="margin-top: 3.5rem" class="col-md-12 mb-4">
+                        <div class="col-md-5 d-flex align-items-center gap-3 m-auto">
                             <div class="position-relative d-inline-flex">
                                 <img id="uploadedAvatar" width="100" class="rounded-circle"
                                     src="{{ $operator->image !== null ? asset('storage/' . $operator->image) : 'https://ui-avatars.com/api/?name=' . $operator->name . '&color=7F9CF5&background=EBF4FF' }}"
@@ -36,6 +35,7 @@
                             <input class="form-control account-file-input" type="file" name="image">
                         </div>
                     </div>
+                    <hr class="border-secondary">
                     <div class="col-md-6">
                         <label for="inputName5" class="form-label">Your Name</label>
                         <input type="text" name="name" value="{{ old('name', $operator->name) }}"
