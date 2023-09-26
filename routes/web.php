@@ -5,6 +5,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookRentLogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ListBookController;
 use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\ProfileUserController;
 use App\Http\Controllers\RentLogController;
@@ -20,6 +21,9 @@ Route::middleware('auth')->group(function() {
 // dashboard
 Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
+// list books
+Route::get('/list-books', ListBookController::class)->name('list-books');
+
 // rent log
 Route::get('/rent-logs', [RentLogController::class, 'index'])->name('rent-logs.index');
 Route::get('/rent-logs/{rentLog}', [RentLogController::class, 'show'])->name('rent-logs.show');
@@ -32,6 +36,7 @@ Route::post('/actual-return-date', [RentLogController::class, 'store'])->name('a
 // book rent
 Route::get('/book-rent', [BookRentLogController::class, 'create'])->name('book-rent.create');
 Route::post('/book-rent', [BookRentLogController::class, 'store'])->name('book-rent.store');
+
 // books
 Route::resource('books', BookController::class);
 // categories
@@ -53,7 +58,6 @@ Route::get('/app-settings', [SettingController::class, 'create'])->name('setting
 Route::post('/app-settings', [SettingController::class, 'store'])->name('settings.store');
 
 });
-
 
 // authentification
 Route::middleware('guest')->group(function() {

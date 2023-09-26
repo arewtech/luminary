@@ -16,7 +16,8 @@
 
         <!-- List Books Page Nav -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-register.html">
+            <a class="nav-link {{ request()->url('/list-books') == url('/list-books') ? '' : 'collapsed' }}"
+                href="{{ route('list-books') }}">
                 <i class="bi bi-card-list"></i>
                 <span>List Books</span>
             </a>
