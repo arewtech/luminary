@@ -41,7 +41,7 @@
 
         <!-- list books -->
         <div class="d-flex flex-wrap justify-content-center gap-4">
-            @foreach ($listBooks as $item)
+            @forelse ($listBooks as $item)
                 <div style="width: 16.5rem" class="card m-0">
                     <div class="position-relative">
                         <img style="object-fit: cover; object-position: center;"
@@ -66,7 +66,9 @@
                         <p class="card-text mt-2 form-text line-clamp">{{ $item->description }}</p>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <p style="transform: translateY(160px)" class="text-center">No books found. 😭🥲</p>
+            @endforelse
         </div>
     </main>
 @endsection

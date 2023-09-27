@@ -126,19 +126,25 @@
                              <span>My Profile</span>
                          </a>
                      </li>
+
                      <li>
                          <hr class="dropdown-divider">
                      </li>
 
-                     <li>
-                         <a class="dropdown-item d-flex align-items-center" href="{{ route('settings') }}">
-                             <i class="bi bi-gear"></i>
-                             <span>Account Settings</span>
-                         </a>
-                     </li>
-                     <li>
-                         <hr class="dropdown-divider">
-                     </li>
+                     @if (auth()->user()->role != 'user')
+                         <li>
+                             <a class="dropdown-item d-flex align-items-center" href="{{ route('settings') }}">
+                                 <i class="bi bi-gear"></i>
+                                 <span>Account Settings</span>
+                             </a>
+                         </li>
+
+                         <li>
+                             <hr class="dropdown-divider">
+                         </li>
+                     @endif
+
+
                      <li>
                          <form action="{{ route('logout') }}" method="post">
                              @csrf
