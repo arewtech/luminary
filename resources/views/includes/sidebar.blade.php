@@ -27,7 +27,9 @@
         @if (auth()->user()->role == 'user')
             <!-- List Books Page Nav -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#">
+                <a class="nav-link
+                {{ url()->current() == route('user.rent-logs.index', auth()->user()->username) ? '' : 'collapsed' }}"
+                    href="{{ route('user.rent-logs.index', auth()->user()->username) }}">
                     <i class="bi bi-person"></i>
                     <span class="text-capitalize">{{ auth()->user()->name }}</span>
                 </a>

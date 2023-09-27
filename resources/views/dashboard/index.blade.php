@@ -25,7 +25,7 @@
                         <div class="filter">
                             <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                <li><a class="dropdown-item" href="{{ route('books.index') }}">View Details</a></li>
+                                <li><a class="dropdown-item" href="{{ route('list-books') }}">View Details</a></li>
                             </ul>
                         </div>
 
