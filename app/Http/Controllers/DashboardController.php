@@ -36,7 +36,13 @@ class DashboardController extends Controller
             RentLog::where('status', 'not returned')->count(),
             RentLog::where('status', 'late')->count(),
         ]);
-        // dd($data['statusBooksChart']);
+
+        // data set users
+        $user = auth()->user()->rentLogs;
+        $data['rentLogUser'] = $user->count();
+        $data['userNotReturned'] = $user->where('status', 'not returned')->count();
+        $data['userFines'] = $user->where('status', 'late')->sum('fine');
+
         return view('dashboard.index', $data);
     }
 }

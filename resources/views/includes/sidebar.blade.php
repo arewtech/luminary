@@ -24,14 +24,17 @@
         </li>
         <!-- End List Books Page Nav -->
 
-        <!-- List Books Page Nav -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#">
-                <i class="bi bi-person"></i>
-                <span class="text-capitalize">{{ auth()->user()->name }}</span>
-            </a>
-        </li>
-        <!-- End List Books Page Nav -->
+        @if (auth()->user()->role == 'user')
+            <!-- List Books Page Nav -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#">
+                    <i class="bi bi-person"></i>
+                    <span class="text-capitalize">{{ auth()->user()->name }}</span>
+                </a>
+            </li>
+            <!-- End List Books Page Nav -->
+        @endif
+
         @if (auth()->user()->role != 'user')
             <!-- Books Page Nav -->
             <li class="nav-item">

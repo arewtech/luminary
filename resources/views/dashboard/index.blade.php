@@ -48,87 +48,91 @@
                 </div>
                 <!-- End Sales Card -->
 
-                <!-- books Card -->
-                <div class="col-xxl-3 col-md-6 col-lg-3">
-                    <div class="card info-card sales-card">
+                @if (auth()->user()->role == 'user')
+                    <!-- books Card -->
+                    <div class="col-xxl-3 col-md-6 col-lg-3">
+                        <div class="card info-card sales-card">
 
-                        <div class="filter">
-                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                <li><a class="dropdown-item" href="{{ route('books.index') }}">View Details</a></li>
-                            </ul>
-                        </div>
+                            <div class="filter">
+                                <a class="icon" href="#" data-bs-toggle="dropdown"><i
+                                        class="bi bi-three-dots"></i></a>
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                    <li><a class="dropdown-item" href="{{ route('books.index') }}">View Details</a></li>
+                                </ul>
+                            </div>
 
-                        <div class="card-body">
-                            <h5 class="card-title">Rent Logs <span>| Total</span></h5>
+                            <div class="card-body">
+                                <h5 class="card-title">Rent Logs <span>| Total</span></h5>
 
-                            <div class="d-flex align-items-center">
-                                <div style="width: 60px; height: 60px;"
-                                    class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                    <i class="bi bi-person-lines-fill fs-3"></i>
-                                </div>
-                                <div class="ps-3">
-                                    <h6>{{ $books }}</h6>
-                                    <span class="text-muted small pt-2 ps-1">Data Rent Logs</span>
+                                <div class="d-flex align-items-center">
+                                    <div style="width: 60px; height: 60px;"
+                                        class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-person-lines-fill fs-3"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <h6>{{ $rentLogUser }}</h6>
+                                        <span class="text-muted small pt-2 ps-1">Data Rent Logs</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
-                </div>
-                <!-- End Sales Card -->
+                    <!-- End Sales Card -->
 
-                <!-- books Card -->
-                <div class="col-xxl-3 col-md-6 col-lg-3">
-                    <div class="card info-card sales-card">
+                    <!-- books Card -->
+                    <div class="col-xxl-3 col-md-6 col-lg-3">
+                        <div class="card info-card sales-card">
 
-                        <div class="filter">
-                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                <li><a class="dropdown-item" href="{{ route('books.index') }}">View Details</a></li>
-                            </ul>
-                        </div>
+                            <div class="filter">
+                                <a class="icon" href="#" data-bs-toggle="dropdown"><i
+                                        class="bi bi-three-dots"></i></a>
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                    <li><a class="dropdown-item" href="{{ route('books.index') }}">View Details</a></li>
+                                </ul>
+                            </div>
 
-                        <div class="card-body">
-                            <h5 class="card-title">Book Rent <span>| Total</span></h5>
+                            <div class="card-body">
+                                <h5 class="card-title">Book Rent <span>| Total</span></h5>
 
-                            <div class="d-flex align-items-center">
-                                <div style="width: 60px; height: 60px;"
-                                    class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                    <i class="bi bi-calendar-day fs-3"></i>
-                                </div>
-                                <div class="ps-3">
-                                    <h6>{{ $books }}</h6>
-                                    <span class="text-muted small pt-2 ps-1">Not Returned</span>
+                                <div class="d-flex align-items-center">
+                                    <div style="width: 60px; height: 60px;"
+                                        class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-calendar-day fs-3"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <h6>{{ $userNotReturned }}</h6>
+                                        <span class="text-muted small pt-2 ps-1">Not Returned</span>
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
-
                     </div>
-                </div>
-                <!-- End Sales Card -->
+                    <!-- End Sales Card -->
 
-                <!-- Revenue Card -->
-                <div class="col-xxl-3 col-md-6 col-lg-3">
-                    <div class="card info-card revenue-card">
-                        <div class="card-body">
-                            <h5 class="card-title">Fines <span>| Total</span></h5>
+                    <!-- Revenue Card -->
+                    <div class="col-xxl-3 col-md-6 col-lg-3">
+                        <div class="card info-card revenue-card">
+                            <div class="card-body">
+                                <h5 class="card-title">Fines <span>| Total</span></h5>
 
-                            <div class="d-flex align-items-center">
-                                <div style="width: 60px; height: 60px;"
-                                    class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                    <i class="bi bi-credit-card-2-front fs-3"></i>
-                                </div>
-                                <div class="ps-3">
-                                    <span class="fw-bold d-block">{{ formatRupiah($totalFines) }}</span>
-                                    <span class="text-muted small pt-2 ps-1">Total</span>
+                                <div class="d-flex align-items-center">
+                                    <div style="width: 60px; height: 60px;"
+                                        class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-credit-card-2-front fs-3"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <span class="fw-bold d-block">{{ formatRupiah($userFines) }}</span>
+                                        <span class="text-muted small pt-2 ps-1">Total</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
-                </div>
-                <!-- End Revenue Card -->
+                    <!-- End Revenue Card -->
+                @endif
 
                 @if (auth()->user()->role != 'user')
                     <!-- Revenue Card -->
@@ -183,7 +187,8 @@
                                 <a class="icon" href="#" data-bs-toggle="dropdown"><i
                                         class="bi bi-three-dots"></i></a>
                                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                    <li><a class="dropdown-item" href="{{ route('users.index') }}">View Details</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('users.index') }}">View Details</a>
+                                    </li>
                                 </ul>
                             </div>
 
