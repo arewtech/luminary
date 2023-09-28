@@ -18,14 +18,13 @@ class RentLog extends Model
         'fine',
     ];
 
-    public function scopeFilter($query, array $filters)
+    public function scopeSearch($query, $search)
     {
-        $query->when($filters['q'] ?? false, function ($query, $search) {
-            $query->whereHas('book', function ($query) use ($search) {
-                $query->where('title', 'like', '%' . $search . '%');
-            })->orWhereHas('user', function ($query) use ($search) {
-                $query->where('name', 'like', '%' . $search . '%');
-            });
+        $query->with(['book', 'user'])
+        ->whereHas('user', function ($query) use ($search) {
+            $query->where('name', 'like', "%{$search}%");
+        })->orWhereHas('book', function ($query) use ($search) {
+            $query->where('title', 'like', "%{$search}%");
         });
     }
 

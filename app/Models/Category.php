@@ -15,6 +15,11 @@ class Category extends Model
         return 'slug';
     }
 
+    public function scopeSearch($query, $search)
+    {
+        $query->where('name', 'like', "%{$search}%");
+    }
+
     public function books()
     {
         return $this->belongsToMany(Book::class, 'book_categories', 'category_id', 'book_id');

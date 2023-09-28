@@ -16,7 +16,7 @@ class RentLogController extends Controller
     public function index(Request $request)
     {
         return view('dashboard.rent-logs.index', [
-            'rentLogs' => RentLog::filter($request->only('q'))
+            'rentLogs' => RentLog::search($request->q)
                 ->latest()
                 ->get(),
             'totalFines' => RentLog::where('status', 'late')->sum('fine'),

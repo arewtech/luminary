@@ -11,13 +11,10 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        // $users = User::with('rentLogs')->latest()->get();
-        // return $users;
-
         return view('dashboard.users.index', [
-            'users' => User::whereRole('user')->latest()->get(),
+            'users' => User::whereRole('user')->search($request->q)->latest()->get(),
         ]);
     }
 

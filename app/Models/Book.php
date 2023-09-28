@@ -15,6 +15,12 @@ class Book extends Model
         return 'slug';
     }
 
+    public function scopeSearch($query, $search)
+    {
+        $query->where('title', 'like', "%{$search}%")
+            ->orWhere('author', 'like', "%{$search}%");
+    }
+
     public function setStatusBooks()
     {
         if ($this->status == 'available') {

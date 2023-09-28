@@ -10,10 +10,10 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         return view('dashboard.categories.index', [
-            'categories' => Category::latest()->get(),
+            'categories' => Category::search($request->q)->latest()->get(),
         ]);
     }
 

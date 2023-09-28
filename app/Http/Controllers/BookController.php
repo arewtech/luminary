@@ -12,12 +12,10 @@ class BookController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        // $books = Book::with('categories')->latest()->get();
-        // return $books;
         return view('dashboard.books.index', [
-            'books' => Book::with('categories')->latest()->get(),
+            'books' => Book::with('categories')->search($request->q)->latest()->get(),
         ]);
     }
 

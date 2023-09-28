@@ -11,14 +11,11 @@ class OperatorController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-         // $users = User::with('rentLogs')->latest()->get();
-        // return $users;
-
         return view('dashboard.operator.index', [
             'operator' => User::where('id', '!=', auth()->id())
-            ->whereRole('operator')->latest()->get(),
+            ->whereRole('operator')->search($request->q)->latest()->get(),
         ]);
     }
 

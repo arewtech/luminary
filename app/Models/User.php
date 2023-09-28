@@ -54,6 +54,11 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function scopeSearch($query, $search)
+    {
+        $query->where('name', 'like', "%{$search}%");
+    }
+
     public function getRouteKeyName()
     {
         return 'username';
