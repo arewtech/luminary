@@ -13,13 +13,12 @@ class RentLogController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        // $rentLogs = RentLog::with(['book', 'user'])->latest()->get();
-        // return $rentLogs;
         return view('dashboard.rent-logs.index', [
-            'rentLogs' => RentLog::with(['book', 'user'])
-            ->latest()->get(),
+            'rentLogs' => RentLog::filter($request->only('q'))
+                ->latest()
+                ->get(),
             'totalFines' => RentLog::where('status', 'late')->sum('fine'),
         ]);
     }

@@ -51,8 +51,8 @@
                             <h5 class="card-title">Profile Details</h5>
 
                             <div class="row mb-3">
-                                <div class="col-lg-3 col-md-4 label ">Full Name</div>
-                                <div class="col-lg-9 col-md-8">{{ $user->name }}</div>
+                                <div class="col-lg-3 col-md-4 label ">Username</div>
+                                <div class="col-lg-9 col-md-8 text-capitalize">{{ $user->username }}</div>
                             </div>
 
                             <div class="row mb-3">
