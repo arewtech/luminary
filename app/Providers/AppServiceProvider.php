@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\RentLog;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Http\Request;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,8 +20,8 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
+    public function boot(Request $request): void
     {
-        //
+        // $rentLogUser = RentLog::with('book')->findOrFail($request->rentLog);
     }
 }

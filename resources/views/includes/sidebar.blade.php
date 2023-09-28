@@ -23,12 +23,14 @@
             </a>
         </li>
         <!-- End List Books Page Nav -->
-
         @if (auth()->user()->role == 'user')
             <!-- List Books Page Nav -->
             <li class="nav-item">
                 <a class="nav-link
-                {{ url()->current() == route('user.rent-logs.index', auth()->user()->username) ? '' : 'collapsed' }}"
+                {{ url()->current() == route('user.rent-logs.index', auth()->user()->username) ||
+                Route::current()->getName() == 'user.rent-logs.show'
+                    ? ''
+                    : 'collapsed' }}"
                     href="{{ route('user.rent-logs.index', auth()->user()->username) }}">
                     <i class="bi bi-person"></i>
                     <span class="text-capitalize">{{ auth()->user()->name }}</span>

@@ -18,4 +18,14 @@ class RentLogUserController extends Controller
             'userFines' => $user->rentLogs()->where('status', 'late')->sum('fine'),
         ]);
     }
+
+    public function show(Request $request, User $user) {
+        $rentLogUser = RentLog::with('book')->findOrFail($request->rentLog);
+        if ($rentLogUser->user_id != $user->id) {
+            abort(404, 'Page not found');
+        }
+        return view('users.show', [
+            'rentLogUser' => $rentLogUser,
+        ]);
+    }
 }

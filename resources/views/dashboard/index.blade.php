@@ -57,7 +57,10 @@
                                 <a class="icon" href="#" data-bs-toggle="dropdown"><i
                                         class="bi bi-three-dots"></i></a>
                                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                    <li><a class="dropdown-item" href="{{ route('books.index') }}">View Details</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="{{ route('user.rent-logs.index', auth()->user()->username) }}">View
+                                            Details</a>
+                                    </li>
                                 </ul>
                             </div>
 
@@ -71,7 +74,7 @@
                                     </div>
                                     <div class="ps-3">
                                         <h6>{{ $rentLogUser }}</h6>
-                                        <span class="text-muted small pt-2 ps-1">Data Rent Logs</span>
+                                        <span class="text-muted small pt-2 ps-1">Rent Logs</span>
                                     </div>
                                 </div>
                             </div>
@@ -88,7 +91,10 @@
                                 <a class="icon" href="#" data-bs-toggle="dropdown"><i
                                         class="bi bi-three-dots"></i></a>
                                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                    <li><a class="dropdown-item" href="{{ route('books.index') }}">View Details</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="{{ route('user.rent-logs.index', auth()->user()->username) }}">View
+                                            Details</a>
+                                    </li>
                                 </ul>
                             </div>
 
