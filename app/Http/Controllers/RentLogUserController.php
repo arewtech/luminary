@@ -13,15 +13,21 @@ class RentLogUserController extends Controller
         if (auth()->user() != $user) {
             abort(404, 'Page not found');
         }
+        $query = $user->rentLogs()->with('book')->latest();
+        if ($request->q) {
+            $query->whereHas('book', function ($query) use ($request) {
+                $query->where('title', 'like', "%{$request->q}%");
+            });
+        }
         return view('users.index', [
-            'rentLogs' => $user->rentLogs()->with('book')->latest()->get(),
+            'rentLogs' => $query->get(),
             'userFines' => $user->rentLogs()->where('status', 'late')->sum('fine'),
         ]);
     }
 
     public function show(Request $request, User $user) {
         $rentLogUser = RentLog::with('book')->findOrFail($request->rentLog);
-        if ($rentLogUser->user_id != $user->id) {
+        if ($rentLogUser->user_id != $user->id || auth()->user() != $user) {
             abort(404, 'Page not found');
         }
         return view('users.show', [
