@@ -13,7 +13,9 @@
                     </ol>
                 </nav>
             </div>
-            <a href="{{ route('operator.create') }}" class="btn btn-primary btn-sm">Create Operator</a>
+            @if (auth()->user()->role == 'admin')
+                <a href="{{ route('operator.create') }}" class="btn btn-primary btn-sm">Create Operator</a>
+            @endif
         </div>
         <!-- End Page Title -->
 
@@ -34,7 +36,7 @@
                                 <th scope="col">Phone</th>
                                 <th scope="col">Role</th>
                                 <th scope="col">Status</th>
-                                <th scope="col">Action</th>
+                                <th class="text-center" scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -52,21 +54,21 @@
                                         <span
                                             class="badge {{ $item->status == 'active' ? 'bg-success' : 'bg-danger' }}">{{ $item->status }}</span>
                                     </td>
-                                    {{-- <td class="line-clamp">
-                                        {{ $item->address ?? 'nothing' }}
-                                    </td> --}}
                                     <td>
-                                        <div class="d-inline-flex gap-1">
+                                        <div class="d-flex justify-content-center gap-1">
                                             <a href="{{ route('operator.show', $item) }}" class="btn btn-info btn-sm">
                                                 <i class="bi bi-eye text-white"></i>
                                             </a>
-                                            <a href="{{ route('operator.edit', $item) }}" class="btn btn-warning btn-sm">
-                                                <i class="bi bi-pencil-square text-white"></i>
-                                            </a>
-                                            <a href="#" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                                data-bs-target="#userDelete{{ $item->username }}">
-                                                <i class="bi bi-trash"></i>
-                                            </a>
+                                            @if (auth()->user()->role == 'admin')
+                                                <a href="{{ route('operator.edit', $item) }}"
+                                                    class="btn btn-warning btn-sm">
+                                                    <i class="bi bi-pencil-square text-white"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                                    data-bs-target="#userDelete{{ $item->username }}">
+                                                    <i class="bi bi-trash"></i>
+                                                </a>
+                                            @endif
                                         </div>
                                         <!-- Button trigger modal -->
                                         <div class="modal fade" id="userDelete{{ $item->username }}" tabindex="-1">

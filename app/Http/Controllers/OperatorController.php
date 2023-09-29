@@ -24,6 +24,9 @@ class OperatorController extends Controller
      */
     public function create()
     {
+        if (auth()->user()->role !== 'admin' && auth()->user()->role !== 'admin') {
+            return abort(403, 'Unauthorized action.');
+        }
         return view('dashboard.operator.create');
     }
 
@@ -42,7 +45,7 @@ class OperatorController extends Controller
             'image' => 'nullable|image|mimes:jpg,jpeg,png',
         ]);
 
-         if ($request->file('image')) {
+        if ($request->file('image')) {
             $data['image'] = $request->file('image')->store('images/users', 'public');
         }
 
@@ -68,6 +71,9 @@ class OperatorController extends Controller
      */
     public function edit(User $operator)
     {
+        if ($operator->role !== 'admin' && auth()->user()->role !== 'admin') {
+            return abort(403, 'Unauthorized action.');
+        }
         return view('dashboard.operator.edit', [
             'operator' => $operator,
         ]);
@@ -110,6 +116,9 @@ class OperatorController extends Controller
     {
         if ($operator->image) {
             Storage::delete('public/' . $operator->image);
+        }
+        if ($operator->role !== 'admin') {
+            return abort(403, 'Unauthorized action.');
         }
         $operator->delete();
         return back()->with('success', 'User deleted successfully!');
