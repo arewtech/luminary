@@ -14,12 +14,12 @@
 
         <li class="nav-heading">Main</li>
 
-        <!-- List Books Page Nav -->
+        <!-- Book List Page Nav -->
         <li class="nav-item">
-            <a class="nav-link {{ request()->url('/list-books') == url('/list-books') ? '' : 'collapsed' }}"
-                href="{{ route('list-books') }}">
+            <a class="nav-link {{ request()->url('/book-list') == url('/book-list') ? '' : 'collapsed' }}"
+                href="{{ route('book-list') }}">
                 <i class="bi bi-card-list"></i>
-                <span>List Books</span>
+                <span>Book List</span>
             </a>
         </li>
         <!-- End List Books Page Nav -->

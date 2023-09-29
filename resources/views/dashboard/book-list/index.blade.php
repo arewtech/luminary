@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'List Books'])
+@extends('layouts.app', ['title' => 'Book List'])
 @pushOnce('select2:css')
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
@@ -10,11 +10,11 @@
         <!-- ======= Page Title ======= -->
         <div class="pagetitle d-flex justify-content-between align-items-center">
             <div>
-                <h1>List Books</h1>
+                <h1>Book List</h1>
                 <nav>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">Main</li>
-                        <li class="breadcrumb-item active">List Books</li>
+                        <li class="breadcrumb-item active">Book List</li>
                     </ol>
                 </nav>
             </div>
@@ -61,7 +61,7 @@
                             @endforeach
                         </div>
                         <span class="font-weight-normal text-secondary form-text">Author :
-                            <span class="font-weight-bold">{{ $item->author }}</span></span>
+                            <span class="font-weight-bold text-capitalize">{{ $item->author }}</span></span>
                         <hr class="mt-2">
                         <p class="card-text mt-2 form-text line-clamp">{{ $item->description }}</p>
                     </div>

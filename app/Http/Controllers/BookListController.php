@@ -6,7 +6,7 @@ use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
-class ListBookController extends Controller
+class BookListController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -26,7 +26,7 @@ class ListBookController extends Controller
             $books->where('title', 'like', '%'.$request->q.'%');
         }
 
-        return view('dashboard.list-books.index',[
+        return view('dashboard.book-list.index',[
             'listBooks' => $books->latest()->get(),
             'categories' => $categories
         ]);

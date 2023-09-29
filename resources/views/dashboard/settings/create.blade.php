@@ -20,7 +20,7 @@
                 <form action="{{ route('settings.store') }}" method="post" class="row g-3" enctype="multipart/form-data">
                     @csrf
                     <div style="margin-top: 3.5rem" class="col-md-12 mb-4">
-                        <div class="col-md-4 d-flex align-items-center gap-3 m-auto">
+                        <div class="col-md-5 d-flex align-items-center gap-3 m-auto">
                             <div class="position-relative d-inline-flex">
                                 <img id="uploadedAvatar" width="100" class="rounded-circle"
                                     src="{{ setting('app_logo') !== null ? asset('storage/' . setting('app_logo')) : 'https://ui-avatars.com/api/?name=' . auth()->user()->name . '&color=7F9CF5&background=EBF4FF' }}"

@@ -109,7 +109,8 @@
                      data-bs-toggle="dropdown">
                      <img src="{{ auth()->user()->image !== null ? asset('storage/' . auth()->user()->image) : 'https://ui-avatars.com/api/?name=' . auth()->user()->name . '&color=7F9CF5&background=EBF4FF' }}"
                          alt="Profile" class="rounded-circle">
-                     <span class="d-none d-md-block dropdown-toggle ps-2">{{ auth()->user()->username }}</span>
+                     <span
+                         class="d-none d-md-block dropdown-toggle text-capitalize ps-2">{{ auth()->user()->username }}</span>
                  </a><!-- End Profile Iamge Icon -->
 
                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">

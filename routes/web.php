@@ -2,10 +2,10 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BookListController;
 use App\Http\Controllers\BookRentLogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ListBookController;
 use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\ProfileUserController;
 use App\Http\Controllers\RentLogController;
@@ -21,7 +21,7 @@ Route::middleware(['auth', 'operator'])->group(function() {
 Route::get('/dashboard', DashboardController::class)->name('dashboard')->withoutMiddleware('operator');
 
 // list books
-Route::get('/list-books', ListBookController::class)->name('list-books')->withoutMiddleware('operator');
+Route::get('/book-list', BookListController::class)->name('book-list')->withoutMiddleware('operator');
 
 // rent log
 Route::get('/rent-logs', [RentLogController::class, 'index'])->name('rent-logs.index');

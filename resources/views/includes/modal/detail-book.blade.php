@@ -21,7 +21,7 @@
                             @endforeach
                         </div>
                         <span class="font-weight-normal text-secondary form-text">Author :
-                            <span class="font-weight-bold">{{ $item->author }}</span></span>
+                            <span class="font-weight-bold text-capitalize">{{ $item->author }}</span></span>
                         <hr class="mt-2">
                         <p class="card-text mt-2 form-text line-clamp">{{ $item->description }}</p>
                     </div>

@@ -47,7 +47,7 @@
                                     <td><a href="javascript:void(0)" data-bs-toggle="modal"
                                             data-bs-target="#bookDetail{{ $item->slug }}"
                                             class="text-capitalize">{{ $item->title }}</a></td>
-                                    <td>{{ $item->author }}</td>
+                                    <td class="text-capitalize">{{ $item->author }}</td>
                                     <td>
                                         @forelse ($item->categories as $category)
                                             <span class="badge text-lowercase bg-secondary">{{ $category->name }}</span>

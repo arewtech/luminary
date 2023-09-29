@@ -109,7 +109,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($user->rentLogs as $item)
+                                    @forelse ($user->rentLogs->sortByDesc('created_at') as $item)
                                         <tr class="{{ $item->setColorTable() }}">
                                             <th class="text-center" scope="row">{{ $loop->iteration }}</th>
                                             <td class="text-capitalize fw-bold">{{ $item->user->name }}</td>
