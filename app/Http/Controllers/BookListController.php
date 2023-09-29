@@ -27,7 +27,7 @@ class BookListController extends Controller
         }
 
         return view('dashboard.book-list.index',[
-            'listBooks' => $books->latest()->get(),
+            'bookList' => $books->latest()->paginate(12),
             'categories' => $categories
         ]);
     }

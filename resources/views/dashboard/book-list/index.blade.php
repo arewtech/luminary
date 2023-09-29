@@ -41,7 +41,7 @@
 
         <!-- list books -->
         <div class="d-flex flex-wrap justify-content-center gap-4">
-            @forelse ($listBooks as $item)
+            @forelse ($bookList as $item)
                 <div style="width: 16.5rem" class="card m-0">
                     <div class="position-relative">
                         <img style="object-fit: cover; object-position: center;"
@@ -70,6 +70,7 @@
                 <p style="transform: translateY(160px)" class="text-center">No books found. 😭🥲</p>
             @endforelse
         </div>
+        <div class='px-5 mt-5'>{{ $bookList->links() }}</div>
     </main>
 @endsection
 @pushOnce('select2:js')

@@ -18,7 +18,7 @@ class RentLogController extends Controller
         return view('dashboard.rent-logs.index', [
             'rentLogs' => RentLog::search($request->q)
                 ->latest()
-                ->get(),
+                ->paginate(setting('app_paginate') ?? 10),
             'totalFines' => RentLog::where('status', 'late')->sum('fine'),
         ]);
     }

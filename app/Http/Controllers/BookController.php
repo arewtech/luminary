@@ -15,7 +15,7 @@ class BookController extends Controller
     public function index(Request $request)
     {
         return view('dashboard.books.index', [
-            'books' => Book::with('categories')->search($request->q)->latest()->get(),
+            'books' => Book::with('categories')->search($request->q)->latest()->paginate(setting('app_paginate') ?? 10),
         ]);
     }
 

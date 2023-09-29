@@ -40,7 +40,9 @@
                         <tbody>
                             @forelse ($users as $item)
                                 <tr>
-                                    <th class="text-center" scope="row">{{ $loop->iteration }}</th>
+                                    <th class="text-center" scope="row">
+                                        {{ $loop->iteration + $users->perPage() * ($users->currentPage() - 1) }}
+                                    </th>
                                     <td class="text-capitalize">{{ $item->name }}</td>
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->phone ?? 'nothing' }}</td>
@@ -52,9 +54,6 @@
                                         <span
                                             class="badge {{ $item->status == 'active' ? 'bg-success' : 'bg-danger' }}">{{ $item->status }}</span>
                                     </td>
-                                    {{-- <td class="line-clamp">
-                                        {{ $item->address ?? 'nothing' }}
-                                    </td> --}}
                                     <td>
                                         <div class="d-inline-flex gap-1">
                                             <a href="{{ route('users.show', $item) }}" class="btn btn-info btn-sm">
@@ -106,6 +105,7 @@
                     </table>
                 </div>
                 <!-- End Bordered Table -->
+                <div class='px-4 mt-2'>{{ $users->links() }}</div>
             </div>
         </div>
     </main>

@@ -20,7 +20,7 @@ class RentLogUserController extends Controller
             });
         }
         return view('users.index', [
-            'rentLogs' => $query->get(),
+            'rentLogs' => $query->paginate(setting('app_paginate') ?? 10),
             'userFines' => $user->rentLogs()->where('status', 'late')->sum('fine'),
         ]);
     }

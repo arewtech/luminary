@@ -14,7 +14,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         return view('dashboard.users.index', [
-            'users' => User::whereRole('user')->search($request->q)->latest()->get(),
+            'users' => User::whereRole('user')->search($request->q)->latest()->paginate(setting('app_paginate') ?? 10),
         ]);
     }
 

@@ -15,7 +15,7 @@ class OperatorController extends Controller
     {
         return view('dashboard.operator.index', [
             'operator' => User::where('id', '!=', auth()->id())
-            ->whereRole('operator')->search($request->q)->latest()->get(),
+            ->whereRole('operator')->search($request->q)->latest()->paginate(setting('app_paginate') ?? 10),
         ]);
     }
 

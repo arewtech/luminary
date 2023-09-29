@@ -37,7 +37,9 @@
                         <tbody>
                             @forelse ($categories as $item)
                                 <tr>
-                                    <th class="text-center" scope="row">{{ $loop->iteration }}</th>
+                                    <th class="text-center" scope="row">
+                                        {{ $loop->iteration + $categories->perPage() * ($categories->currentPage() - 1) }}
+                                    </th>
                                     <td class="text-capitalize">{{ $item->name }}</td>
                                     <td>{{ $item->slug }}</td>
                                     <td>
@@ -86,6 +88,8 @@
                     </table>
                 </div>
                 <!-- End Bordered Table -->
+                <div class='px-4 mt-2'>{{ $categories->links() }}</div>
+
             </div>
         </div>
     </main>

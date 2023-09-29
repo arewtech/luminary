@@ -44,7 +44,9 @@
                         <tbody>
                             @forelse ($rentLogs as $item)
                                 <tr class="{{ $item->setColorTable() }}">
-                                    <th class="text-center" scope="row">{{ $loop->iteration }}</th>
+                                    <th class="text-center" scope="row">
+                                        {{ $loop->iteration + $rentLogs->perPage() * ($rentLogs->currentPage() - 1) }}
+                                    </th>
                                     <td class="text-capitalize fw-bold">{{ auth()->user()->name }}</td>
                                     <td>{{ $item->book->title }}</td>
                                     <td class="text-center">{{ Carbon\Carbon::parse($item->rent_date)->format('d/m/y') }}
@@ -73,6 +75,8 @@
                     </table>
                 </div>
                 <!-- End Bordered Table -->
+                <div class='px-4 mt-2'>{{ $rentLogs->links() }}</div>
+
             </div>
         </div>
     </main>

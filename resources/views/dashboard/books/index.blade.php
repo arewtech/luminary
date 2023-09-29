@@ -42,7 +42,9 @@
                         <tbody>
                             @forelse ($books as $item)
                                 <tr>
-                                    <th class="text-center" scope="row">{{ $loop->iteration }}</th>
+                                    <th class="text-center" scope="row">
+                                        {{ $loop->iteration + $books->perPage() * ($books->currentPage() - 1) }}
+                                    </th>
                                     <td class="fw-bold">{{ $item->book_code }}</td>
                                     <td><a href="javascript:void(0)" data-bs-toggle="modal"
                                             data-bs-target="#bookDetail{{ $item->slug }}"
@@ -113,6 +115,7 @@
                     </table>
                 </div>
                 <!-- End Bordered Table -->
+                <div class='px-4 mt-2'>{{ $books->links() }}</div>
             </div>
         </div>
     </main>

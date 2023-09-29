@@ -5,7 +5,7 @@ namespace App\Providers;
 use App\Models\RentLog;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Http\Request;
-
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,6 +22,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(Request $request): void
     {
-        // $rentLogUser = RentLog::with('book')->findOrFail($request->rentLog);
+        Paginator::useBootstrapFive();
     }
 }

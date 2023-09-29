@@ -42,7 +42,9 @@
                         <tbody>
                             @forelse ($operator as $item)
                                 <tr>
-                                    <th class="text-center" scope="row">{{ $loop->iteration }}</th>
+                                    <th class="text-center" scope="row">
+                                        {{ $loop->iteration + $operator->perPage() * ($operator->currentPage() - 1) }}
+                                    </th>
                                     <td class="text-capitalize">{{ $item->name }}</td>
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->phone ?? 'nothing' }}</td>
@@ -109,6 +111,7 @@
                     </table>
                 </div>
                 <!-- End Bordered Table -->
+                <div class='px-4 mt-2'>{{ $operator->links() }}</div>
             </div>
         </div>
     </main>
