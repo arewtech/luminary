@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['title' => 'Detail Rent Log - ' . auth()->user()->name])
 @section('content')
     <main id="main" class="main">
 

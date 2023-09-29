@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['title' => 'Create User'])
 @section('content')
     <main id="main" class="main">
 

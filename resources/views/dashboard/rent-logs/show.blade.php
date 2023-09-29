@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['title' => 'Rent Log Details - ' . $rentLog->user->name])
 @section('content')
     <main id="main" class="main">
 

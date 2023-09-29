@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['title' => 'Create Operator'])
 @section('content')
     <main id="main" class="main">
 

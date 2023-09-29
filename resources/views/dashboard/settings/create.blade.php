@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['title' => 'App Settings'])
 @section('content')
     <main id="main" class="main">
 

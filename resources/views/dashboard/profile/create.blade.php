@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['title' => 'Profile - ' . auth()->user()->username])
 @section('content')
     <main id="main" class="main">
 

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['title' => 'Users'])
 @section('content')
     <main id="main" class="main">
 
@@ -30,12 +30,10 @@
                             <tr>
                                 <th class="text-center" scope="col">No</th>
                                 <th scope="col">Name</th>
-                                {{-- <th scope="col">Username</th> --}}
                                 <th scope="col">Email</th>
                                 <th scope="col">Phone</th>
                                 <th scope="col">Role</th>
                                 <th scope="col">Status</th>
-                                {{-- <th scope="col" style="width: 200px">Address</th> --}}
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -43,8 +41,7 @@
                             @forelse ($users as $item)
                                 <tr>
                                     <th class="text-center" scope="row">{{ $loop->iteration }}</th>
-                                    <td>{{ $item->name }}</td>
-                                    {{-- <td>{{ $item->username }}</td> --}}
+                                    <td class="text-capitalize">{{ $item->name }}</td>
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->phone ?? 'nothing' }}</td>
                                     <td>

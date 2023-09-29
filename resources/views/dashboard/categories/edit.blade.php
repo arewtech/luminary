@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['title' => 'Edit Category - ' . $category->name])
 @section('content')
     <main id="main" class="main">
 

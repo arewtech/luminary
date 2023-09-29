@@ -1,4 +1,4 @@
-@extends('layouts.guest')
+@extends('layouts.guest', ['title' => 'Login'])
 @section('content')
     <div class="card mb-3">
 
