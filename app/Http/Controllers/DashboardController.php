@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\MonthlyBookRentChart;
 use App\Charts\RentLogsChart;
 use App\Charts\StatusBooksChart;
 use App\Models\Book;
@@ -14,7 +15,7 @@ class DashboardController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request, StatusBooksChart $statusBooksChart, RentLogsChart $rentLogsChart)
+    public function __invoke(Request $request, StatusBooksChart $statusBooksChart, RentLogsChart $rentLogsChart, MonthlyBookRentChart $monthlyBookRentChart)
     {
         $data['books'] = Book::count();
         $data['users'] = User::whereRole('user')->whereStatus('active')->count();
@@ -43,6 +44,9 @@ class DashboardController extends Controller
         $data['userNotReturned'] = $user->where('status', 'not returned')->count();
         $data['userFines'] = $user->where('status', 'late')->sum('fine');
 
+        // data chart monthly book rent
+        $data['monthlyBookRentChart'] = $monthlyBookRentChart->build();
+        // dd($data['monthlyBookRentChart']);
         return view('dashboard.index', $data);
     }
 }

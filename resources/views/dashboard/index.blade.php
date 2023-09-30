@@ -299,36 +299,36 @@
 
                     </div>
                 </div>
-            @endif
-
-            <!-- Right side columns -->
-            {{-- <div class="col-lg-5">
-                <!-- Budget Report -->
-                <div class="card">
-                    <div class="filter">
-                        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                            <li class="dropdown-header text-start">
-                                <h6>Filter</h6>
-                            </li>
-
-                            <li><a class="dropdown-item" href="#">Today</a></li>
-                            <li><a class="dropdown-item" href="#">This Month</a></li>
-                            <li><a class="dropdown-item" href="#">This Year</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="card-body pb-0">
-                        <h5 class="card-title">Status Books <span>| This Month</span></h5>
-
-                        <div style="min-height: 300px;">
-                            {{ $statusBooksChart->container() }}
+            @else
+                <!-- Right side columns -->
+                <div class="col">
+                    <!-- Website Traffic -->
+                    <div class="card">
+                        <div class="filter">
+                            <a class="icon" href="#" data-bs-toggle="dropdown"><i
+                                    class="bi bi-three-dots"></i></a>
+                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                <li><a class="dropdown-item"
+                                        href="{{ route('user.rent-logs.index', auth()->user()->username) }}">View
+                                        Details</a>
+                                </li>
+                            </ul>
                         </div>
 
+                        <div class="card-body pb-0">
+                            <h5 class="card-title">Main Traffic <span>| Core</span></h5>
+
+                            <div style="min-height: 300px;">
+                                {!! $monthlyBookRentChart->container() !!}
+                            </div>
+
+                        </div>
                     </div>
-                </div><!-- End Budget Report -->
-            </div> --}}
-            <!-- End Right side columns -->
+                    <!-- End Website Traffic -->
+                </div>
+                <!-- End Right side columns -->
+            @endif
+
         </section>
 
     </main>
@@ -336,4 +336,5 @@
 
     {{ $statusBooksChart->script() }}
     {{ $rentLogsChart->script() }}
+    {{ $monthlyBookRentChart->script() }}
 @endsection
