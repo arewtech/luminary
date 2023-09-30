@@ -15,19 +15,19 @@ class MonthlyBookRentChart
         $this->chart = $chart;
     }
 
-    public function build(): \ArielMejiaDev\LarapexCharts\LineChart
+    public function build(): \ArielMejiaDev\LarapexCharts\AreaChart
     {
         $years = date('Y');
         $months = date('m');
 
         for ($i = 1; $i <= $months; $i++) {
-            $data[] = RentLog::where('user_id', auth()->user()->id)->whereMonth('created_at', $i)->whereYear('created_at', $years)->count();
+            $data[] = RentLog::whereUserId(auth()->id())->whereMonth('created_at', $i)->whereYear('created_at', $years)->count();
             $dataMonth[] = Carbon::create($years, $i)->format('F');
         }
-
-        return $this->chart->lineChart()
+        // dd($data);
+        return $this->chart->areaChart()
             ->setTitle('Book Rent Chart')
-            ->setSubtitle('Monthly Book Rent Chart, ' . $years)
+            ->setSubtitle('Monthly Book Rent Chart, ' . Carbon::now()->format('F') . ' ' . $years)
             ->addData('Rent', $data)
             ->setXAxis($dataMonth);
     }
