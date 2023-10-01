@@ -48,6 +48,14 @@ class DatabaseSeeder extends Seeder
             'name' => 'John BBC',
             'username' => 'john',
             'email' => 'john@luminary.com',
+            'role' => 'admin',
+            'status' => 'active',
+        ]);
+
+        \App\Models\User::factory()->create([
+            'name' => 'Operator Luminary',
+            'username' => 'operator',
+            'email' => 'operator@luminary.com',
             'role' => 'operator',
             'status' => 'active',
         ]);
@@ -62,7 +70,6 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             CategorySeeder::class,
-            // BookSeeder::class,
         ]);
     }
 }

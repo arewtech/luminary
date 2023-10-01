@@ -15,7 +15,7 @@ class Operator
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->user()->role === 'operator') {
+        if ($request->user()->role === 'operator' || $request->user()->role === 'admin') {
             return $next($request);
         } else {
             abort(403, 'Unauthorized action.');

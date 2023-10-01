@@ -13,10 +13,6 @@ Preview Dashboard
 
 ![Luminary](/public/assets/preview/dashboard.png)
 
-Preview Book List
-
-![Luminary](/public/assets/preview/list-book-users.png)
-
 Preview Books
 
 ![Luminary](/public/assets/preview/books.png)
@@ -36,6 +32,10 @@ Preview Profile
 Preview Settings
 
 ![Luminary](/public/assets/preview/settings.png)
+
+Preview Book List | Users
+
+![Luminary](/public/assets/preview/list-book-users.png)
 
 Preview Rent Logs | Users
 

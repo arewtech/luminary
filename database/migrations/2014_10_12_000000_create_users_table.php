@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('link_instagram')->nullable();
             $table->string('link_linkedin')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('inactive');
-            $table->enum('role', ['operator', 'user'])->default('user');
+            $table->enum('role', ['admin', 'operator', 'user'])->default('user');
             $table->text('image')->nullable();
             $table->rememberToken();
             $table->timestamps();
