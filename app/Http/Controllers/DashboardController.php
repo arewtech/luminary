@@ -16,14 +16,15 @@ class DashboardController extends Controller
      */
     public function __invoke(Request $request, StatusBooksChart $statusBooksChart, RentLogsChart $rentLogsChart)
     {
+        $weekly = now()->subWeek();
         $data['books'] = Book::count();
         $data['users'] = User::whereRole('user')->whereStatus('active')->count();
         $data['totalFines'] = RentLog::where('status', 'late')->sum('fine');
-        $data['totalSubWeekFines'] = RentLog::where('status', 'late')->where('created_at', '>=', now()->subWeek())->sum('fine');
+        $data['totalSubWeekFines'] = RentLog::where('status', 'late')->where('created_at', '>=', $weekly)->sum('fine');
         $data['recentActivities'] = RentLog::with(['book', 'user'])
         ->where('created_at', '>=', today())
             ->latest()->limit(8)->get();
-        // dd($data['totalWeekFines']);
+        // dd($data['totalSubWeekFines']);
         $data['statusBooksChart'] = $statusBooksChart->build([
             Book::where('status', 'available')->count(),
             Book::where('status', 'unavailable')->count(),
