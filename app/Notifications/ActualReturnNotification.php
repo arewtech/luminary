@@ -49,7 +49,7 @@ class ActualReturnNotification extends Notification
      */
     public function toArray(object $notifiable): array
     {
-        $formatDate = Carbon::parse($this->actualReturnDate->actual_return_date)->format('d m Y');
+        $formatDate = Carbon::parse($this->actualReturnDate->actual_return_date)->format('d F, Y');
         return [
             'rentlog_id' => $this->actualReturnDate->id,
             // example: 'Actual Return Date John Doe'
@@ -57,9 +57,9 @@ class ActualReturnNotification extends Notification
             // example message: 'Actual Return Date John Doe is 2021-08-01 which is late'
             'message' => 'Actual Return Date ' . $this->actualReturnDate->user->name . ' is ' . $formatDate . ' which is ' . $this->actualReturnDate->setStatusRentLog(),
             // example url: 'john-doe/rent-logs/1'
-            'url' => $this->actualReturnDate->user->username . '/rent-logs/' . $this->actualReturnDate->id,
+            'url' =>  'rent-logs/' . $this->actualReturnDate->id,
             // example url: 'rent-logs/1'
-            'next' => 'rent-logs/' . $this->actualReturnDate->id,
+            'status' => $this->actualReturnDate->setStatusRentLog(),
         ];
     }
 }
