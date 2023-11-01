@@ -18,6 +18,12 @@ class RentLog extends Model
         'fine',
     ];
 
+    protected $casts = [
+        'rent_date' => 'datetime',
+        'return_date' => 'datetime',
+        'actual_return_date' => 'datetime',
+    ];
+
     public function scopeSearch($query, $search)
     {
         $query->with(['book', 'user'])
