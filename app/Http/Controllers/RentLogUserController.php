@@ -33,7 +33,7 @@ class RentLogUserController extends Controller
         }
         // check if notification is read
         foreach (auth()->user()->unreadNotifications as $notification) {
-            if ($notification->data['rentlog_id'] == $rentLogUser->id) {
+            if ($notification->data['id'] == $rentLogUser->id) {
                 $notification->markAsRead();
             }
         }

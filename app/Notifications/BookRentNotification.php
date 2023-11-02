@@ -8,17 +8,14 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ActualReturnNotification extends Notification
+class BookRentNotification extends Notification
 {
     use Queueable;
 
-    /**
-     * Create a new notification instance.
-     */
-    private $actualReturnDate;
-    public function __construct($actualReturnDate)
+    private $bookRent;
+    public function __construct($bookRent)
     {
-        $this->actualReturnDate = $actualReturnDate;
+        $this->bookRent = $bookRent;
     }
 
     /**
@@ -49,17 +46,17 @@ class ActualReturnNotification extends Notification
      */
     public function toArray(object $notifiable): array
     {
-        $formatDate = Carbon::parse($this->actualReturnDate->actual_return_date)->format('d F Y');
+        $formatDate = Carbon::parse($this->bookRent->rent_date)->format('d F Y');
         return [
-            'id' => $this->actualReturnDate->id,
-            // example: 'Actual Return Date John Doe'
-            'title' => 'Actual Return ' . $this->actualReturnDate->book->title,
-            // example message: 'Actual Return Date John Doe is 2021-08-01 which is late'
-            'message' => 'Actual Return Date ' . ucwords(strtolower($this->actualReturnDate->user->name)) . ' is ' . $formatDate . ' which is ' . $this->actualReturnDate->setStatusRentLog(),
+            'id' => $this->bookRent->id,
+            // example: 'Book Rent The Hobbit'
+            'title' => 'Book Rent ' . $this->bookRent->book->title,
+            // example message: 'Jonh Doe Book Rent The Hobbit is 2021-08-01, please return the book before 3 days'
+            'message' => ucwords(strtolower($this->bookRent->user->name)) . ' Book Rent ' . $this->bookRent->book->title . ' is ' . $formatDate . ', please return the book before 3 days',
             // example url: 'john-doe/rent-logs/1'
-            'url' =>  'rent-logs/' . $this->actualReturnDate->id,
+            'url' =>  'rent-logs/' . $this->bookRent->id,
             // example url: 'rent-logs/1'
-            'status' => $this->actualReturnDate->setStatusRentLog(),
+            'status' => $this->bookRent->setStatusRentLog(),
         ];
     }
 }

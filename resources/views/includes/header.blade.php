@@ -52,13 +52,13 @@
                         @if (url()->current() == route('user.rent-logs.index', auth()->user()->username))
                             <a href="{{ $notification->data['url'] }}">
                             @elseif (Route::current()->getName() == 'user.rent-logs.show')
-                                <a href="{{ $notification->data['rentlog_id'] }}">
+                                <a href="{{ $notification->data['id'] }}">
                                 @else
                                     <a href="{{ auth()->user()->username . '/' . $notification->data['url'] }}">
                         @endif
                         <li class="notification-item">
                             <i
-                                class="bi {{ $notification->data['status'] == 'returned' ? 'bi-check-circle text-success' : 'bi-x-circle text-danger' }}"></i>
+                                class="bi {{ $notification->data['status'] == 'returned' ? 'bi-check-circle text-success' : ($notification->data['status'] == 'not returned' ? 'bi-journal-check text-success' : 'bi-x-circle text-danger') }}"></i>
                             <div>
                                 <h4 class="line-clamp-1 text-dark">{{ $notification->data['title'] }}</h4>
                                 <p>{{ $notification->data['message'] }}</p>
