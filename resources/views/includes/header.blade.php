@@ -61,7 +61,7 @@
                                 class="bi {{ $notification->data['status'] == 'returned' ? 'bi-check-circle text-success' : ($notification->data['status'] == 'not returned' ? 'bi-journal-check text-success' : 'bi-x-circle text-danger') }}"></i>
                             <div>
                                 <h4 class="line-clamp-1 text-dark">{{ $notification->data['title'] }}</h4>
-                                <p>{{ $notification->data['message'] }}</p>
+                                <p class="line-clamp">{{ $notification->data['message'] }}</p>
                                 <p>
                                     <small>{{ $notification->created_at->diffForHumans() }}</small>
                                 </p>

@@ -99,7 +99,6 @@
                                 <thead class="table-light">
                                     <tr>
                                         <th class="text-center" scope="col">No</th>
-                                        <th scope="col">Name</th>
                                         <th scope="col">Book Title</th>
                                         <th class="text-center" scope="col">Rent Date</th>
                                         <th class="text-center" scope="col">Return Date</th>
@@ -109,10 +108,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($user->rentLogs->sortByDesc('created_at') as $item)
+                                    @forelse ($rentLogs as $item)
                                         <tr class="{{ $item->setColorTable() }}">
-                                            <th class="text-center" scope="row">{{ $loop->iteration }}</th>
-                                            <td class="text-capitalize fw-bold">{{ $item->user->name }}</td>
+                                            <th class="text-center" scope="row">
+                                                {{ $loop->iteration + $rentLogs->perPage() * ($rentLogs->currentPage() - 1) }}
+                                            </th>
                                             <td>{{ $item->book->title }}</td>
                                             <td class="text-center">
                                                 {{ Carbon\Carbon::parse($item->rent_date)->format('d/m/y') }}
@@ -142,6 +142,7 @@
                             </table>
                         </div>
                         <!-- End Bordered Table -->
+                        <div class='px-4 mt-2'>{{ $rentLogs->links() }}</div>
                     </div>
                 </div>
             @endif

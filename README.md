@@ -4,7 +4,6 @@
 
 ## Features ( Coming Soon )
 
--   Notification ( Actual Return Book )
 -   Report ( Rent Logs )
 
 ## Preview Website
@@ -39,7 +38,7 @@ Preview Book List | Users
 
 Preview Rent Logs | Users
 
-![Luminary](/public/assets/preview/rentlogs-users.png)
+![Luminary](/public/assets/preview/rentlogs-users-rmk.png)
 
 ### satset
 

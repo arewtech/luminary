@@ -60,6 +60,7 @@ class UserController extends Controller
         $fines = $user->rentLogs->where('status', 'late')->sum('fine');
         return view('dashboard.users.show', [
             'user' => $user->load('rentLogs'),
+            'rentLogs' => $user->rentLogs()->latest()->paginate(setting('app_paginate') ?? 10),
             'userFines' => $fines,
         ]);
     }
