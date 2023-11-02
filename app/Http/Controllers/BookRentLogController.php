@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\RentLog;
 use App\Models\User;
+use App\Notifications\BookRentNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -48,7 +49,9 @@ class BookRentLogController extends Controller
         }
 
         // return $data;
-        RentLog::create($data);
+        $rentBookNotification =  RentLog::create($data);
+        // send notification
+        $user->notify(new BookRentNotification($rentBookNotification));
         DB::commit();
         sweetalert()->addSuccess('Book rented successfully.');
         return back();

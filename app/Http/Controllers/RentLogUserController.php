@@ -27,8 +27,15 @@ class RentLogUserController extends Controller
 
     public function show(Request $request, User $user) {
         $rentLogUser = RentLog::with('book')->findOrFail($request->rentLog);
+        // return $rentLogUser;
         if ($rentLogUser->user_id != $user->id || auth()->user() != $user) {
             abort(404, 'Page not found');
+        }
+        // check if notification is read
+        foreach (auth()->user()->unreadNotifications as $notification) {
+            if ($notification->data['id'] == $rentLogUser->id) {
+                $notification->markAsRead();
+            }
         }
         return view('users.show', [
             'rentLogUser' => $rentLogUser,

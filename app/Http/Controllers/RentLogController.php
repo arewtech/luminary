@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\RentLog;
 use App\Models\User;
+use App\Notifications\ActualReturnNotification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -73,6 +74,9 @@ class RentLogController extends Controller
                 'status' => $endDate > $startDate ? 'late' : 'returned',
                 'fine' => $fine,
             ]);
+
+            // send notification
+            $returned->user->notify(new ActualReturnNotification($returned));
 
             // update the book status
             $book = Book::find($request->book_id);

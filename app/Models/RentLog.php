@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class RentLog extends Model
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
     protected $fillable = [
         'user_id',
         'book_id',
@@ -16,6 +17,12 @@ class RentLog extends Model
         'actual_return_date',
         'status',
         'fine',
+    ];
+
+    protected $casts = [
+        'rent_date' => 'datetime',
+        'return_date' => 'datetime',
+        'actual_return_date' => 'datetime',
     ];
 
     public function scopeSearch($query, $search)
