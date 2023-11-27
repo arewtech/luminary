@@ -299,36 +299,38 @@
 
                     </div>
                 </div>
-            @endif
+            @else
+                @if ($rentLogUser >= 1)
+                    <!-- Right side columns -->
+                    <div class="col">
+                        <!-- Budget Report -->
+                        <div class="card">
+                            <div class="filter">
+                                <a class="icon" href="#" data-bs-toggle="dropdown"><i
+                                        class="bi bi-three-dots"></i></a>
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                    <li>
+                                        <a class="dropdown-item"
+                                            href="{{ route('user.rent-logs.index', auth()->user()->username) }}">
+                                            View Details</a>
+                                    </li>
+                                </ul>
+                            </div>
 
-            <!-- Right side columns -->
-            {{-- <div class="col-lg-5">
-                <!-- Budget Report -->
-                <div class="card">
-                    <div class="filter">
-                        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                            <li class="dropdown-header text-start">
-                                <h6>Filter</h6>
-                            </li>
+                            <div class="card-body pb-0">
+                                <h5 class="card-title">
+                                    Rent Logs <span>| This Month</span>
+                                    <div style="min-height: 300px;">
+                                        <div id="lineChart"></div>
+                                    </div>
 
-                            <li><a class="dropdown-item" href="#">Today</a></li>
-                            <li><a class="dropdown-item" href="#">This Month</a></li>
-                            <li><a class="dropdown-item" href="#">This Year</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="card-body pb-0">
-                        <h5 class="card-title">Status Books <span>| This Month</span></h5>
-
-                        <div style="min-height: 300px;">
-                            {{ $statusBooksChart->container() }}
+                            </div>
                         </div>
-
+                        <!-- End Budget Report -->
                     </div>
-                </div><!-- End Budget Report -->
-            </div> --}}
-            <!-- End Right side columns -->
+                    <!-- End Right side columns -->
+                @endif
+            @endif
         </section>
 
     </main>
@@ -336,4 +338,57 @@
 
     {{ $statusBooksChart->script() }}
     {{ $rentLogsChart->script() }}
+
+    @push('chart')
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+        <script>
+            var options = {
+                series: [{
+                    name: "Rent Logs",
+                    data: @json($monthlyBookRentChart)
+                }],
+                chart: {
+                    height: 410,
+                    type: 'line',
+                    zoom: {
+                        enabled: false
+                    }
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                stroke: {
+                    curve: 'straight'
+                },
+                title: {
+                    text: 'Monthly Book Rent Chart',
+                    align: 'left'
+                },
+                subtitle: {
+                    text: 'Monthly Book Rent Chart in ' + new Date().getFullYear(),
+                    align: 'left'
+                },
+                grid: {
+                    row: {
+                        colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                        opacity: 0.5
+                    },
+                },
+                xaxis: {
+                    categories: @json($monthlyBookRentChartMonth),
+                },
+                yaxis: {
+                    labels: {
+                        formatter: function(val) {
+                            return val.toFixed(0);
+                            // return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                        }
+                    }
+                }
+            };
+
+            var chart = new ApexCharts(document.querySelector("#lineChart"), options);
+            chart.render();
+        </script>
+    @endpush
 @endsection

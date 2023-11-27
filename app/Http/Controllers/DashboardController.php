@@ -7,6 +7,7 @@ use App\Charts\StatusBooksChart;
 use App\Models\Book;
 use App\Models\RentLog;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -44,6 +45,16 @@ class DashboardController extends Controller
         $data['userNotReturned'] = $user->where('status', 'not returned')->count();
         $data['userFines'] = $user->where('status', 'late')->sum('fine');
 
+        // book rent chart | users
+        $years = date('Y');
+        $months = date('m');
+        $chart = [];
+        for ($i = 1; $i <= $months; $i++) {
+            $chart[] = RentLog::where('user_id', auth()->user()->id)->whereMonth('created_at', $i)->whereYear('created_at', $years)->count();
+            $dataMonth[] = Carbon::create($years, $i)->format('F');
+        }
+        $data['monthlyBookRentChart'] = $chart;
+        $data['monthlyBookRentChartMonth'] = $dataMonth;
         return view('dashboard.index', $data);
     }
 }

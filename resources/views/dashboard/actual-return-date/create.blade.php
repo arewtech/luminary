@@ -42,7 +42,7 @@
                                         aria-label="Default select example">
                                         <option selected="" disabled>select users</option>
                                         @foreach ($users as $user)
-                                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                            <option value="{{ $user->id }}">{{ ucfirst($user->name) }}</option>
                                         @endforeach
                                     </select>
                                     @error('user_id')
@@ -57,7 +57,7 @@
                                         class="form-select select2 @error('book_id') is-invalid @enderror">
                                         <option selected="" disabled>select books</option>
                                         @foreach ($books as $book)
-                                            <option value="{{ $book->id }}">{{ $book->title }}</option>
+                                            <option value="{{ $book->id }}">{{ ucfirst($book->title) }}</option>
                                         @endforeach
                                     </select>
                                     @error('book_id')
