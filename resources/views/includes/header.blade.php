@@ -37,7 +37,8 @@
                         class="badge bg-primary badge-number">{{ auth()->user()->unreadNotifications->count() }}</span>
                 </a><!-- End Notification Icon -->
 
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+                <ul
+                    class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications {{ auth()->user()->unreadNotifications->count() >= 3? 'hidden': '' }}">
                     <li class="dropdown-header">
                         You have {{ auth()->user()->unreadNotifications->count() }} new notifications
                         <a href="{{ route('user.rent-logs.index', auth()->user()->username) }}">
@@ -77,7 +78,6 @@
                         <a href="{{ route('user.rent-logs.index', auth()->user()->username) }}">Show all
                             notifications</a>
                     </li>
-
                 </ul>
                 <!-- End Notification Dropdown Items -->
 

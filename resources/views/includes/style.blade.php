@@ -52,4 +52,9 @@
          background: linear-gradient(125deg, #696cff, #60a5fa);
          border-radius: 10px;
      }
+
+     .hidden {
+         overflow: auto;
+         height: 450px;
+     }
  </style>
