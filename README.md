@@ -32,6 +32,10 @@ Preview Settings
 
 ![Luminary](/public/assets/preview/settings.png)
 
+Preview Chart Rent Logs | Users
+
+![Luminary](/public/assets/preview/rent-log-chart.png)
+
 Preview Book List | Users
 
 ![Luminary](/public/assets/preview/list-book-users.png)
@@ -40,18 +44,22 @@ Preview Rent Logs | Users
 
 ![Luminary](/public/assets/preview/rentlogs-users-rmk.png)
 
-### satset
+## Installation
 
-```bash
-git clone https://github.com/arewtech/luminary.git 'project'
-cd project
-composer install
-cp .env.example .env
-php artisan key:generate
-php artisan migrate:fresh --seed
-php artisan storage:link
-php artisan serve
-```
+-   Install [Composer](https://getcomposer.org/download) and [Npm](https://nodejs.org/en/download)
+-   Clone the repository: `git clone https://github.com/arewtech/luminary.git "project"`
+-   Go to the project directory: `cd project`
+-   Install dependencies: `composer install`
+-   Run `cp .env.example .env` for create .env file
+-   Run `php artisan key:generate` for generate key
+-   Run `php artisan migrate --seed` for migration database
+-   Run `php artisan storage:link` for create folder storage
+-   Run `php artisan serve` for run the project
+
+## Penggunaan
+
+-   Login sebagai admin John: john@luminary.com & pw: password
+-   Atau Register akun baru untuk mencoba aplikasi ini
 
 ## Authors
 
